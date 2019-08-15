@@ -127,7 +127,7 @@
                 <tbody>
                   <tr class="text-left">
                     <td>{{ \Carbon\Carbon::parse($shipment->order->created_at)->diffForHumans() }}</td>
-                    <td>{{ \Carbon\Carbon::now() }}</td>
+                    <td>{{ \Carbon\Carbon::parse($shipment->updated_at)->diffForHumans() }}</td>
                     <td>&nbsp;</td>
                   </tr>
                 </tbody>
@@ -180,10 +180,18 @@
             <div class="card-body">
               <div class="card-title d-flex justify-content-between align-items-center">
                 <h5 class="text-primary">
-                  <a href="#" class="btn btn-danger btn-lg">Cancel</a>
+                  @if($shipment->status->name == 'approved')
+                    <a href="#" class="btn btn-danger btn-lg">Cancel</a>
+                  @endif
                 </h5>
                 <span class="text-danger">
-    				      <a href="{{ route('duties.transit', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Accept</a>
+                  @if($shipment->status->name == 'approved')
+    				        <a href="{{ route('duties.transit', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Accept</a>
+                  @elseif($shipment->status->name == 'transit')
+                    <a href="{{ route('duties.delivered', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Delivered</a>
+                  @else
+                    <p>Delivered</p>
+                  @endif
                 </span>
               </div>
           	</div>

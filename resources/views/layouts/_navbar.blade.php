@@ -13,8 +13,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand mx-auto" href="{{ url('/') }}">
-                <span class="d-none d-block d-md-none">W{{ ltrim(setting('site.title'),'W') }}</span>
-                <span class="d-none d-md-block">{{ ltrim(setting('site.title'),'W') }}</span>
+                <span class="d-none d-block d-md-none">{{ setting('site.title') }}</span>
+                <span class="d-none d-md-block">{{ setting('site.title') }}</span>
             </a>
         </div>
 

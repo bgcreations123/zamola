@@ -8,9 +8,11 @@
 	
 	<div class="row py-4 noprint">
     <div class="col-12">
-      <span class="float-left"><strong>Order info: </strong>as determined by the client.</span>
+      <span class="float-left"><strong>Order info: </strong>as determined by the {{ $shipment->user->name }}.</span>
 
-      <span class="float-right">An email was sent in response.</span> 
+      @if(auth()->user()->id == $shipment->user_id)
+        <span class="float-right">An email was sent in response.</span> 
+      @endif
     </div> 
   </div>
 
@@ -21,7 +23,9 @@
 
       <span class="float-right">
         <a href="{{ URL::previous() }}" class="btn btn-primary float-right ml-3">Back</a>
-        <a href="javascript:window.print()" class="btn btn-success float-right">Print Waypass</a>
+        @if(auth()->user()->id == $shipment->user_id)
+          <a href="javascript:window.print()" class="btn btn-success float-right">Print Waypass</a>
+        @endif
       </span> 
     </div> 
   </div>

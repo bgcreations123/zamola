@@ -13,6 +13,7 @@
                 <h5 class="text-primary">
 					         Shipment information
                 </h5>
+                <a href="{{ URL::previous() }}" class="btn btn-primary float-right ml-3">Back</a>
               </div>
               <table class="table mt-4">
                 <thead>

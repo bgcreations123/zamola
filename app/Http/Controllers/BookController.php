@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\OrderApproved;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment};
 
 class BookController extends Controller
@@ -73,6 +74,10 @@ class BookController extends Controller
 
         // Update order status table
         Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'approved')->first()->id]);
+
+        $client_email = User::where('id', $shipment->order->user_id)->pluck('email');
+
+        \Mail::to($client_email, $receiver_terminus->email)->send(new OrderApproved($order, $sender_terminus, $receiver_terminus));
 
         return redirect()->route('staff')->with(['success' => 'You have successfully initiated parcel transit.']);
     }

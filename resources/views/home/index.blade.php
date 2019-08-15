@@ -115,7 +115,7 @@
                 <h5 class="text-primary">
                   Completed orders
                 </h5>
-                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'paid']) }}" class="badge badge-info text-light">{{ $completed_orders_count->count() }}</a>
+                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'delivered']) }}" class="badge badge-info text-light">{{ $completed_orders_count->count() }}</a>
               </div>
               {{ ($completed_orders_count->count() == 0) ? 'No Completed Orders' : '' }}
               <ul class="list-group  list-group-flush">

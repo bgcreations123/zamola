@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
   <i id="menu-toggle" class="arrow" onclick="this.classList.toggle('active')"></i>
 
+  <div class="ml-5">
+    <img src="{{ Voyager::image(setting('site.logo')) }}" style="width: 4.5%;">
+     {{ setting('site.title') }}
+  </div>
+  
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,15 +27,6 @@
           <li class="nav-item">
               <a class="nav-link" href="#">Notifications</a>
           </li>
-          @if(auth()->user()->hasRole('user'))
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Shipment</a>
-              </li>
-          @elseif(auth()->user()->hasRole('driver'))
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Payments</a>
-              </li>
-          @endif
 
           <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
