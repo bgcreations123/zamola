@@ -30,12 +30,20 @@
 							@foreach($assignments as $assignment)
 							{{-- {{ dd($assignment) }} --}}
 								<tr class="text-center">
-									<td><a href="{{ route('trace', ['tracer' => $assignment->tracer]) }}">{{ $assignment->order->shipment_category->name }}</a></td>
-									<td>{{ $assignment->quantity }}</td>
+									<td><a href="{{ route('trace', ['tracer' => $assignment->order->tracer]) }}">{{ $assignment->order->shipment_category->name }}</a></td>
+									<td>{{ $assignment->order->quantity }}</td>
 									<td>{{ $assignment->package->name }}</td>
-									<td>{{ $assignment->user->name }}</td>
+									<td>{{ $assignment->order->user->name }}</td>
 									<td>{{ $assignment->status->name }}</td>
-									<td></td>
+									<td>
+										@if($assignment->status->name == 'unpaid')
+											<a href="{{ route('bookings.raise_invoice', ['shipment_id' => $assignment->id]) }}" class="btn btn-primary btn-sm">
+												Raise Invoice
+											</a>
+										@else
+											<a href="#" class="btn btn-secondary btn-sm">Push</a>
+										@endif
+									</td>
 								</tr>
 							@endforeach
 						</tbody>

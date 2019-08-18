@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('bookings', 'BookController@assignments')->name('bookings.assignments');
 		Route::get('{order_id}/show', 'BookController@show')->name('bookings.show');
 		Route::post('book', 'BookController@store')->name('bookings.store');
+		Route::get('{shipment_id}/raise_invoice', 'BookController@raise_invoice')->name('bookings.raise_invoice');
 	});
 
 	// Private Driver pages

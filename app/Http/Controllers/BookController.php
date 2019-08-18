@@ -21,24 +21,6 @@ class BookController extends Controller
     }
 
     /**
-     * Display a listing of the assignments.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function assignments()
-    {
-        $assignments = Shipment::where('staff_id', '=', auth()->user()->id)
-        ->leftJoin('orders', function ($query) {
-            $query
-            ->on('orders.id', '=', 'shipments.order_id');
-        })
-        ->whereNotNull('shipments.id')
-        ->orderBy('shipments.id', 'DESC')->paginate(11);
-
-        return view('staff.book.assignments', compact('assignments'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -91,9 +73,9 @@ class BookController extends Controller
     public function show($id)
     {
         // Find the order, origin and destination
-        $shipment = Order::where('id', $id)->first();
-        $origin = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'origin'])->first();
-        $destination = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'destination'])->first();
+        $shipment = Order::find($id);
+        // $origin = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'origin'])->first();
+        // $destination = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'destination'])->first();
 
         // Find the packages and drivers
         $packages = Package::all();
@@ -137,5 +119,24 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the assignments.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function assignments()
+    {
+        $assignments = Shipment::where('staff_id', '=', auth()->user()->id)->latest()->paginate(11);
+
+        return view('staff.book.assignments', compact('assignments'));
+    }
+
+    public function raise_invoice($shipment_id)
+    {
+        $shipment = Shipment::find($shipment_id);
+
+        return view('staff.book.raise_invoice', compact('shipment'));
     }
 }

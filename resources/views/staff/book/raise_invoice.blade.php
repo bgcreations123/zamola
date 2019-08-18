@@ -3,8 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
-
-	{{-- {{dd($shipment->order->origin->location)}} --}}
+	
+	{{-- {{dd($shipment->order)}} --}}
 
 	{{-- Actions --}}
 	<div class="row my-4">
@@ -17,18 +17,20 @@
 	</div>
 
 
-	<div class="row">
-
+	<div class="row noprint">
+		{{-- Point of origin --}}
         {{-- Shipment Info --}}
         <div class="col-md-6 mb-4">
           <div class="card h-100">
             <div class="card-body">
               <div class="card-title d-flex justify-content-between align-items-center">
                 <h5 class="text-primary">
-    				Order information
+                  Order information
+                  <br>
+                  <span class="small">Ordered By: {{ $shipment->order->user->name }}</span>
                 </h5>
                 <span class="text-info">
-                  	<strong class="mr-3">Status:</strong><span class="badge badge-pill badge-success">{{ $shipment->status->name }}</span>
+                    <strong class="mr-3">Status:</strong><span class="badge badge-pill badge-success">{{ $shipment->status->name }}</span>
                 </span>
               </div>
               <table class="table mt-4">
@@ -99,36 +101,39 @@
             <div class="card-body">
               <div class="card-title d-flex justify-content-between align-items-center">
                 <h5 class="text-primary">
-					Tracer Number: <span class="ml-3"><small>{{ $shipment->order->tracer }}</small></span>
+          Tracer Number: <span class="ml-3"><small>{{ $shipment->order->tracer }}</small></span>
                 </h5>
               </div>
               <table class="table table-sm table-borderless mt-4">
                 <thead class="text-middle">
-                  <tr class="text-left">
-                    <th scope="col">From Location</th>
-                    <th scope="col">To Location</th>
+                  <tr>
+                    <th scope="col" style="width: 50%">From Location</th>
+                    <th scope="col" class="text-right">To Location</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="text-left">
+                  <tr>
                     <td>{{ $shipment->order->origin->location }}</td>
-                    <td>{{ $shipment->order->destination->location }}</td>
+                    <td class="text-right">{{ $shipment->order->destination->location }}</td>
                   </tr>
                 </tbody>
               </table>
-              <table class="table table-sm table-borderless mt-4">
-                <thead class="text-middle">
-                  <tr class="text-left">
+
+              <table class="table table-sm table-border mt-4">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">Date Today</th>
                     <th scope="col">Order Date</th>
-                    <th scope="col">Booking Date</th>
-                    <th scope="col">Schedule Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="text-left">
-                    <td>{{ \Carbon\Carbon::parse($shipment->order->created_at)->diffForHumans() }}</td>
-                    <td>{{ \Carbon\Carbon::parse($shipment->updated_at)->diffForHumans() }}</td>
-                    <td>&nbsp;</td>
+                  <tr class="text-center">
+                    <td style="vertical-align:bottom;">{{ \Carbon\Carbon::now()->toDayDateTimeString() }}</td>
+                    <td>
+                      {{ \Carbon\Carbon::parse($shipment->created_at)->diffForHumans() }}
+                      <br />
+                      {{ \Carbon\Carbon::parse($shipment->created_at)->toDayDateTimeString() }}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -174,25 +179,27 @@
           </div>
         </div>
 
-        {{-- Actions --}}
+        {{-- Shipment Info --}}
         <div class="col-md-12 mb-4">
           <div class="card h-100">
             <div class="card-body">
               <div class="card-title d-flex justify-content-between align-items-center">
                 <h5 class="text-primary">
-                  @if($shipment->status->name == 'approved')
-                    <a href="#" class="btn btn-danger btn-lg">Cancel</a>
-                  @endif
+    				Shipment information
                 </h5>
                 <span class="text-danger">
-                  @if($shipment->status->name == 'approved')
-    				        <a href="{{ route('duties.transit', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Accept</a>
-                  @elseif($shipment->status->name == 'transit')
-                    <a href="{{ route('duties.delivered', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Delivered</a>
-                  @else
-                    <p>Delivered</p>
-                  @endif
+                  	<strong class="mr-3">Notice:</strong><span>Mandatory field for parcel clearance</span>
                 </span>
+              </div>
+              <div class="float-right">
+                <form class="form-inline" method="POST" action="#">
+                  {{ csrf_field() }}
+                  <div class="form-group mx-sm-3 mb-2">
+                    <label for="amount" class="sr-only">Amount</label>
+                    <input type="text" class="form-control" id="amount" placeholder="Amount">
+                  </div>
+                  <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+                </form> 
               </div>
           	</div>
       	  </div>
