@@ -97,7 +97,7 @@ class OrderController extends Controller
 
         \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
 
-        // return response()->json([$order, $sender_terminus, $receiver_terminus]);
+        // return response()->json(['order' => $order, 'sender_terminus' => $sender_terminus, 'receiver_terminus' => $receiver_terminus]);
         return ['redirect' => route('trace', ['tracer' => $order->tracer]), 'with' => ['success' => 'You have successfully placed a new order.']];
     }
 
