@@ -22,7 +22,15 @@ class AuthController extends Controller
 
     	$accessToken = $user->createToken('authToken')->accessToken;
 
-    	return response(['user' => $user, 'accessToken' => $accessToken]);
+    	// return response(['user' => $user, 'accessToken' => $accessToken]);
+        $response = [
+            'user' => $user, 
+            'accessToken' => $accessToken, 
+            'status' => 'success',
+        ];
+
+        // return response(, 200);
+        return response()->json($response, 200, ["Content-Type" => "application/json"]);
     }
 
     public function login(Request $request)
@@ -40,7 +48,14 @@ class AuthController extends Controller
 
     	$accessToken = $user->createToken('authToken')->accessToken;
 
-    	return response(['user' => $user, 'accessToken' => $accessToken]);
+        $response = [
+            'user' => $user, 
+            'accessToken' => $accessToken, 
+            'status' => 'success',
+        ];
+
+    	// return response(, 200);
+        return response()->json($response, 200, ["Content-Type" => "application/json"]);
     }
 
 }
