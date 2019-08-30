@@ -22,19 +22,15 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->middleware(['access_user'])->name('home');
-
 // Private pages
 Route::group(['middleware' => 'auth'], function(){
-
+	// All roles consumed pages
 	Route::get('profile/{id}', 'HomeController@profile')->name('user.profile');
-	
 	Route::get('trace/{tracer}', 'TraceController@trace')->name('trace');
 
 	// Private User pages
 	Route::group(['middleware' => 'access_user'], function(){
 		Route::get('/home', 'HomeController@index')->name('home');
-
 		Route::get('order', 'OrderController@index')->name('order');
 		Route::get('order/{id}/listing/{status?}', 'OrderController@list')->name('order.list');
 	});

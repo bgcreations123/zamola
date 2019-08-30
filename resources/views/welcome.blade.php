@@ -3,6 +3,7 @@
 @section('title', '')
 
 @section('content')
+{{-- {{dd(auth()->user()->role->name)}} --}}
     {{-- <div class="container" style="padding-top: 40px;">
         <div class="row justify-content-center align-items-center">
             // Make an shipment order

@@ -1,4 +1,4 @@
-<div style="background-image:url({{ asset('storage/home-theme/bg/bg-5.jpg') }})" class="section-default section-bg_mod-c wow">
+<div style="background-image:url({{ asset('storage/home-theme/bg/bg-5.jpg') }})" class="section-default section-bg_mod-c wow noprint">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -13,7 +13,7 @@
 </div><!-- end section-default -->
 
 
-<div class="section-area parallax-bg parallax-dark wow">
+<div class="section-area parallax-bg parallax-dark wow noprint">
 	<ul class="bg-slideshow">
 		<li>
 			<div style="background-image:url({{ asset('storage/home-theme/bg/bg-footer.jpg') }})" class="bg-slide"></div>

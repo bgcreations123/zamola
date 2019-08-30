@@ -23,7 +23,7 @@ Route::post('/login', 'Api\AuthController@login');
 
 Route::apiResource('/order', 'Api\OrderController');
 
-// Route::resource('order', 'OrderController');
+Route::resource('order', 'OrderController');
 Route::resource('category', 'ShipmentCategoryController');
 Route::resource('payment_method', 'PaymentMethodController');
 Route::post('step_1', 'OrderController@step_1');

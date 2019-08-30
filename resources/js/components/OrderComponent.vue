@@ -141,11 +141,11 @@
             </div>
           </section>
 
-          <button v-if="step != 1" @click.prevent="prevStep">Previous Step</button>
+          <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step != 1" @click.prevent="prevStep">Previous Step</button>
 
-          <button v-if="step != totalsteps" @click.prevent="nextStep">Next Step</button>
+          <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step != totalsteps" @click.prevent="nextStep">Next Step</button>
 
-          <button v-if="step == totalsteps" type="submit">Order</button>
+          <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step == totalsteps" type="submit">Order</button>
 
         </form>
     </div>

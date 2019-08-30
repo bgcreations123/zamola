@@ -42,6 +42,11 @@ class User extends \TCG\Voyager\Models\User
         return $this->belongsToMany('App\Role');
     }
 
+    public function assignRole(Role $role)
+    {
+        return $this->roles()->save($role);
+    }
+
     public function hasAnyRoles($roles){
         return null !== $this->roles()->whereIn('name', $roles)->first();
     }

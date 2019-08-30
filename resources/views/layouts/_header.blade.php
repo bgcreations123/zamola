@@ -1,6 +1,6 @@
 <!-- HEADER -->
 
-<div class="container">
+<div class="container noprint">
 	<div class="row">
 		<div class="col-xs-12">
 			<header class="header">
@@ -43,8 +43,8 @@
 				            </button>
 				          </div>
 				          <div id="navbar" class="navbar-collapse collapse">
-				            <ul class="nav navbar-nav" style="padding-right: 170px">
-				              <li class="active"><a href="/">Home</a></li>
+				            <ul class="nav navbar-nav" style="padding-right: 150px">
+				              <li class="active"><a href="{{ route('home') }}">Home</a></li>
 				              <li><a href="#">About</a></li>
 				              <li class="dropdown">
 				                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -121,7 +121,7 @@
 						{{-- </nav> --}}
 						
 						
-						<a class="header__btn btn btn-primary btn-sm btn-effect-2" href="home.html">Trace Package</a>
+						<a class="header__btn btn btn-primary btn-sm btn-effect-2" href="#">Trace Package</a>
 					</div>
 				</div>
 			</header><!-- end header-->

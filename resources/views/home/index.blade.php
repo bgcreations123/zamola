@@ -14,8 +14,8 @@
               <div class="container">
                   <div class="row">
                       <div class="col-xs-12">
-                          <h1 class="ui-title-page">Unauthorized?</h1>
-                          <div class="ui-subtitle-page">Authentication is required</div>
+                          <h1 class="ui-title-page">{{ setting('site.title') }}</h1>
+                          <div class="ui-subtitle-page">{{ setting('site.description') }}</div>
                           <div class="decor-2 decor-2_mod-a decor-2_mod_white"></div>
                       </div><!-- end col -->
                   </div><!-- end row -->
@@ -29,12 +29,12 @@
               <div class="row">
 
                 <div class="row">
-                  <div class="col-12">
-                    <div class="float-left">
+                  <div class="col-md-12">
+                    <div class="col-md-6 float-left">
                       <h2><a href="{{ route('order.list', ['id' => Auth()->User()->id]) }}">My Stats</a></h2>
                     </div>
-                    <div class="float-right">
-                      <a href="{{ route('order') }}" class="btn btn-outline-primary">Order Shipment</a>
+                    <div class="col-md-6">
+                      <a href="{{ route('order') }}" class="btn btn-outline-primary pull-right">Order Shipment</a>
                     </div>
                   </div>
                 </div>
@@ -46,11 +46,11 @@
                   <div class="col-md-4 mb-4">
                     <div class="card h-100">
                       <div class="card-body">
-                        <div class="card-title d-flex justify-content-between align-items-center">
+                        <div class="card-title">
                           <h5 class="text-primary">
                             Pending orders
                           </h5>
-                          <span class="badge badge-info text-light">
+                          <span class="badge badge-info text-light pull-right">
                             <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="badge badge-info text-light">{{ $pending_orders_count->count() }}</a>
                           </span>
                         </div>
@@ -78,7 +78,7 @@
                           <h5 class="text-primary">
                             Processing orders
                           </h5>
-                          <span class="badge badge-info text-light">
+                          <span class="badge badge-info text-light pull-right">
                             <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'transit']) }}" class="badge badge-info text-light">{{ $processing_orders_count->count() }}</a>
                           </span>
                         </div>
@@ -106,7 +106,7 @@
                           <h5 class="text-primary">
                             Completed orders
                           </h5>
-                          <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'delivered']) }}" class="badge badge-info text-light">{{ $completed_orders_count->count() }}</a>
+                          <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'delivered']) }}" class="badge badge-info text-light pull-right">{{ $completed_orders_count->count() }}</a>
                         </div>
                         {{ ($completed_orders_count->count() == 0) ? 'No Completed Orders' : '' }}
                         <ul class="list-group  list-group-flush">

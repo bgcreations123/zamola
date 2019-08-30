@@ -38240,6 +38240,7 @@ var render = function() {
           ? _c(
               "button",
               {
+                staticClass: "btn btn_mod-a btn-sm btn-effect pull-right",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -38255,6 +38256,7 @@ var render = function() {
           ? _c(
               "button",
               {
+                staticClass: "btn btn_mod-a btn-sm btn-effect pull-right",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -38267,7 +38269,14 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.step == _vm.totalsteps
-          ? _c("button", { attrs: { type: "submit" } }, [_vm._v("Order")])
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn_mod-a btn-sm btn-effect pull-right",
+                attrs: { type: "submit" }
+              },
+              [_vm._v("Order")]
+            )
           : _vm._e()
       ]
     )
