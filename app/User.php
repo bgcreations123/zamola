@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends \TCG\Voyager\Models\User
 {
-    use Notifiable, HasApiTokens;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +48,9 @@ class User extends \TCG\Voyager\Models\User
 
     public function hasRole($role){
         return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    public function findForPassport($username) {
+       return self::where('email', $username)->first(); // change column name whatever you use in credentials
     }
 }

@@ -21,11 +21,10 @@ Route::post('/register', 'Api\AuthController@register');
 
 Route::post('/login', 'Api\AuthController@login');
 
-Route::resource('order', 'OrderController');
+Route::apiResource('/order', 'Api\OrderController');
 
+// Route::resource('order', 'OrderController');
 Route::resource('category', 'ShipmentCategoryController');
-
 Route::resource('payment_method', 'PaymentMethodController');
-
 Route::post('step_1', 'OrderController@step_1');
 Route::post('step_2', 'OrderController@step_2');

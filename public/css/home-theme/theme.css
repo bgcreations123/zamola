@@ -1283,6 +1283,12 @@ p:last-child .typography-bg {
 	padding: 13px 19px;
 }
 
+.header__text {
+	float: right;
+	margin-top: 15px;
+	padding: 13px 19px;
+}
+
 .header-search {
 	position: absolute;
 	top: 28px;

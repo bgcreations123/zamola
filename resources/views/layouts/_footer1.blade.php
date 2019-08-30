@@ -148,7 +148,7 @@
 
 
 						<div class="copyright clearfix">
-							<div class="copyright__inner">© 2016 <a class="copyright__link" href="templines.com">24/7 Express Logistics Services</a> All rights reserved.</div>
+							<div class="copyright__inner">© 2019 <a class="copyright__link" href="templines.com">{{ setting('site.title') }}</a> All rights reserved.</div>
 							<ul class="copyright-list list-inline">
 								<li class="copyright-list__item">
 									<a class="copyright-list__link" href="#">Terms of Use</a>

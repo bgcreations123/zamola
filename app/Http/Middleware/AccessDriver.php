@@ -19,7 +19,7 @@ class AccessDriver
         // User role
         $role = Auth::user()->role->name;
 
-        if((Auth::user()->hasRole('driver')) OR (Auth::user()->hasRole('admin'))){
+        if(Auth::user()->hasRole('driver')){
             return $next($request);
         }
 

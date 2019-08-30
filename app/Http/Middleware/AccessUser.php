@@ -19,7 +19,7 @@ class AccessUser
         // User role
         $role = Auth::user()->role->name;
 
-        if((Auth::user()->hasRole('user')) OR (Auth::user()->hasRole('admin'))){
+        if(Auth::user()->hasRole('user')){
             return $next($request);
         }
 

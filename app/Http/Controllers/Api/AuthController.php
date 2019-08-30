@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use Auth;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,42 +22,61 @@ class AuthController extends Controller
 
     	$user = User::create($validatedData);
 
-    	$accessToken = $user->createToken('authToken')->accessToken;
+        $accessToken = $user->createToken('authToken')->accessToken;
 
-    	// return response(['user' => $user, 'accessToken' => $accessToken]);
-        $response = [
-            'user' => $user, 
-            'accessToken' => $accessToken, 
-            'status' => 'success',
-        ];
+        return response()->json([
+                'accessToken' => $accessToken, 
+                'status' => 200
+            ],
+            200
+        );
 
-        // return response(, 200);
-        return response()->json($response, 200, ["Content-Type" => "application/json"]);
     }
 
     public function login(Request $request)
     {
-    	$validatedData = $request->validate([
+    	// dd($request->password);
+
+        $validatedData = $request->validate([
     		'email' => 'required|email',
     		'password' => 'required'
     	]);
 
-    	if(!auth()->attempt($validatedData)){
-    		return response()->json(['message' => 'Invalid credintials!']);
-    	}
+        if(Auth::attempt($validatedData)){
 
-    	$user = auth()->user();
+            $user = Auth::user();
 
-    	$accessToken = $user->createToken('authToken')->accessToken;
+            $accessToken =  $user->createToken(env('Client name'))->accessToken;
 
-        $response = [
-            'user' => $user, 
-            'accessToken' => $accessToken, 
-            'status' => 'success',
-        ];
+            return response()->json([
+                    'accessToken' => $accessToken, 
+                    'status' => 200
+                ],
+                200
+             ); 
+        } 
+        else{
 
-    	// return response(, 200);
-        return response()->json($response, 200, ["Content-Type" => "application/json"]);
+            return response()->json(['error'=>'Unauthorised'], 401);
+
+        }
+
+        // return response(['user'=>$user, 'accessToken'=>$accessToken]);
+
+        // $http = new Client;
+
+        // $response = $http->post(url('oauth/token'), [
+        //     'form_params' => [
+        //         'grant_type' => 'password',
+        //         'client_id' => 3,
+        //         'client_secret' => 'kMdpsAiwLPv9leJrpd96B7muRdAht10fY6NrooQ1',
+        //         'username' => $request->email,
+        //         'password' => $request->password,
+        //         'scope' => '',
+        //     ],
+        // ]);
+
+        // return response(['data' => $response->getBody()]);
     }
 
 }

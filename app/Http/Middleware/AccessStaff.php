@@ -19,7 +19,7 @@ class AccessStaff
         // User role
         $role = Auth::user()->role->name;
 
-        if((Auth::user()->hasRole('staff')) OR (Auth::user()->hasRole('admin'))){
+        if(Auth::user()->hasRole('staff')){
             return $next($request);
         }
 
