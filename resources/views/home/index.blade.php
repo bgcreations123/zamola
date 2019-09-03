@@ -20,158 +20,128 @@
                       </div><!-- end col -->
                   </div><!-- end row -->
               </div><!-- end container -->
+              <div class="container">
+                <p class="hidden-xs">Ready to make a new order with Zamola Canada?</p>
+                <a class="btn btn_mod-b btn-effect" href="{{ route('order') }}"><span class="btn__inner">New Order</span></a>
+              </div>
           </div><!-- end section__inner -->
       </div><!-- end section-title -->
 
-
-      <div class="section_mod-c">
+      <section class="section_mod-e">
+        <div class="block-about">
           <div class="container">
-              <div class="row">
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="col-md-6 float-left">
-                      <h2><a href="{{ route('order.list', ['id' => Auth()->User()->id]) }}">My Stats</a></h2>
-                    </div>
-                    <div class="col-md-6">
-                      <a href="{{ route('order') }}" class="btn btn-outline-primary pull-right">Order Shipment</a>
-                    </div>
-                  </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h2 class="ui-title-block"><span class="ui-title-emphasis ui-title-emphasis_sm">we provide best <br> international freight &</span>logistics services</h2>
+                <div class="decor-1"><i class='icon flaticon-delivery36'></i></div>
+                <div class="ui-subtitle-block">Lorem ipsum dolor sit amet consectetur adipisicing sed eiusmod tempor incididunt ut labore et dolore</div>
+                <div class="block-about__description">
+                  <p>Lorem ipsum dolor sit amet elit sed aiusmod tempor incididunt ut labore dolore magna aliqua sed ipsum ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiu mod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
-
-                <hr />
-
-                <!-- Content Row -->
-                <div class="row">
-                  <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <div class="card-title">
-                          <h5 class="text-primary">
-                            Pending orders
-                          </h5>
-                          <span class="badge badge-info text-light pull-right">
-                            <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="badge badge-info text-light">{{ $pending_orders_count->count() }}</a>
-                          </span>
-                        </div>
-                        {{ $pending_orders_count->count() == 0 ? 'No Pending Orders' : '' }}
-                        <ul class="list-group  list-group-flush">
-                          @foreach($pending_orders as $pending_order)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              <a href="{{ route('trace', ['tracer' => $pending_order->tracer]) }}">
-                                {{ $pending_order->shipment_category->name }}
-                              </a> 
-                              <span>
-                                {{ $pending_order->tracer }}
-                              </span>
-                            </li>
-                            @endforeach
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.col-md-4 -->
-                  <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <div class="card-title d-flex justify-content-between align-items-center">
-                          <h5 class="text-primary">
-                            Processing orders
-                          </h5>
-                          <span class="badge badge-info text-light pull-right">
-                            <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'transit']) }}" class="badge badge-info text-light">{{ $processing_orders_count->count() }}</a>
-                          </span>
-                        </div>
-                        {{ $processing_orders_count->count() == 0 ? 'No Processing Orders' : '' }}
-                        <ul class="list-group  list-group-flush">
-                          @foreach($processing_orders as $processing_order)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              <a href="{{ route('trace', ['tracer' => $processing_order->tracer]) }}">
-                                {{ $processing_order->shipment_category->name }}
-                              </a> 
-                              <span>
-                                {{ $processing_order->tracer }}
-                              </span>
-                            </li>
-                          @endforeach
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.col-md-4 -->
-                  <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <div class="card-title d-flex justify-content-between align-items-center">
-                          <h5 class="text-primary">
-                            Completed orders
-                          </h5>
-                          <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'delivered']) }}" class="badge badge-info text-light pull-right">{{ $completed_orders_count->count() }}</a>
-                        </div>
-                        {{ ($completed_orders_count->count() == 0) ? 'No Completed Orders' : '' }}
-                        <ul class="list-group  list-group-flush">
-                          @foreach($completed_orders as $completed_order)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              <a href="{{ route('trace', ['tracer' => $completed_order->tracer]) }}">
-                                {{ $completed_order->shipment_category->name }}
-                              </a> 
-                              <span>
-                                {{ $completed_order->tracer }}
-                              </span>
-                            </li>
-                          @endforeach
-                        </ul>
-                      </div>
-                      {{-- <div class="card-footer">
-                        <a href="#" class="btn btn-primary btn-sm">More Info</a>
-                      </div> --}}
-                    </div>
-                  </div> <!-- /.col-md-4 -->
-                </div> <!-- /.row -->
-
-                <!--Carousel Wrapper
-                <div class="container-fluid">
-                  <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
-                      <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                          <div class="carousel-item col-md-3 active">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400/000/fff?text=1" alt="slide 1">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=2" alt="slide 2">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=3" alt="slide 3">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=4" alt="slide 4">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=5" alt="slide 5">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=6" alt="slide 6">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=7" alt="slide 7">
-                          </div>
-                          <div class="carousel-item col-md-3">
-                              <img class="img-fluid mx-auto d-block" src="//placehold.it/600x400?text=8" alt="slide 7">
-                          </div>
-                      </div>
-                      <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                          <i class="fa fa-chevron-left fa-lg text-muted"></i>
-                          <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-                          <i class="fa fa-chevron-right fa-lg text-muted"></i>
-                          <span class="sr-only">Next</span>
-                      </a>
-                  </div>
+              </div><!-- end col -->
+              <div class="col-sm-6">
+                <img class="block-about__img img-responsive" src="{{ asset('storage/home-theme/posts/487x335/1.jpg') }}" alt="Foto">
               </div>
+            </div><!-- end row -->
+          </div><!-- end container -->
+        </div>
+      </section><!-- end section-default -->
 
-              /.Carousel Wrapper-->
+      <section class="section-bg" style="margin-top: 60px;">
+        <div class="parallax-bg parallax-primary">
+          <ul class="bg-slideshow">
+            <li>
+              <div style="background-image:url({{ asset('storage/home-theme/bg/bg-7.jpg') }})" class="bg-slide"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="section__inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="block-download clearfix">
+                  <div class="block-download__inner">
+                    <h2 class="block-download__title">View your Order Stats</h2>
+                    <div class="block-download__description">Below is a summery of the orders you have made with Zamola Ltd. Welcome again.</div>
+                  </div>
+                  <div class="block-download__btn">
+                    <a class="btn btn_mod-c btn-sm btn-effect" href="{{ route('order.list', ['id' => Auth()->User()->id]) }}"><span class="btn__inner">View Full Stats ({{ $all_orders_count->count() }})</span></a>
+                  </div>
+                  <i class="block-download__icon flaticon-map2"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section class="section-default">
+        <div class="container">
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <h5 class="text-primary">
+                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="">Pending orders ({{ $pending_orders_count->count() }})</a>
+              </h5>
+              <span class="badge badge-info text-light pull-right">
+                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="badge badge-info text-light">{{ $pending_orders_count->count() }}</a>
+              </span>
+              {{ $pending_orders_count->count() == 0 ? 'No Pending Orders' : '' }}
+              <ul class="list-group  list-group-flush">
+                @foreach($pending_orders as $pending_order)
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ route('trace', ['tracer' => $pending_order->tracer]) }}">
+                      {{ $pending_order->shipment_category->name }}
+                    </a> 
+                    <span>
+                      {{ $pending_order->tracer }}
+                    </span>
+                  </li>
+                  @endforeach
+              </ul>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 mb-4">
+              <h5 class="text-primary">
+                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'transit']) }}" class="">Processing orders ({{ $processing_orders_count->count() }})</a>
+              </h5>
+              {{ $processing_orders_count->count() == 0 ? 'No Processing Orders' : '' }}
+              <ul class="list-group  list-group-flush">
+                @foreach($processing_orders as $processing_order)
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ route('trace', ['tracer' => $processing_order->tracer]) }}">
+                      {{ $processing_order->shipment_category->name }}
+                    </a> 
+                    <span>
+                      {{ $processing_order->tracer }}
+                    </span>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 mb-4">
+              <h5 class="text-primary">
+                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'delivered']) }}" class="">Completed orders ({{ $completed_orders_count->count() }})</a>
+              </h5>
+              {{ ($completed_orders_count->count() == 0) ? 'No Completed Orders' : '' }}
+              <ul class="list-group  list-group-flush">
+                @foreach($completed_orders as $completed_order)
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{{ route('trace', ['tracer' => $completed_order->tracer]) }}">
+                      {{ $completed_order->shipment_category->name }}
+                    </a> 
+                    <span>
+                      {{ $completed_order->tracer }}
+                    </span>
+                  </li>
+                @endforeach
+              </ul>
+            </div> <!-- /.col-md-4 -->
+
+          </div> <!-- /.row -->
+        </div>
+      </section>
 
 @endsection

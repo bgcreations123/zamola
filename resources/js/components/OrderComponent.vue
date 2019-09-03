@@ -3,7 +3,9 @@
         <form action="./api/order" method="POST" @submit.prevent="order()">
           <input type="hidden" name="client" v-bind:value="client">
           <section v-if="step == 1">
-            <h2>Shipment Information</h2>
+            <!-- <div class="form-group col-sm-12">
+              <h2>Shipment Information</h2>
+            </div> -->
             <!-- <span v-for="error in errors" class="text-danger">{{ error }}</span> -->
             <div class="form-row">
               <div class="form-group col-md-4">
@@ -27,60 +29,70 @@
                 <span class="text-danger">{{ errors.get('weight') }}</span>
               </div>
             </div>  
-            
-            <div class="form-group">
-              <label for="dimentions">Dimensions: Length x Width x Height (cm)</label>
-              <div class="form-row align-items-center">
-                <div class="col-sm-4 my-1">
-                  <label class="sr-only" for="length">Length</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text form-control-sm">L</div>
-                    </div>
-                    <input type="text" class="form-control form-control-sm" id="length" placeholder="Length"  name="length" v-model="length">
+
+            <div class="form-row">
+              <div class="form-group col-sm-12">
+                <label for="dimentions">Dimensions: Length x Width x Height (cm)</label>
+              </div>
+              <div class="form-group col-sm-4 my-1">
+                <label class="sr-only" for="length">Length</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text form-control-sm">L</div>
                   </div>
-                  <span class="text-danger">{{ errors.get('length') }}</span>
+                  <input type="text" class="form-control form-control-sm" id="length" placeholder="Length"  name="length" v-model="length">
                 </div>
-                <div class="col-sm-4 my-1">
-                  <label class="sr-only" for="width">Width</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text form-control-sm">W</div>
-                    </div>
-                    <input type="text" class="form-control form-control-sm" id="width" placeholder="Width"  name="width" v-model="width">
+                <span class="text-danger">{{ errors.get('length') }}</span>
+              </div>
+              <div class="form-group col-sm-4 my-1">
+                <label class="sr-only" for="width">Width</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text form-control-sm">W</div>
                   </div>
-                  <span class="text-danger">{{ errors.get('width') }}</span>
+                  <input type="text" class="form-control form-control-sm" id="width" placeholder="Width"  name="width" v-model="width">
                 </div>
-                <div class="col-sm-4 my-1">
-                  <label class="sr-only" for="height">Height</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text form-control-sm">H</div>
-                    </div>
-                    <input type="text" class="form-control form-control-sm" id="height" placeholder="Height" name="height" v-model="height">
+                <span class="text-danger">{{ errors.get('width') }}</span>
+              </div>
+              <div class="form-group col-sm-4 my-1">
+                <label class="sr-only" for="height">Height</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text form-control-sm">H</div>
                   </div>
-                  <span class="text-danger">{{ errors.get('height') }}</span>
+                  <input type="text" class="form-control form-control-sm" id="height" placeholder="Height" name="height" v-model="height">
+                </div>
+                <span class="text-danger">{{ errors.get('height') }}</span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="dimentions">Payment Method</label>
+                  <select id="payment" v-model="payment" class="form-control form-control-sm" name="payment">
+                    <option value="" selected disabled hidden>Please select one</option>
+                    <option v-for="method in methods" :key="method.id" :value="method.id">
+                      {{ method.name }}
+                    </option>
+                  </select>
+                  <span class="text-danger">{{ errors.get('payment') }}</span>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="dimentions">Payment Method</label>
-                <select id="payment" v-model="payment" class="form-control form-control-sm" name="payment">
-                  <option value="" selected disabled hidden>Please select one</option>
-                  <option v-for="method in methods" :key="method.id" :value="method.id">
-                    {{ method.name }}
-                  </option>
-                </select>
-                <span class="text-danger">{{ errors.get('payment') }}</span>
-              </div>
-              <div class="form-group">
-                <label for="dimentions">Description</label>
-                <textarea class="form-control form-control-sm" id="description" placeholder="Any Description"  name="description" v-model="description"></textarea>
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="dimentions">Description</label>
+                  <textarea class="form-control form-control-sm" id="description" placeholder="Any Description"  name="description" v-model="description"></textarea>
+                </div>
               </div>
             </div>
+
           </section>
 
           <section v-if="step == 2">
-            <h2>Origin Information</h2>
+            <div class="form-group col-sm-12">
+              <h2>Origin Information</h2>
+            </div>
+
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Full Name</label>
@@ -93,25 +105,37 @@
                 <span class="text-danger">{{ errors.get('sendermobile') }}</span>
               </div>
             </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="address" class="form-control form-control-sm" id="address" placeholder="1636 -00100 NRB KEN" name="senderaddress" v-model="senderaddress">
-                <span class="text-danger">{{ errors.get('senderaddress') }}</span>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label for="address">Address</label>
+                  <input type="address" class="form-control form-control-sm" id="address" placeholder="1636 -00100 NRB KEN" name="senderaddress" v-model="senderaddress">
+                  <span class="text-danger">{{ errors.get('senderaddress') }}</span>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control form-control-sm" id="email" placeholder="John@Doe.com" name="senderemail" v-model="senderemail">
-                <span class="text-danger">{{ errors.get('senderemail') }}</span>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control form-control-sm" id="email" placeholder="John@Doe.com" name="senderemail" v-model="senderemail">
+                  <span class="text-danger">{{ errors.get('senderemail') }}</span>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="location">Physical Location (Destination)</label>
-                <input type="text" class="form-control form-control-sm" id="location" placeholder="Kibuye Market, Stall No. 191 KSM KEN" name="senderlocation" v-model="senderlocation">
-                <span class="text-danger">{{ errors.get('senderlocation') }}</span>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label for="location">Physical Location (Destination)</label>
+                  <input type="text" class="form-control form-control-sm" id="location" placeholder="Kibuye Market, Stall No. 191 KSM KEN" name="senderlocation" v-model="senderlocation">
+                  <span class="text-danger">{{ errors.get('senderlocation') }}</span>
+              </div>
             </div>
+
           </section>
 
           <section v-if="step == 3">
-            <h2>Destination Information</h2>
+            <div class="form-group col-sm-12">
+              <h2>Destination Information</h2>
+            </div>
+            
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Full Name</label>
@@ -124,31 +148,47 @@
                 <span class="text-danger">{{ errors.get('receivermobile') }}</span>
               </div>
             </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="address" class="form-control form-control-sm" id="address" placeholder="1636 -00100 NRB KEN" name="receiveraddress" v-model="receiveraddress">
-                <span class="text-danger">{{ errors.get('receiveraddress') }}</span>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label for="address">Address</label>
+                  <input type="address" class="form-control form-control-sm" id="address" placeholder="1636 -00100 NRB KEN" name="receiveraddress" v-model="receiveraddress">
+                  <span class="text-danger">{{ errors.get('receiveraddress') }}</span>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control form-control-sm" id="email" placeholder="John@Doe.com" name="receiveremail" v-model="receiveremail">
-                <span class="text-danger">{{ errors.get('receiveremail') }}</span>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control form-control-sm" id="email" placeholder="John@Doe.com" name="receiveremail" v-model="receiveremail">
+                  <span class="text-danger">{{ errors.get('receiveremail') }}</span>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="location">Physical Location (Destination)</label>
-                <input type="text" class="form-control form-control-sm" id="location" placeholder="Kibuye Market, Stall No. 191 KSM KEN" name="receiverlocation" v-model="receiverlocation">
-                <span class="text-danger">{{ errors.get('receiverlocation') }}</span>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label for="location">Physical Location (Destination)</label>
+                  <input type="text" class="form-control form-control-sm" id="location" placeholder="Kibuye Market, Stall No. 191 KSM KEN" name="receiverlocation" v-model="receiverlocation">
+                  <span class="text-danger">{{ errors.get('receiverlocation') }}</span>
+              </div>
             </div>
+
           </section>
 
-          <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step != 1" @click.prevent="prevStep">Previous Step</button>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step != 1" @click.prevent="prevStep"><span class="btn__inner">Previous Step</span></button>
 
-          <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step != totalsteps" @click.prevent="nextStep">Next Step</button>
+              <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step != totalsteps" @click.prevent="nextStep"><span class="btn__inner">Next Step</span></button>
 
-          <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step == totalsteps" type="submit">Order</button>
+              <button class="btn btn_mod-a btn-sm btn-effect pull-right" v-if="step == totalsteps" type="submit"><span class="btn__inner">Order</span></button>
+            </div>
+          </div>
 
         </form>
+
     </div>
+    
 </template>
 
 <script>

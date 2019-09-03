@@ -149,9 +149,9 @@ class OrderController extends Controller
     // List all the orders
     public function list($id, $status = null){
         if(is_null($status)){
-            $orders = Order::where('user_id', $id)->orderBy('id', 'DESC')->paginate(11);
+            $orders = Order::where('user_id', $id)->orderBy('id', 'DESC')->paginate(7);
         }else{
-            $orders = Order::where(['user_id' => $id, 'status_id' => Status::where('name', $status)->pluck('id')])->orderBy('id', 'DESC')->paginate(11);
+            $orders = Order::where(['user_id' => $id, 'status_id' => Status::where('name', $status)->pluck('id')])->orderBy('id', 'DESC')->paginate(7);
         }
 
         // check if user is true

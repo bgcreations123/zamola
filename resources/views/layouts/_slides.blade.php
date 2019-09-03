@@ -49,7 +49,7 @@
 					data-hide-delay="1200">
 					<div class="container">
 						<p class="hidden-xs">By maintaining & monitoring our professionalism work</p>
-						<a class="btn btn_mod-b btn-effect" href="home.html"><span class="btn__inner">read more</span></a>
+						<a class="btn btn_mod-b btn-effect" href="{{route('home')}}"><span class="btn__inner">read more</span></a>
 					</div>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 					data-hide-delay="1200">
 					<div class="container">
 						<p class="hidden-xs">By maintaining & monitoring our professionalism work</p>
-						<a class="btn btn_mod-b btn-effect" href="home.html"><span class="btn__inner">read more</span></a>
+						<a class="btn btn_mod-b btn-effect" href="{{route('home')}}"><span class="btn__inner">read more</span></a>
 					</div>
 			</div>
 		</div>
@@ -151,7 +151,7 @@
 					data-hide-delay="1200">
 					<div class="container">
 						<p class="hidden-xs">By maintaining & monitoring our professionalism work</p>
-						<a class="btn btn_mod-b btn-effect" href="home.html"><span class="btn__inner">read more</span></a>
+						<a class="btn btn_mod-b btn-effect" href="{{route('home')}}"><span class="btn__inner">read more</span></a>
 					</div>
 			</div>
 		</div>
@@ -202,7 +202,7 @@
 					data-hide-delay="1200">
 					<div class="container">
 						<p class="hidden-xs">By maintaining & monitoring our professionalism work</p>
-						<a class="btn btn_mod-b btn-effect" href="home.html"><span class="btn__inner">read more</span></a>
+						<a class="btn btn_mod-b btn-effect" href="{{route('home')}}"><span class="btn__inner">read more</span></a>
 					</div>
 			</div>
 		</div>

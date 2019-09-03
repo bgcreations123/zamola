@@ -14,8 +14,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-						<h1 class="ui-title-page">Unauthorized?</h1>
-						<div class="ui-subtitle-page">Authentication is required</div>
+						<h1 class="ui-title-page">Shipment Inforomation</h1>
+						<div class="ui-subtitle-page">The following form is required as to reserve your order.</div>
 						<div class="decor-2 decor-2_mod-a decor-2_mod_white"></div>
                     </div><!-- end col -->
                 </div><!-- end row -->
