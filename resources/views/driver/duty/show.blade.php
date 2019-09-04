@@ -188,7 +188,7 @@
                   @if($shipment->status->name == 'approved')
     				        <a href="{{ route('duties.transit', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Accept</a>
                   @elseif($shipment->status->name == 'transit')
-                    <a href="{{ route('duties.delivered', ['shipment_id' => $shipment->id, 'order_id' => $shipment->order->id]) }}" class="btn btn-primary btn-lg">Delivered</a>
+                    <a href="{{ route('duties.delivered', ['shipment_id' => $shipment->id]) }}" class="btn btn-primary btn-lg">Delivered</a>
                   @else
                     <p>Delivered</p>
                   @endif

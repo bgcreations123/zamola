@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('duties', 'DutyController@index')->name('duties');
 		Route::get('{shipment_id}/duty', 'DutyController@show')->name('duties.show');
 		Route::get('{order_id}/{shipment_id}/transit', 'DutyController@transit')->name('duties.transit');
-		Route::get('{order_id}/{shipment_id}/delivered', 'DutyController@delivered')->name('duties.delivered');
+		Route::get('{shipment_id}/delivered', 'DutyController@delivered')->name('duties.delivered');
 		Route::get('{driver_id}/deliveries', 'DutyController@deliveries')->name('deliveries');
 	});
 

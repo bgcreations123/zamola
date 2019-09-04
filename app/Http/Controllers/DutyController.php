@@ -104,19 +104,25 @@ class DutyController extends Controller
         return redirect()->route('duties')->with('success', 'Safe journey.');
     }
 
-    public function delivered($order_id, $shipment_id)
+    public function delivered($shipment_id)
     {
-        $shipment = new Shipment();
+        $shipment = Shipment::where('id', $shipment_id)->first();
 
         // Update shipment status
-        Shipment::where('id', $shipment_id)->update(['status_id' => Status::where('name', 'unpaid')->first()->id]);
+        $shipment->update(['status_id' => Status::where('name', 'unpaid')->first()->id]);
 
         // Update the order status
-        Order::where('id', $order_id)->update(['status_id' => Status::where('name', 'delivered')->first()->id]);
+        Order::where('id', $shipment->order->id)->update(['status_id' => Status::where('name', 'delivered')->first()->id]);
 
         $client_email = User::where('id', $shipment->order->user_id)->pluck('email');
 
-        \Mail::to($client_email, $receiver_terminus->email)->send(new OrderDelivered($order, $sender_terminus, $receiver_terminus));
+        $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
+        $receiver = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'destination'])->first();
+
+        // dd($receiver);
+
+        // Send mail to both the client and the receiver
+        \Mail::to($client_email, $receiver->email)->send(new OrderDelivered($shipment->order, $sender, $receiver));
 
         return redirect()->route('driver')->with('success', 'Thanks for your services at Zamola Enterprize Ltd.');
     }

@@ -55,11 +55,16 @@ class BookController extends Controller
         $shipment->save();
 
         // Update order status table
-        Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'approved')->first()->id]);
+        $order = Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'approved')->first()->id]);
 
         $client_email = User::where('id', $shipment->order->user_id)->pluck('email');
 
-        \Mail::to($client_email, $receiver_terminus->email)->send(new OrderApproved($order, $sender_terminus, $receiver_terminus));
+        $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
+        $receiver = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'destination'])->first();
+
+        // dd($receiver);
+
+        \Mail::to($client_email, $receiver->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
 
         return redirect()->route('staff')->with(['success' => 'You have successfully initiated parcel transit.']);
     }

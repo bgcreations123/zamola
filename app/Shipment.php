@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipment extends Model
 {
+	/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'Order_id', 'staff_id', 'driver_id', 'status_id', 'package_id',
+    ];
+
     public function user()
 	{
 		return $this->belongsTo(User::class, 'driver_id');
