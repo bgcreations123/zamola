@@ -10,30 +10,31 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::firstOrNew(['name' => 'admin']);
-        if (!$role->exists) {
-            $role->fill([
+        $admin_role = Role::firstOrNew(['name' => 'admin']);
+        $user_role = Role::firstOrNew(['name' => 'user']);
+        $driver_role = Role::firstOrNew(['name' => 'driver']);
+        $staff_role = Role::firstOrNew(['name' => 'staff']);
+
+        if (!$admin_role->exists) {
+            $admin_role->fill([
                     'display_name' => __('voyager::seeders.roles.admin'),
                 ])->save();
         }
 
-        $role = Role::firstOrNew(['name' => 'user']);
-        if (!$role->exists) {
-            $role->fill([
+        if (!$user_role->exists) {
+            $user_role->fill([
                     'display_name' => __('voyager::seeders.roles.user'),
                 ])->save();
         }
         
-        $role = Role::firstOrNew(['name' => 'driver']);
-        if (!$role->exists) {
-            $role->fill([
+        if (!$driver_role->exists) {
+            $driver_role->fill([
                     'display_name' => __('Driver'),
                 ])->save();
         }
 
-        $role = Role::firstOrNew(['name' => 'staff']);
-        if (!$role->exists) {
-            $role->fill([
+        if (!$staff_role->exists) {
+            $staff_role->fill([
                     'display_name' => __('Staff'),
                 ])->save();
         }

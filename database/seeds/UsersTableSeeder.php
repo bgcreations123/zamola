@@ -15,15 +15,44 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         if (User::count() == 0) {
-            $role = Role::where('name', 'admin')->firstOrFail();
+            $admin_role = Role::where('name', 'admin')->firstOrFail();
+            $staff_role = Role::where('name', 'staff')->firstOrFail();
+            $driver_role = Role::where('name', 'driver')->firstOrFail();
+            $user_role = Role::where('name', 'user')->firstOrFail();
 
-            User::create([
-                'name'           => 'Admin',
-                'email'          => 'admin@admin.com',
-                'password'       => bcrypt('password'),
-                'remember_token' => Str::random(60),
-                'role_id'        => $role->id,
-            ]);
+            $users = [
+                [ 
+                    'name'           => 'Admin',
+                    'email'          => 'admin@admin.com',
+                    'password'       => bcrypt('admin'),
+                    'remember_token' => Str::random(60),
+                    'role_id'        => $admin_role->id,
+                ],
+                [
+                    'name'           => 'Staff',
+                    'email'          => 'staff@staff.com',
+                    'password'       => bcrypt('admin'),
+                    'remember_token' => Str::random(60),
+                    'role_id'        => $staff_role->id,
+                ],
+                [
+                    'name'           => 'Driver',
+                    'email'          => 'driver@driver.com',
+                    'password'       => bcrypt('driver'),
+                    'remember_token' => Str::random(60),
+                    'role_id'        => $driver_role->id,
+                ],
+                [
+                    'name'           => 'User',
+                    'email'          => 'user@user.com',
+                    'password'       => bcrypt('user'),
+                    'remember_token' => Str::random(60),
+                    'role_id'        => $user_role->id,
+                ],
+            ];
+
+            User::insert($users);
+
         }
     }
 }

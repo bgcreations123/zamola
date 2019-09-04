@@ -84,9 +84,6 @@
               <h5 class="text-primary">
                 <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="">Pending orders ({{ $pending_orders_count->count() }})</a>
               </h5>
-              <span class="badge badge-info text-light pull-right">
-                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="badge badge-info text-light">{{ $pending_orders_count->count() }}</a>
-              </span>
               {{ $pending_orders_count->count() == 0 ? 'No Pending Orders' : '' }}
               <ul class="list-group  list-group-flush">
                 @foreach($pending_orders as $pending_order)

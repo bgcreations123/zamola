@@ -21,6 +21,12 @@ class CreateShipmentsTable extends Migration
             $table->integer('status_id')->unsigned();
             $table->integer('package_id')->unsigned();
             $table->timestamps();
+
+            // $table->foreign('order_id')->references('id')->on('orders');
+            // $table->foreign('staff_id')->references('id')->on('users');
+            // $table->foreign('driver_id')->references('id')->on('users');
+            // $table->foreign('status_id')->references('id')->on('statuses');
+            // $table->foreign('package_id')->references('id')->on('packages');
         });
     }
 

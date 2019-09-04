@@ -27,6 +27,11 @@ class CreateOrdersTable extends Migration
             $table->integer('width');
             $table->integer('height');
             $table->timestamps();
+
+            // $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('status_id')->references('id')->on('statuses');
+            // $table->foreign('shipment_catregory_id')->references('id')->on('shipment_categories');
+            // $table->foreign('payment_method_id')->references('id')->on('payment_methods');
         });
     }
 

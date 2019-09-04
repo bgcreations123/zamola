@@ -16,51 +16,59 @@ class OtherUsersTableSeeder extends Seeder
 
         User::truncate();
 
-        $adminRole = Role::where('name', 'admin')->first();
-        $userRole = Role::where('name', 'user')->first();
-        $driverRole = Role::where('name', 'driver')->first();
-        $staffRole = Role::where('name', 'staff')->first();
+        $admin_role = Role::where('name', 'admin')->firstOrFail();
+        $staff_role = Role::where('name', 'staff')->firstOrFail();
+        $driver_role = Role::where('name', 'driver')->firstOrFail();
+        $user_role = Role::where('name', 'user')->firstOrFail();
 
-        $admin = User::create([
-        	'role_id' => '1',
-        	'name' => 'Admin',
-        	'email' => 'admin@admin.com',
-        	'avatar' => 'users/default.png',
-        	'password' => bcrypt('admin'),
-        	'remember_token' => Str::random(60),
-        ]);
-        
-        $user = User::create([
-        	'role_id' => '2',
-        	'name' => 'user',
-        	'email' => 'user@user.com',
-        	'avatar' => 'users/default.png',
-        	'password' => bcrypt('user'),
-        	'remember_token' => Str::random(60),
-        ]);
+        $admin = User::create(
+            [ 
+                'name'           => 'Admin',
+                'email'          => 'admin@admin.com',
+                'password'       => bcrypt('admin'),
+                'remember_token' => Str::random(60),
+                'role_id'        => $admin_role->id,
+                'avatar'         => 'users/default.png',
+            ]
+        );
 
-        $driver = User::create([
-        	'role_id' => '3',
-        	'name' => 'Driver',
-        	'email' => 'driver@driver.com',
-        	'avatar' => 'users/default.png',
-        	'password' => bcrypt('driver'),
-        	'remember_token' => Str::random(60),
-        ]);
+        $staff = User::create(
+            [ 
+                'name'           => 'Staff',
+                'email'          => 'staff@staff.com',
+                'password'       => bcrypt('admin'),
+                'remember_token' => Str::random(60),
+                'role_id'        => $staff_role->id,
+                'avatar'         => 'users/default.png',
+            ]
+        );
 
-        $staff = User::create([
-        	'role_id' => '4',
-        	'name' => 'staff',
-        	'email' => 'staff@staff.com',
-        	'avatar' => 'users/default.png',
-        	'password' => bcrypt('staff'),
-        	'remember_token' => Str::random(60),
-        ]);
+        $driver = User::create(
+            [ 
+                'name'           => 'Driver',
+                'email'          => 'driver@driver.com',
+                'password'       => bcrypt('driver'),
+                'remember_token' => Str::random(60),
+                'role_id'        => $driver_role->id,
+                'avatar'         => 'users/default.png',
+            ]
+        );
 
-        $admin->roles()->attach($adminRole);
-        $driver->roles()->attach($driverRole);
-        $staff->roles()->attach($staffRole);
-        $user->roles()->attach($userRole);
+        $user = User::create(
+            [ 
+                'name'           => 'User',
+                'email'          => 'user@user.com',
+                'password'       => bcrypt('user'),
+                'remember_token' => Str::random(60),
+                'role_id'        => $user_role->id,
+                'avatar'         => 'users/default.png',
+            ]
+        );
+
+        $admin->roles()->attach($admin_role);
+        $driver->roles()->attach($driver_role);
+        $staff->roles()->attach($staff_role);
+        $user->roles()->attach($user_role);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
