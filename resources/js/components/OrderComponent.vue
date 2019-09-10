@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form action="./api/order" method="POST" @submit.prevent="order()">
+        <form action="./api/create_order" method="POST" @submit.prevent="order()">
           <input type="hidden" name="client" v-bind:value="client">
           <section v-if="step == 1">
             <!-- <div class="form-group col-sm-12">
@@ -304,7 +304,7 @@
             },
 
             order(){
-              axios.post('./api/order', {
+              axios.post('./api/create_order', {
                 category: this.category,
                 quantity: this.quantity,
                 weight: this.weight,

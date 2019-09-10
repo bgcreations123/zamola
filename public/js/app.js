@@ -2173,7 +2173,7 @@ function () {
     order: function order() {
       var _this4 = this;
 
-      axios.post('./api/order', {
+      axios.post('./api/create_order', {
         category: this.category,
         quantity: this.quantity,
         weight: this.weight,
@@ -37490,7 +37490,7 @@ var render = function() {
     _c(
       "form",
       {
-        attrs: { action: "./api/order", method: "POST" },
+        attrs: { action: "./api/create_order", method: "POST" },
         on: {
           submit: function($event) {
             $event.preventDefault()

@@ -29,7 +29,7 @@ Route::apiResource('/order', 'Api\OrderController');
 Route::apiResource('/shipment_categories', 'Api\ShipmentCategoryController');
 Route::apiResource('/payment_methods', 'Api\PaymentMethodController');
 
-// Route::resource('order', 'OrderController');
+Route::resource('create_order', 'OrderController');
 Route::resource('category', 'ShipmentCategoryController');
 Route::resource('payment_method', 'PaymentMethodController');
 Route::post('step_1', 'OrderController@step_1');

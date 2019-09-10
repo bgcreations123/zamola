@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->integer('payment_method_id')->unsigned();
             $table->integer('quantity');
             $table->integer('weight');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('length');
             $table->integer('width');
             $table->integer('height');
