@@ -119,18 +119,19 @@ class OrderController extends Controller
         if($mail){
             $response = [ 
                 'status' => '200',
+                'message' => 'Success',
             ];
         }else{
             $response = [ 
                 'status' => '401',
-                'message' => 'mail not sent!'
+                'message' => 'mail not sent!',
             ];
         }
 
         
 
         // return response(, 200);
-        return response()->json($response, 200, ["Content-Type" => "application/json"]);
+        return response()->json($response, 200);
 
         // return response()->json(['order' => $order, 'sender_terminus' => $sender_terminus, 'receiver_terminus' => $receiver_terminus]);
         // return ['redirect' => route('trace', ['tracer' => $order->tracer]), 'with' => ['success' => 'You have successfully placed a new order.']];
