@@ -114,11 +114,20 @@ class OrderController extends Controller
 
         $receiver_terminus->save();
 
-        \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
+        $mail = \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
 
-        $response = [ 
-            'status' => '200',
-        ];
+        if($mail){
+            $response = [ 
+                'status' => '200',
+            ];
+        }else{
+            $response = [ 
+                'status' => '401',
+                'message' => 'mail not sent!'
+            ];
+        }
+
+        
 
         // return response(, 200);
         return response()->json($response, 200, ["Content-Type" => "application/json"]);
