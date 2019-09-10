@@ -14,14 +14,20 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return Auth::user();
 });
+
+// Route::get('/user', function(Request $request) {
+//     return Auth::user();
+// })->middleware('auth:api');
 
 Route::post('/register', 'Api\AuthController@register');
 
 Route::post('/login', 'Api\AuthController@login');
 
 Route::apiResource('/order', 'Api\OrderController');
+Route::apiResource('/shipment_categories', 'Api\ShipmentCategoryController');
+Route::apiResource('/payment_methods', 'Api\PaymentMethodController');
 
 Route::resource('order', 'OrderController');
 Route::resource('category', 'ShipmentCategoryController');
