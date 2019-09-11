@@ -87,7 +87,7 @@
     <script src="{{ asset('js/home-theme/jquery-migrate-1.2.1.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/home-theme/waypoints.min.js') }}"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="{{ asset('js/home-theme/modernizr.custom.js') }}"></script>
     <script src="{{ asset('js/home-theme/cssua.min.js') }}"></script>
 
