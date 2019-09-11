@@ -71,7 +71,7 @@
 	background-color: #f6f6f6;
 }
 .section-bg_mod-b {
-	background: url('../media/bg/bg-3.png') no-repeat 50% 0;
+	background: url('../../storage/home-theme/bg/bg-3.png') no-repeat 50% 0;
 	background-size: cover;
 	overflow: hidden;
 }

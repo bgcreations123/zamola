@@ -1933,7 +1933,7 @@ p:last-child .typography-bg {
 	bottom: 0;
 	width: 174px;
 	height: 25px;
-	background: url('../media/decor/arrow-orange_right_top.png') no-repeat;
+	background: url('../../storage/home-theme/decor/arrow-orange_right_top.png') no-repeat;
 	content: '';
 }
 
