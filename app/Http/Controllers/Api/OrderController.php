@@ -114,19 +114,19 @@ class OrderController extends Controller
 
         $receiver_terminus->save();
 
-        // $mail = \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
+        $mail = \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
 
-        // if($mail){
+        if($mail){
             $response = [ 
                 'status' => '200',
                 'message' => 'Success',
             ];
-        // }else{
-        //     $response = [ 
-        //         'status' => '401',
-        //         'message' => 'mail not sent!',
-        //     ];
-        // }
+        }else{
+            $response = [ 
+                'status' => '401',
+                'message' => 'mail not sent!',
+            ];
+        }
 
         
 
