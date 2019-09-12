@@ -20,7 +20,7 @@
     RewriteRule ^ index.php [L]
 
     # Handle force HTTPs
-    # RewriteCond %{HTTP_HOST} zamola\.ca [NC]
-    # RewriteCond %{SERVER_PORT} 80
-    # RewriteRule ^(.*)$ https://zamola.ca/$1 [R,L]
+    RewriteCond %{HTTP_HOST} zamola\.ca [NC]
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://zamola.ca/$1 [R,L]
 </IfModule>
