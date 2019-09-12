@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Auth;
+use Mail;
 use App\Mail\OrderReceived;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -114,19 +115,25 @@ class OrderController extends Controller
 
         $receiver_terminus->save();
 
-        $mail = \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
+        $mail = Mail::to($sender_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
 
-        if($mail){
-            $response = [ 
-                'status' => '200',
-                'message' => 'Success',
-            ];
-        }else{
+        // check for failures
+        if (Mail::failures()) {
             $response = [ 
                 'status' => '401',
                 'message' => 'mail not sent!',
             ];
+
+            foreach(Mail::failures() as $email_failures) {
+                echo " - $email_failures <br />";
+            };
         }
+
+        // Success at last
+        $response = [ 
+            'status' => '200',
+            'message' => 'Ok',
+        ];
 
         
 

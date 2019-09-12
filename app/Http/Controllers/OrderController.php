@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Mail;
 use Illuminate\Http\Request;
 use App\Mail\OrderReceived;
 use App\{Order, User, Status, Terminus};
@@ -95,7 +96,7 @@ class OrderController extends Controller
 
         $receiver_terminus->save();
 
-        $mail = \Mail::to($sender_terminus->email, $receiver_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
+        $mail = Mail::to($sender_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
 
         // return response()->json(['order' => $order, 'sender_terminus' => $sender_terminus, 'receiver_terminus' => $receiver_terminus]);
         return ['redirect' => route('trace', ['tracer' => $order->tracer]), 'with' => ['success' => 'You have successfully placed a new order.']];
