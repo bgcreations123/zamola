@@ -18,7 +18,7 @@ class OrderResource extends JsonResource
 
         return [
             'user' => $this->user->name,
-            'Status' => $this->status->namespace,
+            'Status' => $this->status->name,
             'Tracer' => $this->tracer,
             'Shipment_Category' => $this->shipment_category->name,
             'Payment Method' => $this->payment_method->name,
@@ -28,7 +28,8 @@ class OrderResource extends JsonResource
             'Length' => $this->length,
             'Width' => $this->width,
             'Height' => $this->height,
-            'Created at' => (string)$this->created_at->format('d/m/Y'),
+            // 'Created at' => (string)$this->created_at->format('d/m/Y'),
+            'Created at' => $this->created_at,
         ];
     }
 }

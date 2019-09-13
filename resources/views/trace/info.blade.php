@@ -1,6 +1,6 @@
-@extends('layouts.master')
+{{-- @extends('layouts.master') --}}
 
-{{-- @extends((auth()->user()->role->name==='user')?'layouts.master':'layouts.office.master') --}}
+@extends((auth()->user()->role->name==='user')?'layouts.master':'layouts.office.master')
 
 @section('title', 'Tracer')
 

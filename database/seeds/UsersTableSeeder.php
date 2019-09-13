@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
                 [ 
                     'name'           => 'Staff',
                     'email'          => 'staff@staff.com',
-                    'password'       => bcrypt('admin'),
+                    'password'       => bcrypt('staff'),
                     'remember_token' => Str::random(60),
                     'role_id'        => $staff_role->id,
                     'avatar'         => 'users/staff3.png',
