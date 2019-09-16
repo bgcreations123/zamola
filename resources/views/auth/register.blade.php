@@ -24,7 +24,7 @@
     </div><!-- end section-title -->
 
 
-    <div class="section_mod-c">
+    <div class="section_mod-b">
         <div class="container">
             <div class="row">
 

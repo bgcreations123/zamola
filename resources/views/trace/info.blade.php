@@ -8,7 +8,8 @@
 
 {{-- {{dd($shipment->shipment_category->name)}} --}}
 
-    <div class="section-title parallax-bg parallax-light noprint">
+    @if(auth()->user()->role->name==='user')
+      <div class="section-title parallax-bg parallax-light noprint">
         <ul class="bg-slideshow">
             <li>
                 <div style="background-image:url({{ asset('storage/home-theme/bg/bg-title.jpg') }})" class="bg-slide"></div>
@@ -25,10 +26,11 @@
                 </div><!-- end row -->
             </div><!-- end container -->
         </div><!-- end section__inner -->
-    </div><!-- end section-title -->
+      </div><!-- end section-title -->
+    @endif
 
 
-    <div class="section_mod-c">
+    <div class="section_mod-b">
       <div class="container">
 
         <div class="row noprint">

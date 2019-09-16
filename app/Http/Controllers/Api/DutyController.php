@@ -137,4 +137,55 @@ class DutyController extends Controller
 
     }
 
+    /**
+     * Move status back to appointment.
+     *
+     * Its a get for now but incase the driver wants to post comments which
+     * they deem important ???
+     *
+     * @param  \Illuminate\Http\Request  $shipment_id
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel_approval(Request $request, $shipment_id)
+    {
+        $shipment = Shipment::where(['id' => $shipment_id, 'driver_id' => Auth::user()->id])->firstOrFail();
+
+        // validate comment
+        $this->validate($request, [
+            'comment' => 'required',
+        ]);
+
+        // insert into the db
+        $comment = new Comment;
+
+        $comment->driver_id = $shipment->driver->id;
+        $comment->staff_id = $shipment->staff->id;
+        $comment->shipment_id = $shipment->id;
+        $comment->comment = $request->get('comment');
+
+        $comment->save();
+
+        /**
+        *
+        * update both the shipment and orders
+        *
+        * Update shipment status to unpaid
+        * Update the order status to delivered
+        *
+        **/
+        $shipment->update(['status_id' => Status::where('name', 'booking')->first()->id]);
+
+        Order::where('id', $shipment->order->id)->update(['status_id' => Status::where('name', 'pending')->first()->id]);
+
+
+        // Successfull cancelation at last
+        $response = [ 
+            'status' => '200',
+            'message' => 'Ok',
+        ];
+
+        // return response(, 200);
+        return response()->json($response, 200);
+    }
+
 }

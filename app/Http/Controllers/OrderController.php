@@ -42,6 +42,8 @@ class OrderController extends Controller
 
         $latestOrder = Order::orderBy('created_at','DESC')->first();
 
+        $latestOrder = is_null($latestOrder) ? 0 : $latestOrder->id;
+
         // dd('ZEL-00-'.str_pad($latestOrder->id + 1, 5, "0", STR_PAD_LEFT));
 
         $this->validate($request, [
@@ -56,7 +58,7 @@ class OrderController extends Controller
 
         $order->user_id = $request->get('client');
         $order->status_id = $status->id;
-        $order->tracer = 'ZEL-00-'.str_pad($latestOrder->id + 1, 5, "0", STR_PAD_LEFT);
+        $order->tracer = 'ZEL-00-'.str_pad($latestOrder + 1, 5, "0", STR_PAD_LEFT);
         $order->shipment_category_id = $request->get('category');
         $order->quantity = $request->get('quantity');
         $order->payment_method_id = $request->get('payment');

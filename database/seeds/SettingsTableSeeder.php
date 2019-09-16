@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.site.title'),
-                'value'        => __('voyager::seeders.settings.site.title'),
+                'value'        => 'Zamola Enterprise ltd',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
@@ -26,7 +26,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.site.description'),
-                'value'        => __('voyager::seeders.settings.site.description'),
+                'value'        => 'Logistics Tracking Business',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
@@ -38,10 +38,46 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.site.logo'),
-                'value'        => '',
+                'value'        => 'settings/site/logo.png',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 3,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.phone');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('voyager::seeders.settings.site.phone'),
+                'value'        => '010 2345 6789',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 4,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.email');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('voyager::seeders.settings.site.email'),
+                'value'        => 'info@zamola.ca',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 5,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.working-hours');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('voyager::seeders.settings.site.working-hours'),
+                'value'        => 'MON-SUN:12PM-12AM',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 6,
                 'group'        => 'Site',
             ])->save();
         }
@@ -53,20 +89,8 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
-                'order'        => 4,
+                'order'        => 7,
                 'group'        => 'Site',
-            ])->save();
-        }
-
-        $setting = $this->findSetting('admin.bg_image');
-        if (!$setting->exists) {
-            $setting->fill([
-                'display_name' => __('voyager::seeders.settings.admin.background_image'),
-                'value'        => '',
-                'details'      => '',
-                'type'         => 'image',
-                'order'        => 5,
-                'group'        => 'Admin',
             ])->save();
         }
 
@@ -74,7 +98,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.admin.title'),
-                'value'        => 'Voyager',
+                'value'        => 'Zamola',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
@@ -86,7 +110,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.admin.description'),
-                'value'        => __('voyager::seeders.settings.admin.description_value'),
+                'value'        => 'The Admin panel for Zamola Enterprize Ltd',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
@@ -110,10 +134,22 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.admin.icon_image'),
-                'value'        => '',
+                'value'        => 'settings/site/logo.png',
                 'details'      => '',
                 'type'         => 'image',
                 'order'        => 4,
+                'group'        => 'Admin',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('admin.bg_image');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('voyager::seeders.settings.admin.background_image'),
+                'value'        => 'settings/site/bg.jpg',
+                'details'      => '',
+                'type'         => 'image',
+                'order'        => 5,
                 'group'        => 'Admin',
             ])->save();
         }
@@ -125,7 +161,7 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
-                'order'        => 1,
+                'order'        => 6,
                 'group'        => 'Admin',
             ])->save();
         }

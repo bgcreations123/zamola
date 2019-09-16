@@ -48,7 +48,7 @@
 	border: 0 none;
 	z-index: 777;
 	vertical-align: middle;
-	float: left;
+	/*float: left;*/
 }
 .yamm .navbar-collapse {
 	padding-left: 0;

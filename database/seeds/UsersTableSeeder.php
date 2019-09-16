@@ -27,6 +27,9 @@ class UsersTableSeeder extends Seeder
             $admin = User::create(
                 [ 
                     'name'           => 'Admin',
+                    'fname'           => 'Admin',
+                    'lname'           => 'Nistrator',
+                    'mobile'           => '0123456789',
                     'email'          => 'admin@admin.com',
                     'password'       => bcrypt('admin'),
                     'remember_token' => Str::random(60),
@@ -38,6 +41,9 @@ class UsersTableSeeder extends Seeder
             $staff = User::create(
                 [ 
                     'name'           => 'Staff',
+                    'fname'           => 'Demo',
+                    'lname'           => 'Staff',
+                    'mobile'           => '0123456789',
                     'email'          => 'staff@staff.com',
                     'password'       => bcrypt('staff'),
                     'remember_token' => Str::random(60),
@@ -49,6 +55,9 @@ class UsersTableSeeder extends Seeder
             $driver = User::create(
                 [ 
                     'name'           => 'Driver',
+                    'fname'           => 'Demo',
+                    'lname'           => 'Driver',
+                    'mobile'           => '0123456789',
                     'email'          => 'driver@driver.com',
                     'password'       => bcrypt('driver'),
                     'remember_token' => Str::random(60),
@@ -60,6 +69,9 @@ class UsersTableSeeder extends Seeder
             $user = User::create(
                 [ 
                     'name'           => 'User',
+                    'fname'           => 'Demo',
+                    'lname'           => 'User',
+                    'mobile'           => '0123456789',
                     'email'          => 'user@user.com',
                     'password'       => bcrypt('user'),
                     'remember_token' => Str::random(60),

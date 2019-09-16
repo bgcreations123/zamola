@@ -12,6 +12,8 @@ class OrderDelivered extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $order, $sender_terminus, $receiver_terminus;
+
     /**
      * Create a new message instance.
      *
