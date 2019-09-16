@@ -26,7 +26,8 @@ Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
 Route::apiResource('/duty', 'Api\DutyController');
-Route::get('/move_status/{duty}', 'Api\DutyController@move_status')->name('move_status');
+Route::get('/move_status/{id}', 'Api\DutyController@move_status')->name('move_status');
+Route::post('/cancel_approval/{id}', 'Api/DutyController@cancel_approval')->name('cancel_approval');
 Route::apiResource('/order', 'Api\OrderController');
 Route::apiResource('/shipment_categories', 'Api\ShipmentCategoryController');
 Route::apiResource('/payment_methods', 'Api\PaymentMethodController');
