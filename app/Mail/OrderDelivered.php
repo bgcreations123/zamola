@@ -32,10 +32,8 @@ class OrderDelivered extends Mailable
     public function build()
     {
         $this->withSwiftMessage(function ($message) {
-            $message->getHeaders()->addTextHeader([
-                'Content-Type' => 'multipart/mixed',
-                'Content-Transfer-Encoding' => 'base64',
-            ]);
+            $message->getHeaders()->addTextHeader('Content-Type', 'multipart/mixed');
+            $message->getHeaders()->addTextHeader('Content-Transfer-Encoding', 'base64');
         });
 
         return $this->view('emails.order_delivered');

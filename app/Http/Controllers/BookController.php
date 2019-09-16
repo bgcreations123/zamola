@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use Illuminate\Http\Request;
 use App\Mail\OrderApproved;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment};
@@ -57,6 +58,7 @@ class BookController extends Controller
         // Update order status table
         $order = Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'approved')->first()->id]);
 
+        // Incase but rear the approval mail to be sent to the account owner
         $client_email = User::where('id', $shipment->order->user_id)->pluck('email');
 
         $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
@@ -64,7 +66,7 @@ class BookController extends Controller
 
         // dd($receiver);
 
-        \Mail::to($client_email, $receiver->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
+        Mail::to($sender->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
 
         return redirect()->route('staff')->with(['success' => 'You have successfully initiated parcel transit.']);
     }

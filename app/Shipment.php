@@ -16,7 +16,12 @@ class Shipment extends Model
         'Order_id', 'staff_id', 'driver_id', 'status_id', 'package_id',
     ];
 
-    public function user()
+    public function staff()
+	{
+		return $this->belongsTo(User::class, 'staff_id');
+	}
+
+	public function driver()
 	{
 		return $this->belongsTo(User::class, 'driver_id');
 	}

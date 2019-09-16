@@ -50,8 +50,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('/', 'DriverController@index')->name('driver');
 		Route::get('duties', 'DutyController@index')->name('duties');
 		Route::get('{shipment_id}/duty', 'DutyController@show')->name('duties.show');
-		Route::get('{order_id}/{shipment_id}/transit', 'DutyController@transit')->name('duties.transit');
-		Route::get('{shipment_id}/delivered', 'DutyController@delivered')->name('duties.delivered');
+		Route::get('{shipment_id}/move_status', 'DutyController@move_status')->name('duties.move_status');
 		Route::get('{driver_id}/deliveries', 'DutyController@deliveries')->name('deliveries');
 	});
 

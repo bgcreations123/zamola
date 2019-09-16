@@ -1,14 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 // use DB;
+use Auth;
+use Mail;
 use App\Mail\OrderDelivered;
-use App\{Order, Status, Terminus, Package, User, Role, Shipment};
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\DutyResource;
+use App\{Order, Status, Terminus, Shipment};
 
 class DutyController extends Controller
 {
+    public function __construct(){
+        return $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,21 +24,11 @@ class DutyController extends Controller
      */
     public function index()
     {
-        $duties = Shipment::where(['driver_id' => auth()->user()->id, 'status_id' => Status::where('name', 'approved')->pluck('id')])->paginate(11);
+        $driver = Auth::user();
 
-        $progresses = Shipment::where(['driver_id' => auth()->user()->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->get();
+        $duties = Shipment::where('driver_id', $driver->id)->get();
 
-        return view('driver.duty.index', compact('duties', 'progresses'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return DutyResource::collection($duties);
     }
 
     /**
@@ -50,22 +48,11 @@ class DutyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($shipment_id)
     {
-        $shipment = Shipment::find($id);
+        $shipment = Shipment::find($shipment_id);
 
-        return view('driver.duty.show', compact('shipment'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new DutyResource($shipment);
     }
 
     /**
@@ -94,15 +81,12 @@ class DutyController extends Controller
     /**
      * Move status of shipment.
      *
-     * Its a get for now but incase the driver wants to post comments which
-     * they deem important ???
-     *
      * @param  \Illuminate\Http\Request  $shipment_id
      * @return \Illuminate\Http\Response
      */
     public function move_status($shipment_id)
     {
-        $shipment = Shipment::where(['id' => $shipment_id, 'driver_id' => Auth::user()->id])->firstOrFail();
+        $shipment = Shipment::where('id', $shipment_id)->first();
 
         $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
 
@@ -117,8 +101,6 @@ class DutyController extends Controller
 
             // Update the order status to transit
             Order::where('id', $shipment->order->id)->update(['status_id' => Status::where('name', 'transit')->first()->id]);
-
-            $message = 'Safe journey.';
 
 
         }elseif($shipment->status->name == 'transit'){
@@ -142,23 +124,17 @@ class DutyController extends Controller
                     echo " - $email_failures <br />";
                 };
             }
-
-            $message = 'Thanks for your services at Zamola Enterprize Ltd.';
         }
 
         // Success at last
-        return redirect()->route('driver')->with('success', $message);
+        $response = [ 
+            'status' => '200',
+            'message' => 'Ok',
+        ];
+
+        // return response(, 200);
+        return response()->json($response, 200);
 
     }
 
-    public function deliveries($id)
-    {
-        // DB::enableQueryLog();
-        // dd(DB::getQueryLog());
-
-        $deliveries = Shipment::where(['driver_id' => $id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])->orWhere('status_id', Status::where('name', 'paid')->pluck('id'))->get();
-
-
-        return view('driver.duty.deliveries', compact('deliveries'));
-    }
 }
