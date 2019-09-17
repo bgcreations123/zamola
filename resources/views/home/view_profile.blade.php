@@ -91,19 +91,22 @@
                       <div class="tab-pane active" id="settings">
 
                           <hr>
-                          <form class="form" action="##" method="post" id="registrationForm">
+                          <form class="form" action="{{ route('user.store_profile', ['user_id' => $user->id]) }}" method="post">
+
+                              {{ csrf_field() }}
+
                               <div class="form-group row">
 
                                   <div class="col-md-6">
                                       <label for="first_name">
                                           <h4>First name</h4></label>
-                                      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="{{ $user->fname }}" title="enter your first name." value="{{ $user->fname ? $user->fname : old($user->fname) }}">
+                                      <input type="text" class="form-control" name="first_name" id="first_name" title="enter your first name." value="{{old('first_name', $user->fname)}}">
                                   </div>
 
                                   <div class="col-md-6">
                                       <label for="last_name">
                                           <h4>Last name</h4></label>
-                                      <input type="text" class="form-control" name="last_name" id="last_name" placeholder="{{ $user->lname }}" title="enter your last name." value="{{ $user->lname ? $user->lname : old($user->lname) }}">
+                                      <input type="text" class="form-control" name="last_name" id="last_name" title="enter your last name." value="{{old('last_name', $user->lname)}}">
                                   </div>
                               </div>
 
@@ -112,13 +115,13 @@
                                   <div class="col-md-6">
                                       <label for="email">
                                           <h4>Email</h4></label>
-                                      <input type="email" class="form-control" name="email" id="email" placeholder="{{ $user->email }}" title="enter your email." value="{{ $user->email ? $user->email : old($user->email) }}">
+                                      <input type="email" class="form-control" name="email" id="email" title="enter your email." value="{{old('email', $user->email)}}">
                                   </div>
 
                                   <div class="col-md-6">
                                       <label for="mobile">
                                           <h4>Mobile</h4></label>
-                                      <input type="text" class="form-control" name="mobile" id="mobile" placeholder="{{ $user->mobile }}" title="enter your mobile number." value="{{ $user->mobile ? $user->mobile : old($user->mobile) }}">
+                                      <input type="text" class="form-control" name="mobile" id="mobile" title="enter your mobile number." value="{{old('mobile', $user->mobile)}}">
                                   </div>
                               </div>
 
@@ -140,8 +143,8 @@
                               <div class="form-group row">
                                   <div class="col-md-12">
                                       <br>
-                                      <button class="btn btn-sm btn-success pull-right" type="submit"><i class="fa fa-check-circle"></i> Save</button>
-                                      <button class="btn btn-sm btn-default pull-left" type="reset"><i class="fa fa-repeat"></i> Reset</button>
+                                      <button class="btn btn-md btn-outline-success pull-right" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                      <button class="btn btn-md btn-outline-secondary pull-left" type="reset"><i class="fa fa-repeat"></i> Reset</button>
                                   </div>
                               </div>
 

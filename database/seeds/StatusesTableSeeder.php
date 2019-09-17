@@ -20,6 +20,7 @@ class StatusesTableSeeder extends Seeder
             ['name' => 'delivered'],
             ['name' => 'transit'],
             ['name' => 'booking'],
+            ['name' => 'rejected'],
         ];
 
         Status::insert($statuses);

@@ -178,20 +178,197 @@
             </div>
           </div>
         </div>
+        
+        @if($shipment->status->name == 'transit')
+          <div class="col-md-12 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
 
-        {{-- Shipment Info --}}
-        <div class="col-md-12 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="card-title d-flex justify-content-between align-items-center">
-                <h5 class="text-primary">
-    				Shipment information
-                </h5>
-                <span class="text-danger">
-                  	<strong class="mr-3">Notice:</strong><span>Mandatory field for parcel clearance</span>
-                </span>
+                <div class="card-title d-flex justify-content-between align-items-center">
+                  <h5 class="text-primary">Action</h5>
+                  <span class="text-danger">
+                      <strong class="mr-3">Notice:</strong><span>Use this button to prompt(rush) the driver</span>
+                  </span>
+                </div>
+
+                <div class="row my-4 noprint">
+                  <div class="col-12">
+                    <span class="float-right">
+                      <a href="#" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#push">push</a>
+                    </span>
+                  </div>
+                </div>
+
+              </div> {{-- // cardbody --}}
+            </div> {{-- Card --}}
+          </div> {{-- col --}}
+
+          <!-- Modal -->
+          <div id="push" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <form action="#" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label for="comment">Message: </label>
+                      <textarea class="form-control mb-4" rows="5" id="comment" name="comment"></textarea>
+                      <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
               </div>
-              	<form method="POST" action="{{ route('bookings.store') }}">
+
+            </div>
+          </div>
+          <!-- end Modal content-->
+
+        @elseif($shipment->status->name == 'approved')
+          <div class="col-md-12 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+
+                <div class="card-title d-flex justify-content-between align-items-center">
+                  <h5 class="text-primary">Action</h5>
+                  <span class="text-danger">
+                      <strong class="mr-3">Notice:</strong><span>Waiting to go on transit</span>
+                  </span>
+                </div>
+
+                <div class="row my-4 noprint">
+                  <div class="col-12">
+                    <span class="float-right">
+                      <a href="#" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#remind">Remind Driver</a>
+                    </span>
+                  </div>
+                </div>
+
+              </div> {{-- // cardbody --}}
+            </div> {{-- Card --}}
+          </div> {{-- col --}}
+
+          <!-- Modal -->
+          <div id="remind" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <form action="#" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label for="comment">Message: </label>
+                      <textarea class="form-control mb-4" rows="5" id="comment" name="comment"></textarea>
+                      <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- end Modal content-->
+        @elseif($shipment->status->name == 'unpaid')
+          <div class="col-md-12 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+
+                <div class="card-title d-flex justify-content-between align-items-center">
+                  <h5 class="text-primary">Action</h5>
+                  <span class="text-danger">
+                      <strong class="mr-3">Notice:</strong><span>Use this button to prompt the client</span>
+                  </span>
+                </div>
+
+                <div class="row my-4 noprint">
+                  <div class="col-12">
+                    <span class="float-right">
+                      <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#followUp">Follow Up</a>
+                    </span>
+                  </div>
+                </div>
+
+              </div> {{-- // cardbody --}}
+            </div> {{-- Card --}}
+          </div> {{-- col --}}
+
+          <!-- Modal -->
+          <div id="followUp" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <form action="#" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label for="comment">Message: </label>
+                      <textarea class="form-control mb-4" rows="5" id="comment" name="comment"></textarea>
+                      <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- end Modal content-->
+
+        @elseif($shipment->status->name == 'paid')
+          <div class="col-md-12 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+
+                <div class="card-title d-flex justify-content-between align-items-center">
+                  <h5 class="text-primary">Action</h5>
+                  <span class="text-danger">
+                      <strong class="mr-3">Notice:</strong><span>Status</span>
+                  </span>
+                </div>
+
+                <div class="row my-4 noprint">
+                  <div class="col-12">
+                    <span class="float-right text-success">
+                      Cleared
+                    </span>
+                  </div>
+                </div>
+
+              </div> {{-- // cardbody --}}
+            </div> {{-- Card --}}
+          </div> {{-- col --}}
+        @else
+          {{-- Shipment Info --}}
+          <div class="col-md-12 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="card-title d-flex justify-content-between align-items-center">
+                  <h5 class="text-primary">Action</h5>
+                  <span class="text-danger">
+                      <strong class="mr-3">Notice:</strong><span>Mandatory field for parcel clearance</span>
+                  </span>
+                </div>
+                <form method="POST" action="{{ route('bookings.store') }}">
 
                   {{ csrf_field() }}
 
@@ -199,26 +376,26 @@
                   <input type="hidden" id="order" name="order" value="{{ $shipment->id }}">
                   <input type="hidden" id="status" name="status" value="{{ $status->id }}">
 
-        					<div class="form-row">
-        						<div class="form-group col-md-6">
-        							<label for="package">Package Type</label>
-        							<select id="package" name="package" class="form-control">
-        								<option value="" selected disabled hidden>Choose...</option>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="package">Package Type</label>
+                      <select id="package" name="package" class="form-control">
+                        <option value="" selected disabled hidden>Choose...</option>
                         @foreach($packages as $package)
-        								  <option value="{{ $package->id }}">{{ $package->name }}</option>
+                          <option value="{{ $package->id }}">{{ $package->name }}</option>
                         @endforeach
-        							</select>
-        						</div>
-        						<div class="form-group col-md-6">
-        							<label for="driver">Assign Driver</label>
-        							<select id="driver" name="driver" class="form-control">
-        								<option value="" selected disabled hidden>Choose...</option>
-        								@foreach($drivers as $driver)
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="driver">Assign Driver</label>
+                      <select id="driver" name="driver" class="form-control">
+                        <option value="" selected disabled hidden>Choose...</option>
+                        @foreach($drivers as $driver)
                           <option value="{{ $driver->id }}">{{ $driver->name }}</option>
                         @endforeach
-        							</select>
-        						</div>
-        					</div>
+                      </select>
+                    </div>
+                  </div>
                   {{-- Actions --}}
                   <div class="row my-4 noprint">
                     <div class="col-12">
@@ -227,10 +404,13 @@
                       </span> 
                     </div> 
                   </div>
-        				</form>
-          	</div>
-      	  </div>
-  		</div>
+                </form>
+              </div> {{-- // cardbody --}}
+            </div> {{-- Card --}}
+          </div> {{-- col --}}
+        @endif
+
+        
     </div>
 
 @endsection

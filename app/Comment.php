@@ -10,14 +10,14 @@ class Comment extends Model
         'comment',
     ];
 
-    public function staff()
+    public function sender()
 	{
-		return $this->belongsTo(User::class, 'staff_id');
+		return $this->belongsTo(User::class, 'sender_id');
 	}
 
-	public function driver()
+	public function receiver()
 	{
-		return $this->belongsTo(User::class, 'driver_id');
+		return $this->belongsTo(User::class, 'receiver_id');
 	}
 
 	public function shipment()

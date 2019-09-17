@@ -15,8 +15,9 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('driver_id')->unsigned();
-            $table->integer('staff_id')->unsigned();
+            $table->integer('sender_id')->unsigned();
+            $table->integer('receiver_id')->unsigned();
+            $table->enum('status', [0, 1])->default(0);
             $table->integer('shipment_id')->unsigned();
             $table->string('comment');
             $table->timestamps();

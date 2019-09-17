@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Mail;
 use Illuminate\Http\Request;
 use App\Mail\OrderApproved;
@@ -44,16 +45,21 @@ class BookController extends Controller
             'package' => 'required'
         ]);
 
-        $shipment = new Shipment();
+        // $shipment = new Shipment;
 
-        $shipment->order_id = $request->get('order');
-        $shipment->staff_id = $request->get('staff');
-        $shipment->driver_id = $request->get('driver');
-        $shipment->status_id = $request->get('status');
-        $shipment->package_id = $request->get('package');
+        // $shipment->order_id = $request->get('order');
+        // $shipment->staff_id = $request->get('staff');
+        // $shipment->driver_id = $request->get('driver');
+        // $shipment->status_id = $request->get('status');
+        // $shipment->package_id = $request->get('package');
 
         // Update shipment table
-        $shipment->save();
+        $shipment = Shipment::updateOrCreate(['order_id' => request()->order], [ 
+            'staff_id' => request()->staff,
+            'driver_id' => request()->driver,
+            'status_id' => request()->status,
+            'package_id' => request()->package,
+        ]);
 
         // Update order status table
         $order = Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'approved')->first()->id]);
@@ -67,6 +73,18 @@ class BookController extends Controller
         // dd($receiver);
 
         Mail::to($sender->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
+
+        // check for failures
+        if (Mail::failures()) {
+            $response = [ 
+                'status' => '401',
+                'message' => 'mail not sent!',
+            ];
+
+            foreach(Mail::failures() as $email_failures) {
+                echo " - $email_failures <br />";
+            };
+        }
 
         return redirect()->route('staff')->with(['success' => 'You have successfully initiated parcel transit.']);
     }
@@ -129,13 +147,36 @@ class BookController extends Controller
     }
 
     /**
+     * Display a listing of the follow up.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function followups()
+    {
+        $staff = Auth::user();
+
+        $followups = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])
+            ->latest()
+            ->paginate(11);
+
+        return view('staff.book.followups', compact('followups'));
+    }
+
+    /**
      * Display a listing of the assignments.
      *
      * @return \Illuminate\Http\Response
      */
     public function assignments()
     {
-        $assignments = Shipment::where('staff_id', '=', auth()->user()->id)->latest()->paginate(11);
+        $staff = Auth::user();
+
+        $assignments = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'rejected')->pluck('id')])
+            ->orWhere(['status_id' => Status::where('name', 'booking')->pluck('id')])
+            ->orWhere(['status_id' => Status::where('name', 'transit')->pluck('id')])
+            ->orWhere(['status_id' => Status::where('name', 'approved')->pluck('id')])
+            ->latest()
+            ->paginate(11);
 
         return view('staff.book.assignments', compact('assignments'));
     }

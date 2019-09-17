@@ -7,9 +7,9 @@
 				<div class="header__wrap">
 					<div class="header-top clearfix">
 						<div class="header-top__inner">
-							<span class="header-top__contacts">call :  (007) 123 456 7890</span>
-							<span class="header-top__contacts">Email : <a class="header-top__contacts-link" href="mailto:inquiry@domain.com"> inquiry@domain.com</a></span>
-							<span class="header-top__contacts">Mon  -  SUN :  12PM  -  12AM</span>
+							<span class="header-top__contacts">call :  {{ setting('site.phone') }}</span>
+							<span class="header-top__contacts">Email : <a class="header-top__contacts-link" href="mailto:{{ setting('site.email') }}"> {{ setting('site.email') }}</a></span>
+							<span class="header-top__contacts">{{ setting('site.working-hours') }}</span>
 						</div>
 
 						<ul class="social-links list-inline">
@@ -30,7 +30,6 @@
 							</div>
 						</a>
 					</div>
-
 
 					<div class="header__inner clearfix">
 
@@ -83,7 +82,7 @@
 							                </a>
 							                <ul class="dropdown-menu">
 							                 	<li>
-													<a href="{{ route('user.profile', ['id'=>Auth::user()->id]) }}">
+													<a href="{{ route('user.view_profile', ['id'=>Auth::user()->id]) }}">
 														My Profile
 													</a>
 							                 	</li>
@@ -113,88 +112,7 @@
 								</ul>
 							</div>
 						</nav>
-
-						{{-- <nav class="navbar yamm">
-				          <div class="navbar-header hidden-md hidden-lg hidden-sm">
-				            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				              <span class="sr-only">Toggle navigation</span>
-				              <span class="icon-bar"></span>
-				              <span class="icon-bar"></span>
-				              <span class="icon-bar"></span>
-				            </button>
-				          </div>
-				          <div id="navbar" class="navbar">
-				            <ul class="nav navbar-nav">
-				              <li class="active"><a href="{{ route('home') }}">Home</a></li>
-				              <li><a href="#">About</a></li>
-				              <li class="dropdown">
-				                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-				                <ul class="dropdown-menu">
-				                  <li><a href="#">Action</a></li>
-				                  <li><a href="#">Another action</a></li>
-				                  <li><a href="#">Something else here</a></li>
-				                  <li role="separator" class="divider"></li>
-				                  <li class="dropdown-header">Nav header</li>
-				                  <li><a href="#">Separated link</a></li>
-				                  <li><a href="#">One more separated link</a></li>
-				                </ul>
-				              </li>
-				            </ul>
-				            <!-- Authentication Links -->
-				            <ul class="nav navbar-nav" style="padding-right: 200px">
-					            @guest
-
-					                <li class="nav-item">
-					                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-					                </li>
-					                @if (Route::has('register'))
-					                    <li class="nav-item">
-					                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-					                    </li>
-					                @endif
-
-					            @else
-
-					                <li class="dropdown">
-						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} 
-						                	<span class="caret"></span>
-						                </a>
-						                <ul class="dropdown-menu">
-						                 	<li>
-												<a href="{{ route('user.profile', ['id'=>Auth::user()->id]) }}">
-													My Profile
-												</a>
-						                 	</li>
-						                  	<li role="separator" class="divider"></li>
-						                  	<li class="dropdown-header">Actions</li>
-						                  	@if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('Editor'))
-					                            <li>
-					                            	<a class="dropdown-item" href="{{ URL::to('/admin') }}">
-						                            	Back Office
-						                            </a>
-						                        </li>
-					                            <li role="separator" class="divider"></li>
-					                        @endif
-					                        <li>
-					                        	<a class="dropdown-item" href="{{ route('logout') }}"
-					                           onclick="event.preventDefault();
-					                                         document.getElementById('logout-form').submit();">
-					                            {{ __('Logout') }}
-						                        </a>
-						                    </li>
-
-					                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-					                            @csrf
-					                        </form>
-						                </ul>
-						            </li>
-					            @endguest
-				            </ul>
-				          </div><!--/.nav-collapse -->
-					    </nav> --}}
-							{{-- </div> --}}
 						{{-- </nav> --}}
-
 					</div>
 				</div>
 			</header><!-- end header-->

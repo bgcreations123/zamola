@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\{Shipment, Status};
+use App\{Shipment, Status, Comment};
 
 class DriverController extends Controller
 {
@@ -15,19 +15,21 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $driver = Auth::user();
 
-        $duties = Shipment::where('driver_id', $user->id)->get();
+        $duties = Shipment::where('driver_id', $driver->id)->get();
 
-        $progresses = Shipment::where(['driver_id' => $user->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->get();
+        $progresses = Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->paginate(5);
 
         $deliveries = 
-        Shipment::where(['driver_id' => $user->id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])
-        ->orWhere(['driver_id' => $user->id, 'status_id' => Status::where('name', 'paid')->pluck('id')])
-        ->orWhere(['driver_id' => $user->id, 'status_id' => Status::where('name', 'delivered')->pluck('id')])
+        Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])
+        ->orWhere(['status_id' => Status::where('name', 'paid')->pluck('id')])
+        ->orWhere(['status_id' => Status::where('name', 'delivered')->pluck('id')])
         ->get();
 
-        return view('driver.index', compact('duties', 'progresses', 'deliveries', 'user'));
+        $notices = Comment::where(['receiver_id' => $driver->id, 'status' => '0'])->get();
+
+        return view('driver.index', compact('duties', 'progresses', 'deliveries', 'driver', 'notices'));
     }
 
     /**

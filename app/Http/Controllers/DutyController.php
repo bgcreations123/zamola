@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 // use DB;
+use Illuminate\Http\Request;
 use App\Mail\OrderDelivered;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment, Comment};
 
@@ -17,11 +17,15 @@ class DutyController extends Controller
      */
     public function index()
     {
-        $duties = Shipment::where(['driver_id' => auth()->user()->id, 'status_id' => Status::where('name', 'approved')->pluck('id')])->paginate(11);
+        $driver = Auth::user();
 
-        $progresses = Shipment::where(['driver_id' => auth()->user()->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->get();
+        $duties = Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'approved')->pluck('id')])->paginate(11);
 
-        return view('driver.duty.index', compact('duties', 'progresses'));
+        $progresses = Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->get();
+
+        $rejects = Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'rejected')->pluck('id')])->get();
+
+        return view('driver.duty.index', compact('duties', 'progresses', 'rejects'));
     }
 
     /**
@@ -127,7 +131,7 @@ class DutyController extends Controller
             $shipment->update(['status_id' => Status::where('name', 'unpaid')->first()->id]);
 
             // Update the order status to delivered
-            Order::where('id', $shipment->order->id)->update(['status_id' => Status::where('name', 'delivered')->first()->id]);
+            Order::where('id', $shipment->order->id)->update(['status_id' => Status::where('name', 'unpaid')->first()->id]);
 
             // Send mail to the client
             Mail::to($sender->email)->send(new OrderDelivered($shipment->order, $sender, $receiver));
@@ -148,7 +152,7 @@ class DutyController extends Controller
         }
 
         // Success at last
-        return redirect()->route('driver')->with('success', $message);
+        return redirect()->route('duties')->with('success', $message);
 
     }
 
@@ -173,8 +177,8 @@ class DutyController extends Controller
         // insert into the db
         $comment = new Comment;
 
-        $comment->driver_id = $shipment->driver->id;
-        $comment->staff_id = $shipment->staff->id;
+        $comment->sender_id = $shipment->driver->id;
+        $comment->receiver_id = $shipment->staff->id;
         $comment->shipment_id = $shipment->id;
         $comment->comment = $request->get('comment');
 
@@ -182,15 +186,13 @@ class DutyController extends Controller
 
         /**
         *
-        * update both the shipment and orders
+        * update the shipment
         *
-        * Update shipment status to unpaid
-        * Update the order status to delivered
+        * Update shipment status to rejected
         *
         **/
-        $shipment->update(['status_id' => Status::where('name', 'booking')->first()->id]);
 
-        Order::where('id', $shipment->order->id)->update(['status_id' => Status::where('name', 'pending')->first()->id]);
+        $shipment->update(['status_id' => Status::where('name', 'rejected')->first()->id]);
 
 
         // return to duties page

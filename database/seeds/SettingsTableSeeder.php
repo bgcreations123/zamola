@@ -49,7 +49,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('site.phone');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('voyager::seeders.settings.site.phone'),
+                'display_name' => 'Site Phone',
                 'value'        => '010 2345 6789',
                 'details'      => '',
                 'type'         => 'text',
@@ -61,7 +61,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('site.email');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('voyager::seeders.settings.site.email'),
+                'display_name' => 'Site Email',
                 'value'        => 'info@zamola.ca',
                 'details'      => '',
                 'type'         => 'text',
@@ -73,7 +73,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('site.working-hours');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('voyager::seeders.settings.site.working-hours'),
+                'display_name' => 'Site Working-hours',
                 'value'        => 'MON-SUN:12PM-12AM',
                 'details'      => '',
                 'type'         => 'text',

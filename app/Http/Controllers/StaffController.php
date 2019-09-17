@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
-use App\{Order, Shipment, Status};
+use App\{Order, Shipment, Status, Comment};
 
 class StaffController extends Controller
 {
@@ -14,18 +15,20 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $pending_orders = Order::where(['status_id' => Status::where('name', 'pending')->pluck('id')])->orderBy('id', 'DESC')->paginate(11);
+        $staff = Auth::user();
 
-        $assignments = Shipment::select('*')
-        ->leftJoin('orders', function ($query) {
-            $query
-            ->on('orders.id', '=', 'shipments.order_id')
-            ->where('staff_id', '=', auth()->user()->id);
-        })
-        ->whereNotNull('shipments.id')
-        ->orderBy('shipments.id', 'DESC')->paginate(11);
+        $assignments = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'approved')->pluck('id')])
+        ->orWhere(['status_id' => Status::where('name', 'transit')->pluck('id')])
+        ->orWhere(['status_id' => Status::where('name', 'delivered')->pluck('id')])
+        ->paginate(5);
 
-        return view('staff.index', compact('pending_orders', 'assignments'));
+        $unpaid = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])->get();
+
+        $paid = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'paid')->pluck('id')])->get();
+
+        $notices = Comment::where(['receiver_id' => $staff->id, 'status' => '0'])->get();
+
+        return view('staff.index', compact('staff', 'pending_orders', 'assignments', 'unpaid', 'paid', 'notices'));
     }
 
     /**

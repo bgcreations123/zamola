@@ -25,7 +25,8 @@ Auth::routes();
 // Private pages
 Route::group(['middleware' => 'auth'], function(){
 	// All roles consumed pages
-	Route::get('profile/{id}', 'HomeController@profile')->name('user.profile');
+	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
+	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
 	Route::get('trace/{tracer}', 'TraceController@trace')->name('trace');
 
 	// Private User pages
@@ -40,6 +41,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('/', 'StaffController@index')->name('staff');
 		Route::get('orders', 'BookController@index')->name('bookings');
 		Route::get('bookings', 'BookController@assignments')->name('bookings.assignments');
+		Route::get('follow-ups', 'BookController@followups')->name('bookings.followups');
 		Route::get('{order_id}/show', 'BookController@show')->name('bookings.show');
 		Route::post('book', 'BookController@store')->name('bookings.store');
 		Route::get('{shipment_id}/raise_invoice', 'BookController@raise_invoice')->name('bookings.raise_invoice');

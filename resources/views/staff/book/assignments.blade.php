@@ -36,12 +36,12 @@
 									<td>{{ $assignment->order->user->name }}</td>
 									<td>{{ $assignment->status->name }}</td>
 									<td>
-										@if($assignment->status->name == 'unpaid')
-											<a href="{{ route('bookings.raise_invoice', ['shipment_id' => $assignment->id]) }}" class="btn btn-primary btn-sm">
-												Raise Invoice
+										@if($assignment->status->name == 'rejected')
+											<a href="{{ route('bookings.show', ['order_id' => $assignment->order->id]) }}" class="btn btn-danger btn-sm">
+												Re-assign
 											</a>
 										@else
-											<a href="#" class="btn btn-secondary btn-sm">Push</a>
+											<a href="{{ route('bookings.show', ['order_id' => $assignment->order->id]) }}" class="btn btn-dark btn-sm">push</a>
 										@endif
 									</td>
 								</tr>

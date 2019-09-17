@@ -98,7 +98,19 @@ class OrderController extends Controller
 
         $receiver_terminus->save();
 
-        $mail = Mail::to($sender_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
+        Mail::to($sender_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
+
+        // check for failures
+        if (Mail::failures()) {
+            $response = [ 
+                'status' => '401',
+                'message' => 'mail not sent!',
+            ];
+
+            foreach(Mail::failures() as $email_failures) {
+                echo " - $email_failures <br />";
+            };
+        }
 
         // return response()->json(['order' => $order, 'sender_terminus' => $sender_terminus, 'receiver_terminus' => $receiver_terminus]);
         return ['redirect' => route('trace', ['tracer' => $order->tracer]), 'with' => ['success' => 'You have successfully placed a new order.']];

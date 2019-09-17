@@ -14,10 +14,10 @@
                     <div class="card-body">
                         <div class="rotate">
                             {{-- <span class="fa fa-user fa-4x"></span> --}}
-                            <img src="{{ Voyager::image( $user->avatar ) }}" class="avatar img-circle img-thumbnail" alt="avatar" width="30%">
+                            <img src="{{ Voyager::image( $driver->avatar ) }}" class="avatar img-circle img-thumbnail" alt="avatar" width="30%">
                         </div>
-                        <h6 class="text-uppercase mt-2">{{ $user->name }}</h6>
-                        {{-- <h1 class="display-4">{{ $user->id }}</h1> --}}
+                        <h6 class="text-uppercase mt-2">{{ $driver->name }}</h6>
+                        {{-- <h1 class="display-4">{{ $driver->id }}</h1> --}}
                     </div>
                 </div>
             </div>
@@ -81,7 +81,9 @@
                         </tbody>
                     </table>
                     @if($progresses->isEmpty())
-                        <span>No shipment in progress. Kindly be pation with us.</span>
+                        <span class="text-center">
+                            <p class="mt-4">No shipment in progress. Kindly pick a job under <strong>duties</strong> menu.</p>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -90,7 +92,18 @@
                     {{-- <img class="card-img-top img-fluid" src="//placehold.it/740x180/bbb/fff?text=..." alt="Card image cap"> --}}
                     <div class="card-body">
                         <h4 class="card-title">Notices</h4>
-                        <p class="card-text">No notice for now.</p>
+                        @if($notices->isEmpty())
+                            <p class="card-text">No notice for now.</p>
+                        @endif
+                        <ul class="list-group list-group-flush">
+                            @foreach($notices as $notice)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{-- {{ substr($notice->comment, 0, 19) }}... --}}
+                                    {{ $notice->shipment->order->tracer }}
+                                    <a href="#">Read</a>
+                                </li>
+                            @endforeach
+                        </ul>
                         {{-- <a href="#" class="btn btn-primary">Button</a> --}}
                     </div>
                 </div>
