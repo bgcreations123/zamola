@@ -23,6 +23,7 @@
             </div><!-- end section__inner -->
         </div><!-- end section-title -->
 
+        @include('layouts._messages')
 
         <div class="section_mod-b">
             <div class="container">

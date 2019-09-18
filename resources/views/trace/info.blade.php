@@ -29,9 +29,14 @@
       </div><!-- end section-title -->
     @endif
 
+    @include('layouts._messages')
 
     <div class="section_mod-b">
       <div class="container">
+
+        <span class="pull-right noprint">
+          <a href="{{ URL::previous() }}" class="header__btn btn btn-primary btn-sm btn-effect-2 pull-right" style="margin-right: 30px;">Back</a>
+        </span>
 
         <div class="row noprint">
           <div class="col-xs-12">
@@ -113,50 +118,52 @@
   <br/>
   <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('16', 'QRCODE')}}" alt="barcode" />
   <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('17', 'PDF417')}}" alt="barcode" />
-  <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('18', 'DATAMATRIX')}}" alt="barcode" />   
+  <img src="data:image/png;base64,{{DNS2D::getBarcodePNG('18', 'DATAMATRIX')}}" alt="barcode" />
 --}}
-<img src="data:image/png;base64,{{DNS1D::getBarcodePNG($shipment->tracer, 'C39E')}}" alt="barcode" style="width: 100%; height: 100px" />
-<div class="m-3"><strong>Tracer: </strong>{{ $shipment->tracer }}</div>
-              </div>
-            </div>
 
-            <div class="row px-5 py-2">
-              <div class="col-md-12">
-                <table class="table mt-4">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">Category</th>
-                      <th scope="col">Quantity</th>
-                      <th scope="col">Weight</th>
-                      <th scope="col">Dimentions: (L x W x H)</th>
-                      <th scope="col">Payment Method</th>
-                      <th scope="col">Order Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="text-center">
-                      <td>{{ $shipment->shipment_category->name }}</td>
-                      <td>{{ $shipment->quantity }}</td>
-                      <td>{{ $shipment->weight }}</td>
-                      <td>{{ $shipment->length.' x '.$shipment->width.' x '.$shipment->height }}</td>
-                      <td>{{ $shipment->payment_method->name }}</td>
-                      <td>{{ \Carbon\Carbon::parse($shipment->created_at)->diffForHumans() }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($shipment->tracer, 'C39E')}}" alt="barcode" style="width: 100%; height: 100px" />
 
-            <div class="row noprint">
-              <div class="col-xs-12">
-                <div class="decor-1"><i class='icon flaticon-delivery36'></i></div>
-                <h2 class="ui-title-block"><span class="ui-title-emphasis">All Payments</span>On delivery</h2>
-              </div>
-            </div>
-                    
+            <div class="m-3"><strong>Tracer: </strong>{{ $shipment->tracer }}</div>
           </div>
         </div>
+
+        <div class="row px-5 py-2">
+          <div class="col-md-12">
+            <table class="table mt-4">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col">Category</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Dimentions: (L x W x H)</th>
+                  <th scope="col">Payment Method</th>
+                  <th scope="col">Order Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="text-center">
+                  <td>{{ $shipment->shipment_category->name }}</td>
+                  <td>{{ $shipment->quantity }}</td>
+                  <td>{{ $shipment->weight }}</td>
+                  <td>{{ $shipment->length.' x '.$shipment->width.' x '.$shipment->height }}</td>
+                  <td>{{ $shipment->payment_method->name }}</td>
+                  <td>{{ \Carbon\Carbon::parse($shipment->created_at)->diffForHumans() }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row noprint">
+          <div class="col-xs-12">
+            <div class="decor-1"><i class='icon flaticon-delivery36'></i></div>
+            <h2 class="ui-title-block"><span class="ui-title-emphasis">All Payments</span>On delivery</h2>
+          </div>
+        </div>
+                    
       </div>
     </div>
+  </div>
+</div>
 
 @endsection

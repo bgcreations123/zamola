@@ -66,7 +66,7 @@
                 @include('layouts._banner') --}}
             @endif
             {{-- {{menu('main', 'layouts._navbar')}} --}}
-            @include('layouts._messages')
+            {{-- @include('layouts._messages') --}}
             @yield('content')
 
             @include('layouts._footer1')

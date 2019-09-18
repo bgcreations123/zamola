@@ -57,6 +57,7 @@
         </div><!-- end container -->
       </section><!-- end section-->
 
+      @include('layouts._messages')
 
       <section class="section-default wow">
         <div class="container">

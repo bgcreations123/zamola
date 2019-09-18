@@ -27,6 +27,8 @@
           </div><!-- end section__inner -->
       </div><!-- end section-title -->
 
+      @include('layouts._messages')
+
       <section class="section_mod-e">
         <div class="block-about">
           <div class="container">
@@ -65,7 +67,7 @@
                     <div class="block-download__description">Below is a summery of the orders you have made with Zamola Ltd. Welcome again.</div>
                   </div>
                   <div class="block-download__btn">
-                    <a class="btn btn_mod-c btn-sm btn-effect" href="{{ route('order.list', ['id' => Auth()->User()->id]) }}"><span class="btn__inner">View Full Stats ({{ $all_orders_count->count() }})</span></a>
+                    <a class="btn btn_mod-c btn-sm btn-effect" href="{{ route('order.list') }}"><span class="btn__inner">View Full Stats ({{ $all_orders_count->count() }})</span></a>
                   </div>
                   <i class="block-download__icon flaticon-map2"></i>
                 </div>
@@ -82,9 +84,9 @@
           <div class="row">
             <div class="col-md-4 mb-4">
               <h5 class="text-primary">
-                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'pending']) }}" class="">Pending orders ({{ $pending_orders_count->count() }})</a>
+                <a href="{{ route('order.list', ['status' => 'pending']) }}" class="">Pending orders ({{ $pending_orders->count() }})</a>
               </h5>
-              {{ $pending_orders_count->count() == 0 ? 'No Pending Orders' : '' }}
+              {{ $pending_orders->count() == 0 ? 'No Pending Orders' : '' }}
               <ul class="list-group  list-group-flush">
                 @foreach($pending_orders as $pending_order)
                   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -101,9 +103,9 @@
             <!-- /.col-md-4 -->
             <div class="col-md-4 mb-4">
               <h5 class="text-primary">
-                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'transit']) }}" class="">Processing orders ({{ $processing_orders_count->count() }})</a>
+                <a href="{{ route('order.list', ['status' => 'transit']) }}" class="">Processing orders ({{ $processing_orders->count() }})</a>
               </h5>
-              {{ $processing_orders_count->count() == 0 ? 'No Processing Orders' : '' }}
+              {{ $processing_orders->count() == 0 ? 'No Processing Orders' : '' }}
               <ul class="list-group  list-group-flush">
                 @foreach($processing_orders as $processing_order)
                   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -120,9 +122,9 @@
             <!-- /.col-md-4 -->
             <div class="col-md-4 mb-4">
               <h5 class="text-primary">
-                <a href="{{ route('order.list', ['id' => Auth()->User()->id, 'status' => 'delivered']) }}" class="">Completed orders ({{ $completed_orders_count->count() }})</a>
+                <a href="{{ route('order.list') }}" class="">Completed orders ({{ $completed_orders->count() }})</a>
               </h5>
-              {{ ($completed_orders_count->count() == 0) ? 'No Completed Orders' : '' }}
+              {{ ($completed_orders->count() == 0) ? 'No Completed Orders' : '' }}
               <ul class="list-group  list-group-flush">
                 @foreach($completed_orders as $completed_order)
                   <li class="list-group-item d-flex justify-content-between align-items-center">

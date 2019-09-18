@@ -23,10 +23,15 @@
       </div><!-- end section__inner -->
   </div><!-- end section-title -->
 
+  @include('layouts._messages')
 
   <div class="section_mod-b">
     <div class="container">
       <div class="row">
+
+        <span class="pull-right">
+          <a href="{{ URL::previous() }}" class="header__btn btn btn-primary btn-sm btn-effect-2 pull-right" style="margin-right: 30px;">Back</a>
+        </span> 
         	
         <table class="table mt-4">
           <thead>

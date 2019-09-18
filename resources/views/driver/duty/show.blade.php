@@ -6,6 +6,8 @@
 
 	{{-- {{dd($shipment->order->origin->location)}} --}}
 
+  @include('layouts._messages')
+
 	{{-- Actions --}}
 	<div class="row my-4">
 	    <div class="col-12">

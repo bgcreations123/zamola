@@ -4,6 +4,8 @@
 
 @section('content')
 
+	@include('layouts._messages')
+
 	<div class="row pt-3">
 		{{-- Job Allocation Info --}}
 	    <div class="col-md-12 mb-4">

@@ -17,10 +17,6 @@ class HomeController extends Controller
     {
         $all_orders_count = Order::where('user_id', (int)Auth()->user()->id)->get();
 
-        $pending_orders_count = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'pending')->pluck('id')])->get();
-        $processing_orders_count = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->latest()->take(5)->get();
-        $completed_orders_count = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'delivered')->pluck('id')])->get();
-
         $pending_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'pending')->pluck('id')])->latest()->take(5)->get();
         $processing_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->latest()->take(5)->get();
         $completed_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'delivered')->pluck('id')])
@@ -28,7 +24,7 @@ class HomeController extends Controller
             ->orWhere(['status_id' => Status::where('name', 'paid')->pluck('id')])
             ->latest()->take(5)->get();
 
-        return view('home.index', compact('pending_orders', 'pending_orders_count', 'processing_orders', 'processing_orders_count','completed_orders', 'completed_orders_count', 'all_orders_count'));
+        return view('home.index', compact('pending_orders', 'processing_orders','completed_orders', 'all_orders_count'));
     }
 
     public function view_profile($id)
@@ -65,6 +61,6 @@ class HomeController extends Controller
         ]);
 
         // redirect to profiles page with a message
-        return redirect()->route('user.view_profile', compact('user'));
+        return redirect()->route('user.view_profile', compact('user'))->with('success', 'Your details have been updated successfully.');
     }
 }

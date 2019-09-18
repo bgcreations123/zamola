@@ -23,6 +23,8 @@
         </div><!-- end section__inner -->
     </div><!-- end section-title -->
 
+    @include('layouts._messages')
+
     {{-- tracer form --}}
     <div class="section_mod-a">
 		<div class="container">

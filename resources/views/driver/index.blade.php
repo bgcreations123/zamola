@@ -4,9 +4,9 @@
 
 @section('content')
 
+	@include('layouts._messages')
 
-
-	<div class="col main py-4">
+    <div class="col main py-4">
             
         <div class="row mb-3">
             <div class="col-xl-3 col-sm-6 py-2">

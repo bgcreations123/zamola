@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::group(['middleware' => 'access_user'], function(){
 		Route::get('/home', 'HomeController@index')->name('home');
 		Route::get('order', 'OrderController@index')->name('order');
-		Route::get('order/{id}/listing/{status?}', 'OrderController@list')->name('order.list');
+		Route::get('order/listing/{status?}', 'OrderController@list')->name('order.list');
 	});
 
 	// Private Staff pages

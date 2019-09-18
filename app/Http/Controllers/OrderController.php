@@ -164,16 +164,13 @@ class OrderController extends Controller
     }
 
     // List all the orders
-    public function list($id, $status = null){
-        if(is_null($status)){
-            $orders = Order::where('user_id', $id)->orderBy('id', 'DESC')->paginate(7);
-        }else{
-            $orders = Order::where(['user_id' => $id, 'status_id' => Status::where('name', $status)->pluck('id')])->orderBy('id', 'DESC')->paginate(7);
-        }
+    public function list($status = null){
+        $user = Auth::user();
 
-        // check if user is true
-        if($id != (int)auth()->user()->id){
-            return redirect()->back()->with(['error'=> 'Stay in your place!']);
+        if(is_null($status)){
+            $orders = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->paginate(7);
+        }else{
+            $orders = Order::where(['user_id' => $user->id, 'status_id' => Status::where('name', $status)->pluck('id')])->orderBy('id', 'DESC')->paginate(7);
         }
 
         return view('order.list', compact('orders'));
