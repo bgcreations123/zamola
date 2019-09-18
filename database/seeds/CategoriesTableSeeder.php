@@ -157,25 +157,10 @@ class CategoriesTableSeeder extends Seeder
             ])->save();
         }
 
-        //Menu Item
-        $menu = Menu::where('name', 'admin')->firstOrFail();
-        $menuItem = MenuItem::firstOrNew([
-            'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.categories'),
-            'url'     => '',
-            'route'   => 'voyager.categories.index',
-        ]);
-        if (!$menuItem->exists) {
-            $menuItem->fill([
-                'target'     => '_self',
-                'icon_class' => 'voyager-categories',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 8,
-            ])->save();
-        }
+        // Menu Item
+        // done under menu items
 
-        //Permissions
+        // Permissions
         Permission::generateFor('categories');
 
         //Content
