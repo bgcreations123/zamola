@@ -1620,6 +1620,13 @@ p:last-child .typography-bg {
 	float: left;
 	width: 260px;
 }
+.trace__title {
+	margin-top: 0px;
+	margin-bottom: 0;
+	font: 700 20px 'Titillium Web';
+	color: #111;
+	text-transform: uppercase;
+}
 .subscribe__title {
 	margin-top: 6px;
 	margin-bottom: 0;
@@ -1649,13 +1656,13 @@ p:last-child .typography-bg {
 	background-color: transparent;
 }
 .form-subscribe__input::-moz-placeholder {
-	color: #fff;
+	color: #000;
 }
 .form-subscribe__input:-ms-input-placeholder {
-	color: #fff;
+	color: #000;
 }
 .form-subscribe__input::-webkit-input-placeholder {
-	color: #fff;
+	color: #000;
 }
 .form-subscribe__btn {
 	margin-left: 11px;

@@ -8,7 +8,24 @@ use App\{Order, Terminus};
 
 class TraceController extends Controller
 {
-    //Trace a Percel
+    // View tracer page 
+    public function index()
+    {
+        return view('trace.index');
+    }
+
+    public function tracer(Request $request){
+        // validate
+        $this->validate($request, [
+            'tracer' => 'required',
+        ]);
+
+        // return tracer method
+        return $this->trace($request->get('tracer'));
+    }
+
+
+    // Trace a Percel
     public function trace($tracer)
     {
         $shipment = Order::where('tracer', $tracer)->first();

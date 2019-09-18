@@ -4,8 +4,8 @@
 			<div class="col-xs-12">
 				<div class="block-contacts">
 					<div class="block-contacts__title-1">call us now on</div>
-					<div class="block-contacts__title-2"><i class="icon flaticon-telephone114"></i><span class="color-primary">(007) 123 456 7890</span></div>
-					<div class="block-contacts__title-3">We are open 24/7 for assistance</div>
+					<div class="block-contacts__title-2"><i class="icon flaticon-telephone114"></i><span class="color-primary">{{ setting('site.phone') }}</span></div>
+					<div class="block-contacts__title-3">{{ setting('site.slogan') }}</div>
 				</div>
 			</div><!-- end col -->
 		</div><!-- end row -->
@@ -37,7 +37,7 @@
 					</div><!-- end subscribe -->
 
 
-					<footer class="footer">
+					<footer class="footer" id="footer">
 						<div class="footer-main">
 							<div class="section__inner">
 								<div class="row">
@@ -54,16 +54,15 @@
 											</div>
 
 											<div class="footer__info">
-												<p>Tempor incididunt ut labore dolore magna aliqua sed ipsum envenia dolor sit consectetur adipisicing elit sed ao dseiusmod exercitation ullamco laboris nisi aliquip maodo consequat duis aute irure dolor in reprehenderit voluptate velit sed ese.</p>
-												<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiusmod. Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+												{!! setting('site.summery') !!}
 											</div>
 											<ul class="social-links social-links_mod-a list-inline">
-												<li><a target="_blank" href="https://twitter.com/"><i class="icons fa fa-twitter"></i></a></li>
-												<li><a target="_blank" href="https://www.facebook.com/"><i class="icons fa fa-facebook"></i></a></li>
-												<li><a target="_blank" href="https://www.linkedin.com/"><i class="icons fa fa-linkedin"></i></a></li>
-												<li><a target="_blank" href="https://www.google.com/"><i class="icons fa fa-google-plus"></i></a></li>
-												<li><a target="_blank" href="https://www.vimeo.com/"><i class="icons fa fa-vimeo"></i></a></li>
-												<li><a target="_blank" href="https://www.instagram.com/"><i class="icons fa fa-instagram"></i></a></li>
+												<li><a target="_blank" href="{{ setting('social-link.twitter') }}"><i class="icons fa fa-twitter"></i></a></li>
+												<li><a target="_blank" href="{{ setting('social-link.facebook') }}"><i class="icons fa fa-facebook"></i></a></li>
+												<li><a target="_blank" href="{{ setting('social-link.linkedin') }}"><i class="icons fa fa-linkedin"></i></a></li>
+												<li><a target="_blank" href="{{ setting('social-link.google') }}"><i class="icons fa fa-google"></i></a></li>
+												<li><a target="_blank" href="{{ setting('social-link.vimeo') }}"><i class="icons fa fa-vimeo"></i></a></li>
+												<li><a target="_blank" href="{{ setting('social-link.instagram') }}"><i class="icons fa fa-instagram"></i></a></li>
 											</ul>
 										</div>
 									</div><!-- end col -->
@@ -72,29 +71,7 @@
 										<section class="footer__section">
 											<h3 class="footer__title">services offered</h3>
 											<div class="decor-2 decor-2_mod-b decor-2_mod_white"></div>
-											<ul class="footer-list list-unstyled">
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Sea Freight</a>
-												</li>
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Road Transport</a>
-												</li>
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Air Freight</a>
-												</li>
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Railway Logistics</a>
-												</li>
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Packaging & Storage</a>
-												</li>
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Warehousing</a>
-												</li>
-												<li class="footer-list__item">
-													<a class="footer-list__link" href="services-1.html">Door-2-Door Delivery</a>
-												</li>
-											</ul>
+											{!! setting('site.services-offered') !!}
 										</section>
 									</div><!-- end col -->
 
@@ -104,19 +81,19 @@
 											<div class="decor-2 decor-2_mod-b decor-2_mod_white"></div>
 											<ul class="footer-list list-unstyled">
 												<li class="footer-list__item">
-													<a class="footer-list__link" href="#">Home Page</a>
+													<a class="footer-list__link" href="#home">Home Page</a>
 												</li>
 												<li class="footer-list__item">
-													<a class="footer-list__link" href="#">Request a Free Quote</a>
+													<a class="footer-list__link" href="#quote">Request a Free Quote</a>
 												</li>
 												<li class="footer-list__item">
-													<a class="footer-list__link" href="#">About the Company</a>
+													<a class="footer-list__link" href="#about">About the Company</a>
 												</li>
 												<li class="footer-list__item">
-													<a class="footer-list__link" href="#">Track Item(s)</a>
+													<a class="footer-list__link" href="{{ route('trace.index') }}">Track Item(s)</a>
 												</li>
 												<li class="footer-list__item">
-													<a class="footer-list__link" href="#">Customer Care</a>
+													<a class="footer-list__link" href="#footer">Customer Care</a>
 												</li>
 											</ul>
 										</section>
@@ -128,13 +105,13 @@
 											<div class="decor-2 decor-2_mod-b decor-2_mod_white"></div>
 											<div class="footer-contact">
 												<div class="footer-contact__inner">
-													<div class="footer-contact__title">24/7 Express Logistics</div>
-													<div class="footer-contact__info">54 NewHill Station Ave CA, Newyork <br>33102  US</div>
-													<div class="footer-contact__info">Phone: (007) 123 456 7890</div>
-													<div class="footer-contact__info">Email: <a href="mailto:inquiry@domain.com">inquiry@domain.com</a></div>
+													<div class="footer-contact__title">{{ setting('site.slogan') }}</div>
+													<div class="footer-contact__info">{{ setting('site.address') }}</div>
+													<div class="footer-contact__info">Phone: {{ setting('site.phone') }}</div>
+													<div class="footer-contact__info">Email: <a href="mailto:{{ setting('site.email') }}">{{ setting('site.email') }}</a></div>
 													<select class="footer-contact__select selectpicker">
 														<option>Select a branch</option>
-														<option>1</option>
+														<option>{{ setting('site.branch') }}</option>
 														<option>2</option>
 													</select>
 													<div class="footer-contact__note">You can also view our other branches address information by selecting branch above.</div>

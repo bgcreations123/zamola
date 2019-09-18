@@ -32,9 +32,6 @@
 					</div>
 
 					<div class="header__inner clearfix">
-
-						<a class="header__btn btn btn-primary btn-sm btn-effect-2 pull-right" href="#" style="margin-left: 20px;">Trace Package</a>
-
 						<nav class="navbar yamm">
 							<div class="navbar-header hidden-md hidden-lg hidden-sm">
 					            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -44,6 +41,8 @@
 									<span class="icon-bar"></span>
 					            </button>
 					        </div>
+
+							<a class="header__btn btn btn-primary btn-sm btn-effect-2 pull-right" href="{{ route('trace.index') }}" style="margin-left: 20px;">Trace Package</a>
 
 							<div class="container-fluid">
 							{{-- <div class="navbar-header">

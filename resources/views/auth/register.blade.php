@@ -84,18 +84,18 @@
 
                 <div class="col-md-6">
                     <section class="section-contacts-block">
-                        <h3 class="contacts-block__title ui-title-inner">24/7 Express Logistics Services</h3>
+                        <h3 class="contacts-block__title ui-title-inner">{{ setting('site.slogan') }}</h3>
                         <div class="decor-2 decor-2_mod-b"></div>
                         <div class="contacts-block__description">Feel free to contact us via phone or email anytime if you have any questions or need help!</div>
                         <div class="contacts-block clearfix">
                             <i class="icon flaticon-telephone114"></i>
                             <span class="contacts-block__inner">
-                                <span class="contacts-block__emphasis color-primary">(007) 123 456 7890</span> 24/7 Free HelpLine</span>
+                                <span class="contacts-block__emphasis color-primary">{{ setting('site.phone') }}</span> 24/7 HelpLine</span>
                         </div>
                         <div class="contacts-block clearfix">
                             <i class="icon flaticon-mail45"></i>
                             <span class="contacts-block__inner">
-                                <a class="contacts-block__emphasis color-primary" href="mailto:inquiry@domain.com">inquiry@domain.com</a> We usually reply within 24 hours</span>
+                                <a class="contacts-block__emphasis color-primary" href="mailto:{{ setting('site.email') }}">{{ setting('site.email') }}</a> We usually reply within 24 hours</span>
                         </div>
                     </section><!-- end contacts-block -->
                 </div><!-- end col -->

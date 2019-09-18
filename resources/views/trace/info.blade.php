@@ -19,8 +19,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h1 class="ui-title-page">Pass Details</h1>
-                        <div class="ui-subtitle-page">Order details summary.</div>
+                        <h1 class="ui-title-page">Tracer Details</h1>
+                        <div class="ui-subtitle-page">Summary of Shipment details.</div>
                         <div class="decor-2 decor-2_mod-a decor-2_mod_white"></div>
                     </div><!-- end col -->
                 </div><!-- end row -->

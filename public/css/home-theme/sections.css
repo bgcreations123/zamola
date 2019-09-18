@@ -116,6 +116,16 @@
 	margin-top: 35px;
 }
 
+.section-trace {
+	position: relative;
+	margin-top: 95px;
+	padding: 70px 10px 50px 93px;
+	text-decoration-color: black;
+	border: 1px solid #eee;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
 .section-subscribe {
 	position: relative;
 	margin-top: 95px;

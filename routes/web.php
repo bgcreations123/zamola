@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function(){
 	// All roles consumed pages
 	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
 	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
+	Route::get('trace/', 'TraceController@index')->name('trace.index');
+	Route::post('trace/', 'TraceController@tracer')->name('trace.check');
 	Route::get('trace/{tracer}', 'TraceController@trace')->name('trace');
 
 	// Private User pages

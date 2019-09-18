@@ -10,6 +10,8 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
+        // Site Settings
+
         $setting = $this->findSetting('site.title');
         if (!$setting->exists) {
             $setting->fill([
@@ -70,14 +72,83 @@ class SettingsTableSeeder extends Seeder
             ])->save();
         }
 
-        $setting = $this->findSetting('site.working-hours');
+        $setting = $this->findSetting('site.address');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => 'Site Working-hours',
-                'value'        => 'MON-SUN:12PM-12AM',
+                'display_name' => 'Site Address',
+                'value'        => '54 NewHill Station Ave CA',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 6,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.branch');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Site Branch',
+                'value'        => 'Branch 1',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 7,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.slogan');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Site Slogan',
+                'value'        => '24/7 Express Logistics',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 8,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.summery');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Summery',
+                'value'        => '<p style="box-sizing: border-box; margin: 0px 0px 25px; line-height: 1.74; color: #999999; font-family: Lato, Helvetica, Arial, sans-serif;">Tempor incididunt ut labore dolore magna aliqua sed ipsum envenia dolor sit consectetur adipisicing elit sed ao dseiusmod exercitation ullamco laboris nisi aliquip maodo consequat duis aute irure dolor in reprehenderit voluptate velit sed ese.</p>
+                    <p style="box-sizing: border-box; margin: 0px 0px 25px; line-height: 1.74; color: #999999; font-family: Lato, Helvetica, Arial, sans-serif;">Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiusmod. Lorem ipsum dolor sit amet consectetur adipisicing.</p>',
+                'details'      => '',
+                'type'         => 'rich_text_box',
+                'order'        => 9,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.working-hours');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Working-hours',
+                'value'        => 'MON-SUN:12PM-12AM',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 10,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.services-offered');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Services offered',
+                'value'        => '<ul class="footer-list list-unstyled">
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Sea Freight</a></li>
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Road Transport</a></li>
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Air Freight</a></li>
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Railway Logistics</a></li>
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Packaging &amp; Storage</a></li>
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Warehousing</a></li>
+                                    <li class="footer-list__item"><a class="footer-list__link" href="services-1.html">Door-2-Door Delivery</a></li>
+                                    </ul>',
+                'details'      => '',
+                'type'         => 'rich_text_box',
+                'order'        => 11,
                 'group'        => 'Site',
             ])->save();
         }
@@ -89,10 +160,88 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
-                'order'        => 7,
+                'order'        => 12,
                 'group'        => 'Site',
             ])->save();
         }
+
+
+        // Social Media Settings
+
+        $setting = $this->findSetting('social-link.google');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Social-link Google',
+                'value'        => 'https://google.com/name/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 1,
+                'group'        => 'social-link',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('social-link.facebook');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Social-link Facebook',
+                'value'        => 'https://facebook.com/name/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 2,
+                'group'        => 'social-link',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('social-link.instagram');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Social-link Instagram',
+                'value'        => 'https://instagram.com/name/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 3,
+                'group'        => 'social-link',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('social-link.twitter');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Social-link Twitter',
+                'value'        => 'https://twitter.com/name/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 4,
+                'group'        => 'social-link',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('social-link.linkedin');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Social-link Linkedin',
+                'value'        => 'https://linkedin.com/name/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 5,
+                'group'        => 'social-link',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('social-link.vimeo');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Social-link Vimeo',
+                'value'        => 'https://vimeo.com/name/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 6,
+                'group'        => 'social-link',
+            ])->save();
+        }
+
+
+        // Admin Settings
 
         $setting = $this->findSetting('admin.title');
         if (!$setting->exists) {

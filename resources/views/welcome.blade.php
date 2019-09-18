@@ -3,102 +3,8 @@
 @section('title', '')
 
 @section('content')
-{{-- {{dd(auth()->user()->role->name)}} --}}
-    {{-- <div class="container" style="padding-top: 40px;">
-        <div class="row justify-content-center align-items-center">
-            // Make an shipment order
-            <div class="col-md-10 border border-default rounded p-2 mb-2">
-                <div class="row">
-                    <div class="col-md-6 content border-right">
-                        // <div class="col-12 mx-auto text-center" style="padding-left: 240px">
-                        <div class="col-12 mx-auto text-center">
-                          <img src="{{ Voyager::image( setting('site.logo') ) }}" style="width: 30%;">
-                        </div>
 
-                        <h1 class="text-center">{{ setting('site.title') }}</h1>
-
-                        <p class="text-center">{{ setting('site.description') }}</p>
-                    </div>
-                    <div class="col-md-6 content my-auto">
-                      <div class="card-title">
-                        <div class="row justify-content-center align-items-center">
-                          <div class="col-10 border-bottom">
-                            <h4>Shipping Cost Calculator</h4>
-                          </div>
-                          <div class="col-2">
-                            <div id="red-circle" class="circle-text float-right">
-                              <div id="pricing-plan-price" class="pricing-plan-price inner-text center-align">
-                                <sup><strong>$</strong></sup>0<span>.00</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <form>
-                        <div class="form-group">
-                          <label for="classification">Parcel Type</label>
-                          <select id="classification" class="form-control form-control-sm" name="classification">
-                            <option value="0" selected>Choose...</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="weight">Weight (lbs)</label>
-                          <input type="text" class="form-control form-control-sm" id="weight" placeholder="Enter weight">
-                        </div>
-                        <div class="form-group">
-                          <label for="dimentions">Dimensions: Length x Width x Height (cm)</label>
-                          <div class="form-row align-items-center">
-                            <div class="col-sm-4 my-1">
-                              <label class="sr-only" for="length">Length</label>
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text form-control-sm">L</div>
-                                </div>
-                                <input type="text" class="form-control form-control-sm" id="length" placeholder="Length">
-                              </div>
-                            </div>
-                            <div class="col-sm-4 my-1">
-                              <label class="sr-only" for="width">Width</label>
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text form-control-sm">W</div>
-                                </div>
-                                <input type="text" class="form-control form-control-sm" id="width" placeholder="Width">
-                              </div>
-                            </div>
-                            <div class="col-sm-4 my-1">
-                              <label class="sr-only" for="height">Height</label>
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text form-control-sm">H</div>
-                                </div>
-                                <input type="text" class="form-control form-control-sm" id="height" placeholder="Height">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
-
-            // Track Shipment
-            <div class="col-md-10 border border-default rounded p-2 mt-2">
-              <div class="border-bottom">
-                <h4>Track Shipping</h4>
-              </div>
-              <form>
-                <div class="form-group">
-                  <label for="number"></label>
-                  <input class="form-control form-control-sm" type="text" placeholder="Shipping No. Ej:(AWB-00-00000)">
-                </div>
-              </form>
-            </div>
-        </div>
-    </div> --}}
-
-
-    <section class="section-area">
+    <section class="section-area" id="home">
         <div class="section-bg_mod-a section-title-block wow">
           <div class="container">
             <div class="row">
@@ -110,7 +16,7 @@
           </div>
         </div>
 
-        <div class="section-top-minus wow">
+        <div class="section-top-minus wow" id="about">
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
@@ -190,70 +96,6 @@
           </div><!-- end row -->
         </div><!-- end container -->
       </section><!-- end section-default -->
-
-
-      {{-- <div class="container wow">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="section-progress clearfix">
-              <ul class="list-progress list-progress_mod-a list-progress_left list-unstyled">
-                <li class="list-progress__item clearfix">
-                  <div class="list-progress__inner">
-                    <span class="list-progress__percent chart" data-percent="290"><span class="percent">290</span></span>
-                    <span class="list-progress__name">Satisfied Clients</span>
-                    <div class="decor-3"></div>
-                  </div>
-                </li>
-                <li class="list-progress__item clearfix">
-                  <div class="list-progress__inner">
-                    <span class="list-progress__percent chart" data-percent="318"><span class="percent">318</span></span>
-                    <span class="list-progress__name">Workers in Team</span>
-                    <div class="decor-3"></div>
-                  </div>
-                </li>
-                <li class="list-progress__item clearfix">
-                  <div class="list-progress__inner">
-                    <span class="list-progress__percent chart" data-percent="107"><span class="percent">107</span></span>
-                    <span class="list-progress__name">Awards Won</span>
-                    <div class="decor-3"></div>
-                  </div>
-                </li>
-              </ul><!-- end list-progress -->
-
-              <ul class="list-progress list-progress_mod-a list-progress_right list-unstyled">
-                <li class="list-progress__item clearfix">
-                  <div class="list-progress__inner">
-                    <span class="list-progress__percent chart" data-percent="637"><span class="percent">637</span></span>
-                    <span class="list-progress__name">Owned Vehicles</span>
-                    <div class="decor-3"></div>
-                  </div>
-                </li>
-                <li class="list-progress__item clearfix">
-                  <div class="list-progress__inner">
-                    <span class="list-progress__percent chart" data-percent="154"><span class="percent">154</span></span>
-                    <span class="list-progress__name">Our Branches</span>
-                    <div class="decor-3"></div>
-                  </div>
-                </li>
-                <li class="list-progress__item clearfix">
-                  <div class="list-progress__inner">
-                    <span class="list-progress__percent chart" data-percent="2500"><span class="percent">2500</span></span>
-                    <span class="list-progress__name">Items Delivered</span>
-                    <div class="decor-3"></div>
-                  </div>
-                </li>
-              </ul><!-- end list-progress -->
-
-              <div class="progress-center">
-                <img class="center-block img-responsive" src="{{ asset('storage/home-theme/bg/bg-1.jpg') }}" alt="background">
-                <a class="progress-center__link prettyPhoto" href="https://www.youtube.com/watch?v=wh6lxMpffCo"><i class="icon fa fa-play"></i></a>
-                <div class="progress-center__title ui-title-inner">watch the tour video</div>
-              </div>
-            </div><!-- end section-progress -->
-          </div><!-- end col -->
-        </div><!-- end row -->
-      </div><!-- end container --> --}}
-
 
       <div class="slider-thumbnails wow">
         <div id="slider-product" class="flexslider slider-thumbnails-main">
@@ -420,7 +262,7 @@
       </section><!-- end section -->
 
 
-      <div class="section-bg_mod-b section_mod-a wow">
+      <div class="section-bg_mod-b section_mod-a wow" id="quote">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
