@@ -22,8 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // })->middleware('auth:api');
 
 Route::post('/register', 'Api\AuthController@register');
-
 Route::post('/login', 'Api\AuthController@login');
+Route::post('/update/{id}', 'Api\AuthController@update');
 
 Route::apiResource('/duty', 'Api\DutyController');
 Route::get('/move_status/{id}', 'Api\DutyController@move_status')->name('move_status');

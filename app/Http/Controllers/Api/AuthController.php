@@ -79,4 +79,35 @@ class AuthController extends Controller
         // return response(['data' => $response->getBody()]);
     }
 
+    public function update(Request $request, $id)
+    {
+        // User details
+        $user = User::find($id);
+
+        // validate input
+        $this->validate($request, [
+            'first_name' => 'min:4',
+            'last_name' => 'min:4',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'mobile' => 'numeric',
+        ]);
+
+        // store in user table
+        $user->update([
+            'fname' => $request->get('first_name'),
+            'lname' => $request->get('last_name'),
+            'email' => $request->get('email'),
+            'mobile' => $request->get('mobile'),
+        ]);
+
+        // return json response
+        $response = [ 
+            'status' => '200',
+            'message' => 'Ok',
+        ];
+
+        return response()->json($response, 200);
+        
+    }
+
 }
