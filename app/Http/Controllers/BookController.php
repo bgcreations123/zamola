@@ -50,10 +50,10 @@ class BookController extends Controller
 
         // Update shipment table
         $shipment = Shipment::updateOrCreate(['id' => $shipment->id], [ 
-            'order_id' => $shipment->order_id,
-            'staff_id' => $shipment->staff_id,
-            'status_id' => $shipment->status_id,
+            'order_id' => $request->get('order'),
+            'staff_id' => $request->get('staff'),
             'driver_id' => $request->get('driver'),
+            'status_id' => $request->get('status'),
             'package_id' => $request->get('package'),
         ]);
 
@@ -65,6 +65,8 @@ class BookController extends Controller
 
         $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
         $receiver = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'destination'])->first();
+
+        // dd($receiver);
 
         Mail::to($sender->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
 

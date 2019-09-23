@@ -370,15 +370,12 @@
                       <strong class="mr-3">Notice:</strong><span>Mandatory field for parcel clearance</span>
                   </span>
                 </div>
-                
+
                 <form action="{{ route('bookings.store') }}"  method="POST">
-
                   {{ csrf_field() }}
-
-                  {{-- <input type="hidden" id="staff" name="staff" value="{{ auth()->user()->id }}"> --}}
+                  <input type="hidden" id="staff" name="staff" value="{{ auth()->user()->id }}">
                   <input type="hidden" id="order" name="order" value="{{ $shipment->id }}">
-                  {{-- <input type="hidden" id="status" name="status" value="{{ $status->id }}"> --}}
-
+                  <input type="hidden" id="status" name="status" value="{{ $status->id }}">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="package">Package Type</label>
@@ -407,7 +404,6 @@
                       </span> 
                     </div> 
                   </div>
-
                 </form>
 
               </div> {{-- // cardbody --}}

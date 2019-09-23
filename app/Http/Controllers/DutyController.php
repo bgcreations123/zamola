@@ -186,13 +186,15 @@ class DutyController extends Controller
 
         /**
         *
-        * update the shipment
+        * update the shipment and order
         *
-        * Update shipment status to rejected
+        * Update shipment status and order status to rejected
         *
         **/
 
         $shipment->update(['status_id' => Status::where('name', 'rejected')->first()->id]);
+
+        Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'rejected')->first()->id]);
 
 
         // return to duties page
