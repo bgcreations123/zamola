@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Auth;
 use Mail;
 use Illuminate\Http\Request;
@@ -45,12 +46,15 @@ class BookController extends Controller
             'package' => 'required'
         ]);
 
+        $shipment = Shipment::where('order_id', $request->get('order'))->first();
+
         // Update shipment table
-        $shipment = Shipment::updateOrCreate(['order_id' => request()->order], [ 
-            'staff_id' => request()->staff,
-            'driver_id' => request()->driver,
-            'status_id' => request()->status,
-            'package_id' => request()->package,
+        $shipment = Shipment::updateOrCreate(['id' => $shipment->id], [ 
+            'order_id' => $shipment->order_id,
+            'staff_id' => $shipment->staff_id,
+            'status_id' => $shipment->status_id,
+            'driver_id' => $request->get('driver'),
+            'package_id' => $request->get('package'),
         ]);
 
         // Update order status table
@@ -61,8 +65,6 @@ class BookController extends Controller
 
         $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
         $receiver = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'destination'])->first();
-
-        // dd($receiver);
 
         Mail::to($sender->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
 
