@@ -6,7 +6,7 @@
             {{ menu('frontend_menu', 'layouts._nav') }}
         </div>
 
-        <img class="d-inline-block align-top" src="{{ Voyager::image(setting('site.logo')) }}" style="width: 2%;">
+        <img class="d-inline-block align-top" src="{{ Voyager::image(setting('site.logo')) }}" style="width: 20px;">
 
         <div class="mx-auto order-0">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">

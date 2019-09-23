@@ -20,13 +20,13 @@
 						</ul>
 					</div>
 
-					<div class="col-xs-3">
+					<div class="col-lg-3 col-md-0 col-xs-6">
 						<a class="logo" href="/">
-							<div class="col-md-2">
-								<img class="logo__img" src="{{ Voyager::image( setting('site.logo') ) }}" alt="Logo" height="56px">
+							<div class="col-xs-2">
+								<img class="logo__img" src="{{ Voyager::image( setting('site.logo') ) }}" alt="Logo" height="56px" style="margin: 0 auto;">
 							</div>
-							<div class="col-md-9">
-								<h5>{{ setting('site.title') }}</h5>
+							<div class="col-lg-10 col-sm-6 col-xs-10">
+								<h5 class="text-center">{{ setting('site.title') }}</h5>
 							</div>
 						</a>
 					</div>
@@ -43,9 +43,7 @@
 					        </div>
 
 							<div class="collapse navbar-collapse container-fluid" id="navbar">
-								<span class="pull-right">
-									<a class="header__btn btn btn-primary btn-sm btn-effect-2" href="{{ route('trace.index') }}" style="margin-left: 20px;">Trace Package</a>
-								</span>
+								
 
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="{{ route('home') }}">Home</a></li>
@@ -63,6 +61,9 @@
 										</ul>
 									</li>
 								</ul>
+								<span class="pull-right">
+									<a class="header__btn btn btn-primary btn-sm btn-effect-2" href="{{ route('trace.index') }}" style="margin-left: 20px;">Trace Package</a>
+								</span>
 								<ul class="nav navbar-nav navbar-right">
 									@guest
 						                <li class="nav-item">

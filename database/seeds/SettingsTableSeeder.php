@@ -125,7 +125,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Working-hours',
-                'value'        => 'MON-SUN:12PM-12AM',
+                'value'        => 'MON - SUN : 12PM - 12AM',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 10,
