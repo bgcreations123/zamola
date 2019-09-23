@@ -20,12 +20,12 @@
 						</ul>
 					</div>
 
-					<div class="col-lg-3 col-md-0 col-xs-6">
+					<div class="col-lg-3 col-md-0 col-xs-10">
 						<a class="logo" href="/">
 							<div class="col-xs-2">
 								<img class="logo__img" src="{{ Voyager::image( setting('site.logo') ) }}" alt="Logo" height="56px" style="margin: 0 auto;">
 							</div>
-							<div class="col-lg-10 col-sm-6 col-xs-10">
+							<div class="col-lg-10 col-sm-6 col-xs-8">
 								<h5 class="text-center">{{ setting('site.title') }}</h5>
 							</div>
 						</a>
