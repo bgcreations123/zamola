@@ -126,6 +126,17 @@
                                   </div>
                               </div>
 
+                              <div class="form-group row">
+
+                                  <div class="col-md-12">
+                                      <label for="address">
+                                          <h4>Address</h4>
+                                      </label>
+                                      <input type="text" class="form-control" name="address" id="address" title="enter your address number." value="{{old('address', $user->address)}}">
+                                  </div>
+
+                              </div>
+
                               {{-- <div class="form-group row">
 
                                   <div class="col-md-6">

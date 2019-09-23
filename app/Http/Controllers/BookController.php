@@ -45,14 +45,6 @@ class BookController extends Controller
             'package' => 'required'
         ]);
 
-        // $shipment = new Shipment;
-
-        // $shipment->order_id = $request->get('order');
-        // $shipment->staff_id = $request->get('staff');
-        // $shipment->driver_id = $request->get('driver');
-        // $shipment->status_id = $request->get('status');
-        // $shipment->package_id = $request->get('package');
-
         // Update shipment table
         $shipment = Shipment::updateOrCreate(['order_id' => request()->order], [ 
             'staff_id' => request()->staff,
@@ -99,8 +91,6 @@ class BookController extends Controller
     {
         // Find the order, origin and destination
         $shipment = Order::find($id);
-        // $origin = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'origin'])->first();
-        // $destination = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'destination'])->first();
 
         // Find the packages and drivers
         $packages = Package::all();

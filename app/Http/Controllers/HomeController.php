@@ -50,6 +50,7 @@ class HomeController extends Controller
             'last_name' => 'min:4',
             'email' => 'required|email|unique:users,email,'.$user->id,
             'mobile' => 'numeric',
+            'address' => 'min:2',
         ]);
 
         // store in user table
@@ -58,6 +59,7 @@ class HomeController extends Controller
             'lname' => $request->get('last_name'),
             'email' => $request->get('email'),
             'mobile' => $request->get('mobile'),
+            'address' => $request->get('address'),
         ]);
 
         // redirect to profiles page with a message
