@@ -20,7 +20,7 @@
 						</ul>
 					</div>
 
-					<div class="col-lg-3 col-md-0 col-xs-10">
+					<div class="col-lg-3 col-md-12 col-xs-8">
 						<a class="logo" href="/">
 							<div class="col-xs-2">
 								<img class="logo__img" src="{{ Voyager::image( setting('site.logo') ) }}" alt="Logo" height="56px" style="margin: 0 auto;">
