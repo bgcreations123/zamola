@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\{Role, Order, Terminus};
+use App\{User, Role, Order, Terminus};
 
 class TraceController extends Controller
 {
@@ -28,13 +28,13 @@ class TraceController extends Controller
     // Trace a Percel
     public function trace($tracer)
     {
-        $user = Auth::user();
+        $user = User::findOrFail(Auth::user()->id);
 
         $shipment = Order::where('tracer', $tracer)->first();
 
         // Check if tracer code exists
         if($shipment == null){
-            return redirect()->back()->with(['error'=> "Tracer code doesn't exist in the system!"]);
+            return redirect()->back()->with(['error'=> "Sorry, that tracer code doesn't exist in the system!"]);
         }
 
         $origin = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'origin'])->first();
@@ -42,10 +42,10 @@ class TraceController extends Controller
         $destination = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'destination'])->first();
 
         // check if role user is true
-        if($user->hasRole(Role::where('name', 'user')->pluck('id'))){
+        if($user->hasRole('user')){
             // check if user is true
-            if($shipment->user_id != (int)$user->id){
-                return redirect()->back()->with(['error'=> 'Stay in your place!']);
+            if($shipment->user_id !== (int)$user->id){
+                return redirect()->back()->with(['error'=> "Sorry, this particular shipment doesn't belong to you...!"]);
             }
         }
         
