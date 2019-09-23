@@ -13,7 +13,7 @@ class Shipment extends Model
      * @var array
      */
     protected $fillable = [
-        'Order_id', 'staff_id', 'driver_id', 'status_id', 'package_id',
+        'order_id', 'staff_id', 'driver_id', 'status_id', 'package_id',
     ];
 
     public function staff()

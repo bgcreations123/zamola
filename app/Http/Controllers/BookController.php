@@ -46,11 +46,8 @@ class BookController extends Controller
             'package' => 'required'
         ]);
 
-        $shipment = Shipment::where('order_id', $request->get('order'))->first();
-
         // Update shipment table
-        $shipment = Shipment::updateOrCreate(['id' => $shipment->id], [ 
-            'order_id' => $request->get('order'),
+        $shipment = Shipment::updateOrCreate(['order_id' => $request->get('order')], [ 
             'staff_id' => $request->get('staff'),
             'driver_id' => $request->get('driver'),
             'status_id' => $request->get('status'),
