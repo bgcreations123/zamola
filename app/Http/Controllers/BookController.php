@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use Auth;
 use Mail;
+// use DB;
 use Illuminate\Http\Request;
 use App\Mail\OrderApproved;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment};

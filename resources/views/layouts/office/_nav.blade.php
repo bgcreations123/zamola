@@ -2,7 +2,7 @@
   <i id="menu-toggle" class="arrow" onclick="this.classList.toggle('active')"></i>
 
   <div class="ml-5">
-    <img src="{{ Voyager::image(setting('site.logo')) }}" style="width: 4.5%;">
+    <img class="img-fluid" src="{{ Voyager::image(setting('site.logo')) }}" style="width: 18px; overflow: hidden;">
      {{ setting('site.title') }}
   </div>
   

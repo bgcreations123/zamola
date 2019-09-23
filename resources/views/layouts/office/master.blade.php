@@ -54,7 +54,6 @@
       @include('layouts.office._nav')
 
       <div class="container-fluid">
-        @include('layouts._messages')
         @yield('content')
       </div>
     </div>

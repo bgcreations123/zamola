@@ -20,6 +20,7 @@ class StaffController extends Controller
         $assignments = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'approved')->pluck('id')])
         ->orWhere(['status_id' => Status::where('name', 'transit')->pluck('id')])
         ->orWhere(['status_id' => Status::where('name', 'delivered')->pluck('id')])
+        ->orWhere(['status_id' => Status::where('name', 'rejected')->pluck('id')])
         ->paginate(5);
 
         $unpaid = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])->get();
