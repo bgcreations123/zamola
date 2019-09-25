@@ -65,12 +65,6 @@
 									<a class="header__btn btn btn-primary btn-sm btn-effect-2" href="{{ route('trace.index') }}" style="margin-left: 20px;">Trace Package</a>
 								</span>
 								<ul class="nav navbar-nav navbar-right">
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('notices') }}">Notifications</a>
-										<span class="badge badge-dark">
-											@include('notices.notice_count')
-										</span>
-									</li>
 									@guest
 						                <li class="nav-item">
 						                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -81,6 +75,14 @@
 						                    </li>
 						                @endif
 						            @else
+						            	<li class="nav-item">
+											<a class="nav-link" href="{{ route('notices') }}">
+												Notifications
+												<span class="badge badge-dark">
+													@include('notices.notice_count')
+												</span>
+											</a>
+										</li>
 						                <li class="dropdown">
 							                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} 
 							                	<span class="caret"></span>
