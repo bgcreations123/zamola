@@ -25,16 +25,25 @@
           @endif
       @else
           <li class="nav-item">
-              <a class="nav-link" href="#">Notifications</a>
+              <a class="nav-link" href="{{ route('notices') }}">
+                Notifications
+                <span class="badge badge-secondary">
+                  @include('notices.notice_count')
+                </span>
+              </a>
           </li>
 
           <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{ Auth::user()->name }} <span class="caret"></span>
+                {{-- <img class="img-circle img-responsive rounded-circle img-thumbnail" src="{{ Voyager::image( auth()->user()->avatar ) }}" style="width: 17px;" /> --}}
+                {{ Auth::user()->name }} <span class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('user.view_profile', ['id'=>Auth::user()->id]) }}">My Profile</a>
+                  <a class="dropdown-item text-center" href="{{ route('user.view_profile', ['id'=>Auth::user()->id]) }}">
+                    <img class="img-circle img-responsive rounded-circle img-thumbnail" src="{{ Voyager::image( auth()->user()->avatar ) }}" style="width: 37px;" />
+                    <p class="mt-4">My Profile</p>
+                  </a>
                   <div class="dropdown-divider"></div>
                   @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('Editor'))
                       <a class="dropdown-item" href="{{ URL::to('/admin') }}">Back Office</a>

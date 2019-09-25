@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Image;
+use File;
 use Illuminate\Http\Request;
 use App\{User, Order, Status};
 
@@ -43,6 +45,30 @@ class HomeController extends Controller
     {
         // User
         $user = User::find($user_id);
+
+        // Handle update of Avatar
+        if($request->hasFile('file')){
+            $directory = public_path('storage/users/'.$user->id);
+
+            // create directory if it doesnt exist
+            if (!file_exists($directory)) {
+                mkdir($directory, 755, true);
+            }else{
+                // delete old file
+                $old_file = public_path('storage/'.$user->avatar);
+
+                if (File::exists($old_file)) { 
+                    unlink($old_file);
+                }
+            }
+
+            $file = $request->file('file');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            Image::make($file)->resize(300, 300)->save($directory.'/'.$filename);
+
+            $user->avatar = '/users/'.$user->id.'/'.$filename;
+            $user->save();
+        }
 
         // validate input
         $this->validate($request, [

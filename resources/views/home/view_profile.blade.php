@@ -28,14 +28,14 @@
 
   @include('layouts._messages')
 
-  <div class="section_mod-b">
+  <div class="section_mod-b mt-4">
       <div class="container">
           <div class="row">
               <div class="col-sm-10">
-                  <h1>{{ $user->name }}</h1>
+                  <h1>{{ $user->fname }} {{ $user->lname }}</h1>
               </div>
               <div class="col-sm-2">
-                  <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive rounded-circle img-thumbnail" src="{{ Voyager::image( $user->avatar ) }}"></a>
+                  <span class="pull-right"><img title="{{ $user->fname }} {{ $user->lname }}" class="img-circle img-responsive rounded-circle img-thumbnail" src="{{ Voyager::image( $user->avatar ) }}"></span>
               </div>
           </div>
           <div class="row">
@@ -92,7 +92,7 @@
                       <div class="tab-pane active" id="settings">
 
                           <hr>
-                          <form class="form" action="{{ route('user.store_profile', ['user_id' => $user->id]) }}" method="post">
+                          <form class="form" action="{{ route('user.store_profile', ['user_id' => $user->id]) }}" method="post" enctype="multipart/form-data">
 
                               {{ csrf_field() }}
 
@@ -137,26 +137,15 @@
 
                               </div>
 
-                              {{-- <div class="form-group row">
-
-                                  <div class="col-md-6">
-                                      <label for="password">
-                                          <h4>Password</h4></label>
-                                      <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                                  </div>
-
-                                  <div class="col-md-6">
-                                      <label for="password2">
-                                          <h4>Verify</h4></label>
-                                      <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                                  </div>
-                              </div> --}}
-
                               <div class="form-group row">
                                   <div class="col-md-12">
                                       <br>
-                                      <button class="btn btn-md btn-outline-success pull-right" type="submit"><i class="fa fa-check-circle"></i> Save</button>
-                                      <button class="btn btn-md btn-outline-secondary pull-left" type="reset"><i class="fa fa-repeat"></i> Reset</button>
+                                      <button class="btn btn-md btn-default btn-outline-success pull-right" type="submit"><i class="fa fa-check-circle"></i> Save</button>
+                                      <label for="file">
+                                        <h4>Avatar</h4>
+                                      </label>
+                                      <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" />
+                                      <label for="file"><span>Change</span></label>
                                   </div>
                               </div>
 

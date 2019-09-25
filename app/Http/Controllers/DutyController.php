@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Mail;
 // use DB;
+use App\Traits\Comments;
 use Illuminate\Http\Request;
 use App\Mail\OrderDelivered;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment, Comment};
 
 class DutyController extends Controller
 {
+    use Comments;
+
     /**
      * Display a listing of the resource.
      *
@@ -169,21 +173,6 @@ class DutyController extends Controller
     {
         $shipment = Shipment::where(['id' => $shipment_id, 'driver_id' => Auth::user()->id])->firstOrFail();
 
-        // validate comment
-        $this->validate($request, [
-            'comment' => 'required',
-        ]);
-
-        // insert into the db
-        $comment = new Comment;
-
-        $comment->sender_id = $shipment->driver->id;
-        $comment->receiver_id = $shipment->staff->id;
-        $comment->shipment_id = $shipment->id;
-        $comment->comment = $request->get('comment');
-
-        $comment->save();
-
         /**
         *
         * update the shipment and order
@@ -196,6 +185,8 @@ class DutyController extends Controller
 
         Order::where('id', $shipment->order_id)->update(['status_id' => Status::where('name', 'rejected')->first()->id]);
 
+        // comment
+        $this->store_comment($request, $shipment->driver_id, $shipment->staff_id, $shipment->id);
 
         // return to duties page
         return redirect()->route('duties')->with('success', 'You have successfully canceled an order.');

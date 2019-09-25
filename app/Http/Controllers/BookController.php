@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Auth;
 use Mail;
 // use DB;
-use Illuminate\Http\Request;
+use App\Traits\Comments;
 use App\Mail\OrderApproved;
+use Illuminate\Http\Request;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment};
 
 class BookController extends Controller
 {
+    use Comments;
+
     /**
      * Display a listing of the resource.
      *
@@ -142,7 +145,49 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function followups()
+    public function notify(Request $request, $order_id)
+    {
+        $user = Auth::user();
+
+        $shipment = Shipment::where(['order_id' => $order_id, 'staff_id' => $user->id])->firstOrFail();
+
+        // validate comment
+        $this->validate($request, [
+            'comment' => 'required',
+        ]);
+
+        $this->store_comment($request, $shipment->staff_id, $shipment->driver_id, $shipment->id);
+
+        return redirect()->route('staff')->with('success', 'Your notice has been sent!');
+    }
+
+    /**
+     * Send follow-up notification.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function followup(Request $request, $order_id)
+    {
+        $user = Auth::user();
+
+        $shipment = Shipment::where(['order_id' => $order_id, 'staff_id' => $user->id])->firstOrFail();
+
+        // validate comment
+        $this->validate($request, [
+            'comment' => 'required',
+        ]);
+
+        $this->store_comment($request, $shipment->staff_id, $shipment->order->user_id, $shipment->id);
+
+        return redirect()->route('staff')->with('success', 'Your follow-up notice to '. $shipment->order->user->name. ' has been sent!');
+    }
+
+    /**
+     * Display a listing of the follow up.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function followup_list()
     {
         $staff = Auth::user();
 

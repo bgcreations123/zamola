@@ -212,10 +212,11 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
+                  Push Notice
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form action="#" method="POST">
+                  <form action="{{ route('bookings.notify', ['order_id' => $shipment->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="comment">Message: </label>
@@ -264,10 +265,11 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
+                  Reminder Notice
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form action="#" method="POST">
+                  <form action="{{ route('bookings.notify', ['shipment_id' => $shipment->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="comment">Message: </label>
@@ -315,10 +317,11 @@
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
+                  Follow-up Notice
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form action="#" method="POST">
+                  <form action="{{ route('bookings.followup', ['shipment_id' => $shipment->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="comment">Message: </label>

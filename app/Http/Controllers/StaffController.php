@@ -27,7 +27,7 @@ class StaffController extends Controller
 
         $paid = Shipment::where(['staff_id' => $staff->id, 'status_id' => Status::where('name', 'paid')->pluck('id')])->get();
 
-        $notices = Comment::where(['receiver_id' => $staff->id, 'status' => '0'])->get();
+        $notices = Comment::where(['receiver_id' => $staff->id, 'status' => '0'])->paginate(3);
 
         return view('staff.index', compact('staff', 'pending_orders', 'assignments', 'unpaid', 'paid', 'notices'));
     }

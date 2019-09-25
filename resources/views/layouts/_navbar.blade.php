@@ -43,7 +43,7 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Notifications</a>
+                        <a class="nav-link" href="{{ route('notices') }}">Notifications</a>
                     </li>
                     @if(auth()->user()->hasRole('user'))
                         <li class="nav-item">

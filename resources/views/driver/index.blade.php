@@ -91,7 +91,7 @@
                 <div class="card">
                     {{-- <img class="card-img-top img-fluid" src="//placehold.it/740x180/bbb/fff?text=..." alt="Card image cap"> --}}
                     <div class="card-body">
-                        <h4 class="card-title">Notices</h4>
+                        <a href="{{ route('notices') }}"><h4 class="card-title">Notices</h4></a>
                         @if($notices->isEmpty())
                             <p class="card-text">No notice for now.</p>
                         @endif
@@ -99,9 +99,30 @@
                             @foreach($notices as $notice)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{-- {{ substr($notice->comment, 0, 19) }}... --}}
-                                    {{ $notice->shipment->order->tracer }}
-                                    <a href="#">Read</a>
+                                    <a href="{{ route('trace', ['tracer' => $notice->shipment->order->tracer]) }}">{{ $notice->shipment->order->tracer }}</a>
+                                    <a href="#" data-toggle="modal" data-target="#notice{{ $notice->id }}">Read</a>
                                 </li>
+
+                                <!-- Modal -->
+                                <div id="notice{{ $notice->id }}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                Read Notice - {{ $notice->shipment->order->tracer }}
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{ $notice->comment }}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- end Modal content-->
                             @endforeach
                         </ul>
                         {{-- <a href="#" class="btn btn-primary">Button</a> --}}

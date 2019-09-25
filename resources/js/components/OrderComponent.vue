@@ -329,7 +329,7 @@
                 console.log(response)
                 // window.location = "/"
                 window.location = response.data.redirect
-                alert('Your order has been made!')
+                //alert('Your order has been made!')
               })
               .catch(error => this.errors.record(error.response.data))
               // .catch(function(errors){

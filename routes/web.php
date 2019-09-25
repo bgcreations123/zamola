@@ -25,6 +25,7 @@ Auth::routes();
 // Private pages
 Route::group(['middleware' => 'auth'], function(){
 	// All roles consumed pages
+	Route::get('notices', 'CommentController@index')->name('notices');
 	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
 	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
 	Route::get('trace/', 'TraceController@index')->name('trace.index');
@@ -43,9 +44,11 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('/', 'StaffController@index')->name('staff');
 		Route::get('orders', 'BookController@index')->name('bookings');
 		Route::get('bookings', 'BookController@assignments')->name('bookings.assignments');
-		Route::get('follow-ups', 'BookController@followups')->name('bookings.followups');
+		Route::get('follow-up_list', 'BookController@followup_list')->name('bookings.followup_list');
 		Route::get('{order_id}/show', 'BookController@show')->name('bookings.show');
 		Route::post('book', 'BookController@store')->name('bookings.store');
+		Route::post('{order_id}/notify', 'BookController@notify')->name('bookings.notify');
+		Route::post('{order_id}/follow-up', 'BookController@followup')->name('bookings.followup');
 		Route::get('{shipment_id}/raise_invoice', 'BookController@raise_invoice')->name('bookings.raise_invoice');
 	});
 

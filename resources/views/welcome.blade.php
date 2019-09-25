@@ -593,8 +593,4 @@
         </div><!-- end container -->
       </div><!-- end section-clients -->
 
-
-
-
-
 @endsection

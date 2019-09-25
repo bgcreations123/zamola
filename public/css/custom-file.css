@@ -1,0 +1,37 @@
+/* file input control*/
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+    padding: 2px 10px;
+    margin: 5px;
+    /*color: white;
+    background-color: black;*/
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    color: red;
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}

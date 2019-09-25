@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $fillable = [
-        'comment',
+        'sender_id', 'receiver_id', 'shipment_id', 'comment',
     ];
 
     public function sender()
@@ -22,6 +22,6 @@ class Comment extends Model
 
 	public function shipment()
 	{
-	    return $this->belongsTo(Shipment::class);
+	    return $this->belongsTo(Shipment::class, 'shipment_id');
 	}
 }

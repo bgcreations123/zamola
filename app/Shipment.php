@@ -40,4 +40,9 @@ class Shipment extends Model
 	{
 		return $this->belongsTo(Status::class);
 	}
+
+	public function comment()
+	{
+		return $this->hasMany(Comment::class);
+	}
 }

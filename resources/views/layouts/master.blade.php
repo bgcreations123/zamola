@@ -29,6 +29,7 @@
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom-file.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home-theme/master.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/flaticon/flaticon.css') }}" rel="stylesheet"> --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
@@ -79,6 +80,7 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     {{-- <script src="{{ asset('js/custom.js') }}" defer></script> --}}
     {{-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> --}}
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Comment;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        $notices = Comment::where('receiver_id', $user->id)->paginate(10);
+
+        return view('notices.index', compact('notices'));
     }
 
     /**
@@ -33,7 +38,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $shipment_id)
     {
         //
     }

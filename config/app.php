@@ -178,6 +178,9 @@ return [
         // Barcode generator
         Milon\Barcode\BarcodeServiceProvider::class,
 
+        // Image control
+        Intervention\Image\ImageServiceProvider::class
+
     ],
 
     /*
@@ -232,6 +235,9 @@ return [
         // barcode gen alias
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+
+        // Image Control
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -27,7 +27,7 @@ class DriverController extends Controller
         ->orWhere(['status_id' => Status::where('name', 'delivered')->pluck('id')])
         ->get();
 
-        $notices = Comment::where(['receiver_id' => $driver->id, 'status' => '0'])->get();
+        $notices = Comment::where(['receiver_id' => $driver->id, 'status' => '0'])->paginate(3);
 
         return view('driver.index', compact('duties', 'progresses', 'deliveries', 'driver', 'notices'));
     }

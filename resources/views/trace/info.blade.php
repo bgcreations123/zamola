@@ -31,7 +31,7 @@
 
     @include('layouts._messages')
 
-    <div class="section_mod-b">
+    <div class="section_mod-b mt-4">
       <div class="container">
 
         <span class="pull-right noprint">
