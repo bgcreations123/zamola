@@ -22,6 +22,18 @@ class CommentController extends Controller
         return view('notices.index', compact('notices'));
     }
 
+    public function read($id)
+    {
+        $notice = Comment::find($id);
+
+        if($notice->status == "0"):
+            Comment::where('id', $id)->update(['status' => "1"]);
+        endif;
+
+        // return redirect()->route('notices');
+        return $this->index();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

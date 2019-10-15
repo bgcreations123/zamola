@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
@@ -26,6 +25,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
 	// All roles consumed pages
 	Route::get('notices', 'CommentController@index')->name('notices');
+	Route::get('notice/{id}', 'CommentController@read')->name('notice.read');
 	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
 	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
 	Route::get('trace/', 'TraceController@index')->name('trace.index');
@@ -64,3 +64,5 @@ Route::group(['middleware' => 'auth'], function(){
 
 });
 
+// Dynamic Public Page route
+Route::get('/{slug}', 'PageController@index')->name('home.page');

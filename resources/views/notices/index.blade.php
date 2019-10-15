@@ -46,11 +46,11 @@
             <table class="table mt-4">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col">Shipment</th>
-                        <th scope="col">Sender</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Action</th>
+                        <th class="text-center" cla scope="col">Shipment</th>
+                        <th class="text-center" scope="col">Sender</th>
+                        <th class="text-center" scope="col">Status</th>
+                        <th class="text-center" scope="col">Date</th>
+                        <th class="text-center" scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,23 +60,67 @@
                             <td>{{ $notice->sender->name }}</td>
                             <td>{{ $notice->status == 0 ? 'Unread' : 'Read' }}</td>
                             <td>{{ \Carbon\Carbon::parse($notice->created_at)->diffForHumans() }}</td>
-                            <td><a href="#" data-toggle="modal" data-target="#notice{{ $notice->id }}">view</a></td>
+                            <td>
+                                <a class="btn btn-xs" href="#" id="read" data-toggle="modal" data-target="#notice{{ $notice->id }}">view</a>
+
+                                <a class="btn btn-xs" href="#" data-toggle="modal" data-target="#review{{ $notice->id }}">Review</a>
+                            </td>
                         </tr>
-                        <!-- Modal -->
+
+                        <script type="application/javascript">
+                            $(document).ready(function () {
+                                $( "#notice{{ $notice->id }}" ).on('hidden.bs.modal', function (e) {
+                                    // alert("I want this to appear after the modal has opened!");
+                                    window.location.href = "{{ route('notice.read', ['id' => $notice->id]) }}";
+                                });
+                            });
+                        </script>
+                        
+                        <!-- Notice Modal -->
                         <div id="notice{{ $notice->id }}" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        Read Notice - {{ $notice->shipment->order->tracer }}
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        Read Notice - From {{ $notice->sender->name }}
+                                        <button type="button" class="close" data-dismiss="modal">&times;
+                                        </button>
                                     </div>
                                     <div class="modal-body">
-                                        {{ $notice->comment }}
+                                        <p><u><strong>Tracer No.</strong> - {{ $notice->shipment->order->tracer }}</u></p>
+                                        {!! $notice->comment !!}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
                                     </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end Modal content-->
+
+                        <!-- Review Modal -->
+                        <div id="review{{ $notice->id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <form action="#" method="">
+                                        {{ csrf_field() }}
+                                        <div class="modal-header">
+                                            Service Review - Tracer No. {{ $notice->shipment->order->tracer }}
+                                            <button type="button" class="close" data-dismiss="modal">&times;
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="review">Review: </label>
+                                                <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
 
                             </div>

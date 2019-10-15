@@ -47,6 +47,9 @@
         ]); @endphp
     </script> --}}
 
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -61,13 +64,17 @@
             
             {{-- @include('layouts._app') --}}
             @include('layouts._header')
+            
             @if (Request::path() == '/')
                 @include('layouts._slides')
             {{-- @else
                 @include('layouts._banner') --}}
             @endif
+
             {{-- {{menu('main', 'layouts._navbar')}} --}}
+            
             {{-- @include('layouts._messages') --}}
+
             @yield('content')
 
             @include('layouts._footer1')
@@ -79,6 +86,7 @@
     </div>
     
     <!-- Scripts -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     {{-- <script src="{{ asset('js/custom.js') }}" defer></script> --}}

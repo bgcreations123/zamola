@@ -32,5 +32,13 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('users');
 
         Permission::generateFor('settings');
+
+        Permission::generateFor('packages');
+
+        Permission::generateFor('payment_methods');
+
+        Permission::generateFor('shipment_categories');
+
+        Permission::generateFor('statuses');
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="section-area" id="home">
-        <div class="section-bg_mod-a section-title-block wow">
+        {{-- <div class="section-bg_mod-a section-title-block wow">
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
@@ -55,7 +55,7 @@
             </div>
           </div><!-- end row -->
         </div><!-- end container -->
-      </section><!-- end section-->
+      </section><!-- end section--> --}}
 
       @include('layouts._messages')
 
@@ -263,7 +263,7 @@
       </section><!-- end section -->
 
 
-      <div class="section-bg_mod-b section_mod-a wow" id="quote">
+      {{-- <div class="section-bg_mod-b section_mod-a wow" id="quote">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
@@ -395,10 +395,10 @@
             </div>
           </div>
         </div>
-      </div><!-- end section -->
+      </div> --}}<!-- end section -->
 
 
-      <div class="section-default parallax-bg parallax-dark wow">
+      {{-- <div class="section-default parallax-bg parallax-dark wow">
         <ul class="bg-slideshow">
           <li>
             <div style="background-image:url({{ asset('storage/home-theme/bg/bg-4.jpg') }})" class="bg-slide"></div>
@@ -454,10 +454,10 @@
             </div>
           </div>
         </div>
-      </div><!-- end section -->
+      </div><!-- end section --> --}}
 
 
-      <section class="section-area wow">
+      {{-- <section class="section-area wow">
         <div class="section-bg_mod-a section-title-block">
           <div class="container">
             <div class="row">
@@ -552,7 +552,7 @@
             </div>
           </div>
         </div>
-      </section><!-- end section -->
+      </section><!-- end section --> --}}
 
 
       <div class="section-clients section-bg_mod-a wow">

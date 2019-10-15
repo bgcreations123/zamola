@@ -27,9 +27,7 @@
           <li class="nav-item">
               <a class="nav-link" href="{{ route('notices') }}">
                 Notifications
-                <span class="badge badge-secondary">
-                  @include('notices.notice_count')
-                </span>
+                @include('notices.notice_count')
               </a>
           </li>
 

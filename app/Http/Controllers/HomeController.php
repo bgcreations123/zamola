@@ -31,7 +31,16 @@ class HomeController extends Controller
 
     public function view_profile($id)
     {
+        // User
         $user = User::find($id);
+
+        // Role
+        $role = Auth::user()->role;
+
+        // check user role is admin
+        if($role->name == 'admin'){
+            return redirect()->route('voyager.profile');
+        }
 
         // check if user is true
         if($user->id != (int)Auth::user()->id){
@@ -87,7 +96,7 @@ class HomeController extends Controller
             'mobile' => $request->get('mobile'),
             'address' => $request->get('address'),
         ]);
-
+        
         // redirect to profiles page with a message
         return redirect()->route('user.view_profile', compact('user'))->with('success', 'Your details have been updated successfully.');
     }

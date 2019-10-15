@@ -31,3 +31,4 @@ Array.prototype.forEach.call( inputs, function( input )
 		input.classList.remove( 'has-focus' ); 
 	});
 });
+

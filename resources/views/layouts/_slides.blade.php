@@ -32,7 +32,7 @@
 					data-show-delay="1000"
 					data-hide-delay="400">
 					<div class="container">
-						<div class="main-slider__subtitle">freight services</div>
+						<div class="main-slider__subtitle">Home Delivery Services</div>
 						<div class="decor-2 decor-2_mod-a decor-2_mod_white"></div>
 					</div>
 			</div>
@@ -83,7 +83,7 @@
 					data-show-delay="1000"
 					data-hide-delay="400">
 					<div class="container">
-						<div class="main-slider__subtitle">freight services</div>
+						<div class="main-slider__subtitle">Warehousing Services</div>
 						<div class="decor-2 decor-2_mod-a decor-2_mod_white"></div>
 					</div>
 			</div>
@@ -185,7 +185,7 @@
 					data-show-delay="1000"
 					data-hide-delay="400">
 					<div class="container">
-						<div class="main-slider__subtitle">freight services</div>
+						<div class="main-slider__subtitle">White Glove Services</div>
 						<div class="decor-2 decor-2_mod-a decor-2_mod_white"></div>
 					</div>
 			</div>
@@ -212,13 +212,13 @@
 
 	<div class="sp-thumbnails">
 		<div class="sp-thumbnail">
-			<span class="sp-thumbnail-icon"><i class="icon flaticon-delivery22"></i></span>
+			<span class="sp-thumbnail-icon"><i class="icon flaticon-logistics3"></i></span>
 		</div>
 		<div class="sp-thumbnail">
-			<span class="sp-thumbnail-icon"><i class="icon flaticon-boat17"></i></span>
+			<span class="sp-thumbnail-icon"><i class="icon flaticon-industrial2"></i></span>
 		</div>
 		<div class="sp-thumbnail">
-			<span class="sp-thumbnail-icon"><i class="icon flaticon-airplane105"></i></span>
+			<span class="sp-thumbnail-icon"><i class="icon flaticon-world77"></i></span>
 		</div>
 		<div class="sp-thumbnail">
 			<span class="sp-thumbnail-icon"><i class="icon flaticon-delivery33"></i></span>

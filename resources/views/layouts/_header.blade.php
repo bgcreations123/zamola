@@ -46,9 +46,10 @@
 								
 
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="{{ route('home') }}">Home</a></li>
-									<li><a href="#">About</a></li>
-									<li class="dropdown">
+
+									{{ menu('frontend', 'layouts._nav') }}
+
+									{{-- <li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="#">Action</a></li>
@@ -59,7 +60,7 @@
 											<li><a href="#">Separated link</a></li>
 											<li><a href="#">One more separated link</a></li>
 										</ul>
-									</li>
+									</li> --}}
 								</ul>
 								<span class="pull-right">
 									<a class="header__btn btn btn-primary btn-sm btn-effect-2" href="{{ route('trace.index') }}" style="margin-left: 20px;">Trace Package</a>
@@ -78,9 +79,7 @@
 						            	<li class="nav-item">
 											<a class="nav-link" href="{{ route('notices') }}">
 												Notifications
-												<span class="badge badge-dark">
-													@include('notices.notice_count')
-												</span>
+												@include('notices.notice_count')
 											</a>
 										</li>
 						                <li class="dropdown">

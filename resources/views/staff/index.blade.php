@@ -121,11 +121,12 @@
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                Read Notice - {{ $notice->shipment->order->tracer }}
+                                                Read Notice - From {{ $notice->sender->name }}
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                {{ $notice->comment }}
+                                                <p><u><strong>Tracer No.</strong> - {{ $notice->shipment->order->tracer }}</u></p>
+                                                {!! $notice->comment !!}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

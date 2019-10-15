@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="section-title parallax-bg parallax-light">
+      <div class="section-title parallax-bg parallax-light">
           <ul class="bg-slideshow">
               <li>
                   <div style="background-image:url({{ asset('storage/home-theme/bg/bg-title.jpg') }})" class="bg-slide"></div>

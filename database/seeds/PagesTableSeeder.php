@@ -249,18 +249,226 @@ class PagesTableSeeder extends Seeder
 
         //Permissions
         Permission::generateFor('pages');
+
         //Content
         $page = Page::firstOrNew([
-            'slug' => 'hello-world',
+            'slug' => 'about',
         ]);
         if (!$page->exists) {
             $page->fill([
                 'author_id' => 0,
-                'title'     => 'Hello World',
-                'excerpt'   => 'Hang the jib grog grog blossom grapple dance the hempen jig gangway pressgang bilge rat to go on account lugger. Nelsons folly gabion line draught scallywag fire ship gaff fluke fathom case shot. Sea Legs bilge rat sloop matey gabion long clothes run a shot across the bow Gold Road cog league.',
-                'body'      => '<p>Hello World. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>
-<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>',
-                'image'            => 'pages/page1.jpg',
+                'title'     => 'About Us',
+                'excerpt'   => 'This is about us tu',
+                'body'      => '<p>Integer congue elit noin semper laoreet sed lectus orcil posuer nisal tempor se felis acm Pelentesque inyd urna. Integer vitae felis magn pec estibul nam rutrumc diam. Aliquam malesuada maurs etulg metu curabitur laoreet convallis nisal. Pellentes que bibendum dsras pol ttito don cursus ante vulputate. Teugiat mil justo faucibusn sd Integ elemen tuma volutpat vestibulm enim mi tincidunt. Lorem ipsum dolor sit amet consectetur lorem ipsum dolor sit amet elit sed do eiusmod tempor incididunt ut labore .</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpacd qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantiu mtotam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+                    <div class="row">
+                    <div class="col-md-6"><img class="post-img img-responsive" src="http://localhost:8000/storage/pages/October2019/11.jpg" alt="foto" width="400" height="280" /></div>
+                    <div class="col-md-6"><img class="post-img img-responsive" src="http://localhost:8000/storage/pages/October2019/21.jpg" alt="foto" width="400" height="280" /></div>
+                    </div>
+                    <!-- end row -->
+                    <p>Mniu veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpacd qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantiu mtotam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+                    <blockquote class="blockquote blockquote_mod-a typography-blockquote">
+                    <p>&ldquo; Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiusmod tempor incididunt ut labore et dolore magna aliqua enim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis aute dolor reprehenderit.&rdquo;</p>
+                    </blockquote>
+                    <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro quisquam est qui dolorem ipsum quia dolor sed dui posit amets consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore.</p>',
+                'image'            => null,
+                'meta_description' => 'Yar Meta Description',
+                'meta_keywords'    => 'Keyword1, Keyword2',
+                'status'           => 'ACTIVE',
+            ])->save();
+        }
+
+        $page = Page::firstOrNew([
+            'slug' => 'services',
+        ]);
+        if (!$page->exists) {
+            $page->fill([
+                'author_id' => 0,
+                'title'     => 'Services',
+                'excerpt'   => 'Our services',
+                'body'      => '<h2 class="ui-title-block" style="text-align: center;"><span class="ui-title-emphasis">Zamola specials</span>Our Services</h2>
+                    <p style="text-align: center;">&nbsp;</p>
+                    <table style="width: 100%; border-collapse: collapse; border-style: none;">
+                    <tbody>
+                    <tr>
+                    <td style="width: 33.3333%;">
+                    <h3 class="list-features-2__title ui-title-inner" style="box-sizing: border-box; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 10px; text-transform: uppercase; position: relative; padding-left: 15px;">FLY WITH US</h3>
+                    <div class="list-features-2__description" style="box-sizing: border-box; height: 70px; margin-bottom: 15px; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px;">Aorem ipsum dolor sit amet elit eiusmod tempor incididunt ut labore dolore magna aliquaLorem ipsum dolor sit</div>
+                    </td>
+                    <td style="width: 33.3333%;">
+                    <h3 class="list-features-2__title ui-title-inner" style="box-sizing: border-box; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 10px; text-transform: uppercase; position: relative; padding-left: 15px;">CARGO MOVING</h3>
+                    <div class="list-features-2__description" style="box-sizing: border-box; height: 70px; margin-bottom: 15px; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px;">Aorem ipsum dolor sit amet elit eiusmod tempor incididunt ut labore dolore magna aliquaLorem ipsum dolor sit</div>
+                    </td>
+                    <td style="width: 33.3333%;">
+                    <h3 class="list-features-2__title ui-title-inner" style="box-sizing: border-box; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 10px; text-transform: uppercase; position: relative; padding-left: 15px;">SMARTPHONE APP</h3>
+                    <div class="list-features-2__description" style="box-sizing: border-box; height: 70px; margin-bottom: 15px; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px;">Aorem ipsum dolor sit amet elit eiusmod tempor incididunt ut labore dolore magna aliquaLorem ipsum dolor sit</div>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="width: 33.3333%;">
+                    <h3 class="list-features-2__title ui-title-inner" style="box-sizing: border-box; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 10px; text-transform: uppercase; position: relative; padding-left: 15px;">VEHICLE LEASING</h3>
+                    <div class="list-features-2__description" style="box-sizing: border-box; height: 70px; margin-bottom: 15px; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px;">Aorem ipsum dolor sit amet elit eiusmod tempor incididunt ut labore dolore magna aliquaLorem ipsum dolor sit</div>
+                    </td>
+                    <td style="width: 33.3333%;">
+                    <h3 class="list-features-2__title ui-title-inner" style="box-sizing: border-box; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 10px; text-transform: uppercase; position: relative; padding-left: 15px;">24/7 SUPPORT</h3>
+                    <div class="list-features-2__description" style="box-sizing: border-box; height: 70px; margin-bottom: 15px; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px;">Aorem ipsum dolor sit amet elit eiusmod tempor incididunt ut labore dolore magna aliquaLorem ipsum dolor sit</div>
+                    </td>
+                    <td style="width: 33.3333%;">
+                    <h3 class="list-features-2__title ui-title-inner" style="box-sizing: border-box; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 10px; text-transform: uppercase; position: relative; padding-left: 15px;">CARGO TRACKING</h3>
+                    <div class="list-features-2__description" style="box-sizing: border-box; height: 70px; margin-bottom: 15px; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px;">Aorem ipsum dolor sit amet elit eiusmod tempor incididunt ut labore dolore magna aliquaLorem ipsum dolor sit</div>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>',
+                'image'            => null,
+                'meta_description' => 'Yar Meta Description',
+                'meta_keywords'    => 'Keyword1, Keyword2',
+                'status'           => 'ACTIVE',
+            ])->save();
+        }
+
+        $page = Page::firstOrNew([
+            'slug' => 'quote',
+        ]);
+        if (!$page->exists) {
+            $page->fill([
+                'author_id' => 0,
+                'title'     => 'Get Quote',
+                'excerpt'   => 'Get quote here in...',
+                'body'      => '<section class="section-area"><form class="form-request form-request_mod-a ui-form block_right_pad" action="#" method="post">
+                    <div class="row">
+                    <div class="col-xs-12"><input type="text" class="form-control" placeholder="Full Name" /></div>
+                    <div class="col-xs-12"><input type="email" class="form-control" placeholder="Email address" /></div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="select-control"><select class="selectpicker">
+                    <option>Destination From....</option>
+                    <option>1</option>
+                    <option>2</option>
+                    </select></div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="select-control"><select class="selectpicker">
+                    <option>Destinatin To....</option>
+                    <option>1</option>
+                    <option>2</option>
+                    </select></div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="select-control"><select class="selectpicker">
+                    <option>Logistics Type</option>
+                    <option>1</option>
+                    <option>2</option>
+                    </select></div>
+                    </div>
+                    <div class="col-sm-6"><input type="email" class="form-control" placeholder="Subject" /></div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-12"><textarea class="form-control" rows="11" placeholder="message"></textarea> <button class="ui-form__btn btn btn-sm btn_mod-a btn-effect pull-right"><span class="btn__inner">request quote</span></button></div>
+                    </div>
+                    </form></section>
+                    <div class="decor-4 decor-4_mod-b">&nbsp;</div>',
+                'image'            => null,
+                'meta_description' => 'Yar Meta Description',
+                'meta_keywords'    => 'Keyword1, Keyword2',
+                'status'           => 'ACTIVE',
+            ])->save();
+        }
+
+        $page = Page::firstOrNew([
+            'slug' => 'faqs',
+        ]);
+        if (!$page->exists) {
+            $page->fill([
+                'author_id' => 0,
+                'title'     => 'FAQ\'s',
+                'excerpt'   => 'Frequently Asked Questions',
+                'body'      => '<div id="accordion-1" class="panel-group accordion">
+                    <div class="panel">
+                    <div class="panel-heading">
+                    <h3 class="panel-title ui-title-inner" style="box-sizing: border-box; font: 700 16px 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 0px; text-transform: uppercase;">VENIAM QUIS NOSTRUD EXERCITATION ULLAMC</h3>
+                    <div id="collapse-2" class="panel-collapse collapse in" style="box-sizing: border-box; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300;">
+                    <div class="panel-body" style="box-sizing: border-box; padding: 10px 15px 0px 30px; border-top-color: #dddddd;">
+                    <p style="box-sizing: border-box; margin: 0px 0px 6px;">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nos-trud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Due aute irure dolor in reprehenderit in oluptate velit esse cillum.</p>
+                    <p style="box-sizing: border-box; margin: 0px 0px 6px;">&nbsp;</p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="note text-center">
+                    <div id="accordion-1" class="panel-group accordion">
+                    <div class="panel">
+                    <div class="panel-heading">
+                    <h3 class="panel-title ui-title-inner" style="box-sizing: border-box; font: 700 16px 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 0px; text-transform: uppercase; text-align: left;">VENIAM QUIS NOSTRUD EXERCITATION ULLAMC</h3>
+                    <div id="collapse-2" class="panel-collapse collapse in" style="box-sizing: border-box; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300;">
+                    <div class="panel-body" style="box-sizing: border-box; padding: 10px 15px 0px 30px; border-top-color: #dddddd;">
+                    <p style="box-sizing: border-box; margin: 0px 0px 6px; text-align: left;">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nos-trud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Due aute irure dolor in reprehenderit in oluptate velit esse cillum.</p>
+                    <p style="box-sizing: border-box; margin: 0px 0px 6px;">&nbsp;</p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="note text-center">
+                    <div id="accordion-1" class="panel-group accordion">
+                    <div class="panel">
+                    <div class="panel-heading">
+                    <h3 class="panel-title ui-title-inner" style="box-sizing: border-box; font: 700 16px 'Titillium Web'; color: #333333; margin-top: 0px; margin-bottom: 0px; text-transform: uppercase; text-align: left;">VENIAM QUIS NOSTRUD EXERCITATION ULLAMC</h3>
+                    <div id="collapse-2" class="panel-collapse collapse in" style="box-sizing: border-box; color: #777777; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300;">
+                    <div class="panel-body" style="box-sizing: border-box; padding: 10px 15px 0px 30px; border-top-color: #dddddd;">
+                    <p style="box-sizing: border-box; margin: 0px 0px 6px; text-align: left;">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nos-trud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Due aute irure dolor in reprehenderit in oluptate velit esse cillum.</p>
+                    <p style="box-sizing: border-box; margin: 0px 0px 6px;">&nbsp;</p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="note text-center">If you didn&rsquo;t found the answer to your question here, Contact us&nbsp;<br />&amp; our representative will reply you as soon as poossible, usually within 24 hours!</div>
+                    <div class="decor-3 text-center">&nbsp;</div>
+                    <div class="text-center"><a class="btn-link btn-link_lg" href="home.html">get in touch</a></div>',
+                'image'            => null,
+                'meta_description' => 'Yar Meta Description',
+                'meta_keywords'    => 'Keyword1, Keyword2',
+                'status'           => 'ACTIVE',
+            ])->save();
+        }
+
+        $page = Page::firstOrNew([
+            'slug' => 'contact',
+        ]);
+        if (!$page->exists) {
+            $page->fill([
+                'author_id' => 0,
+                'title'     => 'Contact Us',
+                'excerpt'   => 'Tell us what you desire as regards your luggages',
+                'body'      => '<section class="section-form-request"><form class="form-request" method="post">
+                    <div class="row">
+                    <div class="col-sm-6"><input type="text" class="form-control" required="" placeholder="first Name" /></div>
+                    <!-- end col -->
+                    <div class="col-sm-6"><input type="text" class="form-control" required="" placeholder="last Name" /></div>
+                    <!-- end col --></div>
+                    <!-- end row -->
+                    <div class="row">
+                    <div class="col-sm-6"><input type="email" class="form-control" required="" placeholder="Email address" /></div>
+                    <!-- end col -->
+                    <div class="col-sm-6"><input type="tel" class="form-control" required="" placeholder="phone no." /></div>
+                    <!-- end col --></div>
+                    <!-- end row -->
+                    <div class="row">
+                    <div class="col-xs-12"><input type="text" class="form-control" required="" placeholder="Enquiry type / subject" /></div>
+                    <!-- end col --></div>
+                    <!-- end row -->
+                    <div class="row">
+                    <div class="col-xs-12"><textarea class="form-control" required="" rows="19" placeholder="message"></textarea> <button class="btn btn_mod-a btn-sm btn-effect pull-right" type="button"><span class="btn__inner">send message</span></button></div>
+                    <!-- end col --></div>
+                    <!-- end row --></form><!-- end form-request --></section>',
+                'image'            => null,
                 'meta_description' => 'Yar Meta Description',
                 'meta_keywords'    => 'Keyword1, Keyword2',
                 'status'           => 'ACTIVE',

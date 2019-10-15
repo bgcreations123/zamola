@@ -9,4 +9,6 @@ $notices = DB::table('comments')
 ])
 ->count();
 
-echo $notices;
+if($notices != 0){
+	echo '<span class="badge badge-dark">'.$notices.'</span>';
+}

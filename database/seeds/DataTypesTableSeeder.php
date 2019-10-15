@@ -52,6 +52,62 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
+
+        $dataType = $this->dataType('slug', 'packages');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'packages',
+                'display_name_singular' => 'Package',
+                'display_name_plural'   => 'Packages',
+                'icon'                  => 'voyager-treasure',
+                'model_name'            => 'App\\Package',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'payment_methods');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'payment_methods',
+                'display_name_singular' => 'Payment_method',
+                'display_name_plural'   => 'Payment_methods',
+                'icon'                  => 'voyager-dollar',
+                'model_name'            => 'App\\Payment_method',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'shipment_categories');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'shipment_categories',
+                'display_name_singular' => 'Shipment_category',
+                'display_name_plural'   => 'Shipment_categories',
+                'icon'                  => 'voyager-edit',
+                'model_name'            => 'App\\Shipment_category',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'statuses');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'statuses',
+                'display_name_singular' => 'Status',
+                'display_name_plural'   => 'Statuses',
+                'icon'                  => 'voyager-lab',
+                'model_name'            => 'App\\Status',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
     }
 
     /**
