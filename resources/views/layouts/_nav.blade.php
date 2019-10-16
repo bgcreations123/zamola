@@ -8,7 +8,10 @@
     @endphp
 
     @if($submenu->count() > 0)
-		<li class="dropdown">
+		<li class="dropdown 
+		@foreach($submenu as $item)
+            {{ (url()->current() === url('/').$item->url) ? 'active' : ''}}
+        @endforeach">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $menu_item->title }}<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				@foreach($submenu as $item)
@@ -17,7 +20,7 @@
 			</ul>
 		</li>
     @else
-	    <li>
+	    <li class="{{ (url()->current() === url('/').$menu_item->url) ? 'active' : '' }}">
 	        <a href="{{ $menu_item->url }}">{{ $menu_item->title }}</a>
 	    </li>
     @endif

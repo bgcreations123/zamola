@@ -67,22 +67,22 @@
 								</span>
 								<ul class="nav navbar-nav navbar-right">
 									@guest
-						                <li class="nav-item">
+						                <li class="nav-item {{ (request()->is('login')) ? 'active' : '' }}">
 						                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 						                </li>
 						                @if (Route::has('register'))
-						                    <li class="nav-item">
+						                    <li class="nav-item {{ (request()->is('register')) ? 'active' : '' }}">
 						                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
 						                    </li>
 						                @endif
 						            @else
-						            	<li class="nav-item">
+						            	<li class="nav-item {{ (request()->is('notices')) ? 'active' : '' }}">
 											<a class="nav-link" href="{{ route('notices') }}">
 												Notifications
 												@include('notices.notice_count')
 											</a>
 										</li>
-						                <li class="dropdown">
+						                <li class="dropdown {{ (request()->is('profile*')) ? 'active' : '' }}">
 							                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} 
 							                	<span class="caret"></span>
 							                </a>

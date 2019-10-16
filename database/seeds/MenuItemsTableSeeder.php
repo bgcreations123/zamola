@@ -372,7 +372,7 @@ class MenuItemsTableSeeder extends Seeder
         $frontendItem = MenuItem::firstOrNew([
             'menu_id' => $frontend->id,
             'title'   => 'FAQ\'s',
-            'url'     => '/quote',
+            'url'     => '/faqs',
             'route'   => null,
         ]);
         if (!$frontendItem->exists) {
