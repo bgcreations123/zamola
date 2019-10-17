@@ -32,9 +32,9 @@
     <div class="section_mod-b mt-4">
         <div class="container">
 
-            <span class="pull-right noprint">
+            {{-- <span class="pull-right noprint">
                 <a href="{{ URL::previous() }}" class="header__btn btn btn-primary btn-sm btn-effect-2 pull-right" style="margin-right: 30px;">Back</a>
-            </span>
+            </span> --}}
 
             <div class="row noprint">
                 <div class="col-xs-12">
@@ -63,7 +63,9 @@
                             <td>
                                 <a class="btn btn-xs" href="#" id="read" data-toggle="modal" data-target="#notice{{ $notice->id }}">view</a>
 
-                                <a class="btn btn-xs" href="#" data-toggle="modal" data-target="#review{{ $notice->id }}">Review</a>
+                                @if(Auth::user()->role->name == 'user')
+                                    <a class="btn btn-xs" href="#" data-toggle="modal" data-target="#review{{ $notice->id }}">Review</a>
+                                @endif
                             </td>
                         </tr>
 
@@ -115,6 +117,9 @@
                                             <div class="form-group">
                                                 <label for="review">Review: </label>
                                                 <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
+                                                <div class="rating">
+                                                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-size="xs">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

@@ -30,8 +30,8 @@ class CommentController extends Controller
             Comment::where('id', $id)->update(['status' => "1"]);
         endif;
 
-        // return redirect()->route('notices');
-        return $this->index();
+        return redirect()->route('notices');
+        // return $this->index();
     }
 
     /**

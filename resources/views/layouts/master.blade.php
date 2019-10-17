@@ -20,6 +20,9 @@
         @endif
     </title>
 
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,7 +35,7 @@
     <link href="{{ asset('css/custom-file.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home-theme/master.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/flaticon/flaticon.css') }}" rel="stylesheet"> --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.css" integrity="sha256-8RDBVgbg42pOdwRZt7jisxrQG1ZW2dx1J9FrgSFLhb0=" crossorigin="anonymous" /> --}}
 
     {{-- Favicon --}}
@@ -63,7 +66,7 @@
         <div class="layout-theme animated-css"  data-header="sticky" data-header-top="200">
             
             {{-- @include('layouts._app') --}}
-            @include('layouts._header')
+            @include('layouts._nav-bar')
             
             @if (Request::path() == '/')
                 @include('layouts._slides')
@@ -77,7 +80,7 @@
 
             @yield('content')
 
-            @include('layouts._footer1')
+            @include('layouts._footer')
 
         </div>
 
@@ -86,6 +89,7 @@
     </div>
     
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>

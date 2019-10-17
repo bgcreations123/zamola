@@ -33,7 +33,9 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ Voyager::image('settings/favicon.ico') }}" type="image/x-icon">
-  
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>
         window.Laravel = @php echo json_encode([
@@ -66,8 +68,6 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/custom.js') }}"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
