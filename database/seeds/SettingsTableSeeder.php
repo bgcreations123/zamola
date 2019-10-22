@@ -112,8 +112,8 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Summery',
-                'value'        => '<p style="box-sizing: border-box; margin: 0px 0px 25px; line-height: 1.74; color: #999999; font-family: Lato, Helvetica, Arial, sans-serif;">Tempor incididunt ut labore dolore magna aliqua sed ipsum envenia dolor sit consectetur adipisicing elit sed ao dseiusmod exercitation ullamco laboris nisi aliquip maodo consequat duis aute irure dolor in reprehenderit voluptate velit sed ese.</p>
-                    <p style="box-sizing: border-box; margin: 0px 0px 25px; line-height: 1.74; color: #999999; font-family: Lato, Helvetica, Arial, sans-serif;">Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiusmod. Lorem ipsum dolor sit amet consectetur adipisicing.</p>',
+                'value'        => '<p style="box-sizing: border-box; margin: 0px 0px 25px; line-height: 1.74; color: #999999; font-family: Lato, Helvetica, Arial, sans-serif;">Our vision is our motivation, and it is the tireless spirit of the team that enables Zamola Enterprizes Ltd to make its place in the new markets. We want to be the logistics that people rely on and turn to, we intend to be the first choice for all shipping needs, but also we are empowering ourselves to the idealized choices for career and investment opportunities.</p>
+                    <p style="box-sizing: border-box; margin: 0px 0px 25px; line-height: 1.74; color: #999999; font-family: Lato, Helvetica, Arial, sans-serif;">With current vigor and zeal, we are looking at being the global benchmark for responsible business practice.</p>',
                 'details'      => '',
                 'type'         => 'rich_text_box',
                 'order'        => 9,

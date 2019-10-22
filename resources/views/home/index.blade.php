@@ -36,9 +36,9 @@
               <div class="col-sm-6">
                 <h2 class="ui-title-block"><span class="ui-title-emphasis ui-title-emphasis_sm">we provide best <br> international freight &</span>logistics services</h2>
                 <div class="decor-1"><i class='icon flaticon-delivery36'></i></div>
-                <div class="ui-subtitle-block">Lorem ipsum dolor sit amet consectetur adipisicing sed eiusmod tempor incididunt ut labore et dolore</div>
+                <div class="ui-subtitle-block">Our network offers extensive transportation options that favor carriage of shipments, and cross-border transportation/trucking services.</div>
                 <div class="block-about__description">
-                  <p>Lorem ipsum dolor sit amet elit sed aiusmod tempor incididunt ut labore dolore magna aliqua sed ipsum ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiu mod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p>Zamola Enterprizes Ltd is mean to connect people and empower their lives with our customer oriented approach and dedication to delivering excellence every hour of the day. Zamola Enterprizes Ltd connects people from around the world and serve customers, employees, investors, last but not the least, the society. We work to make this globe a better and more sustainable place to live.</p>
                 </div>
               </div><!-- end col -->
               <div class="col-sm-6">
@@ -64,7 +64,7 @@
                 <div class="block-download clearfix">
                   <div class="block-download__inner">
                     <h2 class="block-download__title">View your Order Stats</h2>
-                    <div class="block-download__description">Below is a summery of the orders you have made with Zamola Ltd. Welcome again.</div>
+                    <div class="block-download__description">Below is a summery of the orders you have made with Zamola Enterprize Ltd. Welcome again.</div>
                   </div>
                   <div class="block-download__btn">
                     <a class="btn btn_mod-c btn-sm btn-effect" href="{{ route('order.list') }}"><span class="btn__inner">View Full Stats ({{ $all_orders_count->count() }})</span></a>
