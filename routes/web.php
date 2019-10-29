@@ -21,6 +21,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
+// Tracer
+Route::get('trace/', 'TraceController@index')->name('trace.index');
+Route::post('trace/', 'TraceController@tracer')->name('trace.check');
+Route::get('trace/{tracer}', 'TraceController@trace')->name('trace');
+
 // Private pages
 Route::group(['middleware' => 'auth'], function(){
 	// All roles consumed pages
@@ -28,9 +33,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('notice/{id}', 'CommentController@read')->name('notice.read');
 	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
 	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
-	Route::get('trace/', 'TraceController@index')->name('trace.index');
-	Route::post('trace/', 'TraceController@tracer')->name('trace.check');
-	Route::get('trace/{tracer}', 'TraceController@trace')->name('trace');
+	// Place tracer roputes here incase it should be consumed when the user is logged in.
 
 	// Private User pages
 	Route::group(['middleware' => 'access_user'], function(){

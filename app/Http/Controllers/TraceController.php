@@ -28,7 +28,7 @@ class TraceController extends Controller
     // Trace a Percel
     public function trace($tracer)
     {
-        $user = User::findOrFail(Auth::user()->id);
+        // $user = User::findOrFail(Auth::user()->id);
 
         $shipment = Order::where('tracer', $tracer)->first();
 
@@ -41,13 +41,13 @@ class TraceController extends Controller
 
         $destination = Terminus::where(['order_id' => $shipment->id, 'terminal' => 'destination'])->first();
 
-        // check if role user is true
-        if($user->hasRole('user')){
-            // check if user is true
-            if($shipment->user_id !== (int)$user->id){
-                return redirect()->back()->with(['error'=> "Sorry, this particular shipment doesn't belong to you...!"]);
-            }
-        }
+        // // check if role user is true
+        // if($user->hasRole('user')){
+        //     // check if user is true
+        //     if($shipment->user_id !== (int)$user->id){
+        //         return redirect()->back()->with(['error'=> "Sorry, this particular shipment doesn't belong to you...!"]);
+        //     }
+        // }
         
         return view('trace.info', compact('shipment', 'origin', 'destination'));
     }
