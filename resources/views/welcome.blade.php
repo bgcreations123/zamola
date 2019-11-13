@@ -28,24 +28,27 @@
                 <div class="reviews">
                   <div class="reviews__text">Zamola Entreprize Ltd is dedicated to developing customer, industry oriented supply chain solution by keeping its freight forwarding and contract logistics services empowered, and delivering with the best quality and service we promise and as our customers expect.</div>
                   <div class="reviews__author">
-                    <span class="reviews__author-title">message by ceo</span>
-                    <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature">
+                    <span class="reviews__author-title">message by Operations Manager</span>
+                    {{-- <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature"> --}}
+                    Briant Suchi
                   </div>
                 </div>
 
                 <div class="reviews">
                   <div class="reviews__text">We, at Zamola Entreprize Ltd, offer a convenient layout of standard freight management services, including all possible routes, i.e. Air, Sea, and Road to balance urgency and cost-effectiveness for your everyday shipments.</div>
                   <div class="reviews__author">
-                    <span class="reviews__author-title">message by ceo</span>
-                    <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature">
+                    <span class="reviews__author-title">message by Operations Manager</span>
+                    {{-- <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature"> --}}
+                    Briant Suchi
                   </div>
                 </div>
 
                 <div class="reviews">
                   <div class="reviews__text">Zamola Entreprizes Ltd works on to be a company that precisely satisfies our customers while efficiently responding and adapting to changing social and economic conditions. We devotedly and dedicatedly aim to contribute to the sustainable development of the market through our business.</div>
                   <div class="reviews__author">
-                    <span class="reviews__author-title">message by ceo</span>
-                    <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature">
+                    <span class="reviews__author-title">message by Operations Manager</span>
+                    {{-- <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature"> --}}
+                    Briant Suchi
                   </div>
                 </div>
 
