@@ -30,7 +30,7 @@
                   <div class="reviews__author">
                     <span class="reviews__author-title">message by Operations Manager</span>
                     {{-- <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature"> --}}
-                    Briant Suchi
+                    Brayant Suchi
                   </div>
                 </div>
 
@@ -39,7 +39,7 @@
                   <div class="reviews__author">
                     <span class="reviews__author-title">message by Operations Manager</span>
                     {{-- <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature"> --}}
-                    Briant Suchi
+                    Brayant Suchi
                   </div>
                 </div>
 
@@ -48,7 +48,7 @@
                   <div class="reviews__author">
                     <span class="reviews__author-title">message by Operations Manager</span>
                     {{-- <img class="reviews__signature img-responsive" src="{{ asset('storage/home-theme/reviews/signature.png') }}" alt="signature"> --}}
-                    Briant Suchi
+                    Brayant Suchi
                   </div>
                 </div>
 
