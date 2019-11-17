@@ -56,16 +56,12 @@
                 <tbody>
                     @foreach($notices as $notice)
                         <tr class="text-center">
-                            <td><a href="{{ route('trace', ['tracer' => $notice->shipment->order->tracer]) }}">{{ $notice->shipment->order->tracer }}</a></td>
+                            <td><a href="{{ route('trace', ['tracer' => $notice->order->tracer]) }}">{{ $notice->order->tracer }}</a></td>
                             <td>{{ $notice->sender->name }}</td>
                             <td>{{ $notice->status == 0 ? 'Unread' : 'Read' }}</td>
                             <td>{{ \Carbon\Carbon::parse($notice->created_at)->diffForHumans() }}</td>
                             <td>
                                 <a class="btn btn-xs" href="#" id="read" data-toggle="modal" data-target="#notice{{ $notice->id }}">view</a>
-
-                                @if(Auth::user()->role->name == 'user')
-                                    <a class="btn btn-xs" href="#" data-toggle="modal" data-target="#review{{ $notice->id }}">Review</a>
-                                @endif
                             </td>
                         </tr>
 
@@ -89,7 +85,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p><u><strong>Tracer No.</strong> - {{ $notice->shipment->order->tracer }}</u></p>
+                                        <p><u><strong>Tracer No.</strong> - {{ $notice->order->tracer }}</u></p>
                                         {!! $notice->comment !!}
                                     </div>
                                     <div class="modal-footer">
@@ -101,36 +97,6 @@
                         </div>
                         <!-- end Modal content-->
 
-                        <!-- Review Modal -->
-                        <div id="review{{ $notice->id }}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <form action="#" method="">
-                                        {{ csrf_field() }}
-                                        <div class="modal-header">
-                                            Service Review - Tracer No. {{ $notice->shipment->order->tracer }}
-                                            <button type="button" class="close" data-dismiss="modal">&times;
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="review">Review: </label>
-                                                <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
-                                                <div class="rating">
-                                                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-size="xs">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- end Modal content-->
                     @endforeach
                 </tbody>
             </table>

@@ -44,10 +44,21 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $this->validate($request, [
             'driver' => 'required',
             'package' => 'required'
         ]);
+
+        // Admin details
+        $admin = User::where('name', 'Admin')->firstOrFail();
+        
+        // Driver details
+        $driver = User::find($request->get('driver'));
+
+        // Staff details
+        $staff = User::find($request->get('staff'));
 
         // Update shipment table
         $shipment = Shipment::updateOrCreate(['order_id' => $request->get('order')], [ 
@@ -68,6 +79,7 @@ class BookController extends Controller
 
         // dd($receiver);
 
+        // Send mail to Client
         Mail::to($sender->email)->send(new OrderApproved($shipment->order, $sender, $receiver));
 
         // check for failures
@@ -81,6 +93,11 @@ class BookController extends Controller
                 echo " - $email_failures <br />";
             };
         }
+
+        // Send a notification
+        $notice = 'Your order has been booked with driver "'.$driver->fname.' '.$driver->lname.'". Thanks for ordering with Zamola Ent LTD.';
+
+        $this->store_comment($notice, $admin->id, $shipment->order->user_id, $shipment->order->id);
 
         return redirect()->route('staff')->with(['success' => 'You have successfully initiated parcel transit.']);
     }
@@ -156,7 +173,7 @@ class BookController extends Controller
             'comment' => 'required',
         ]);
 
-        $this->store_comment($request, $shipment->staff_id, $shipment->driver_id, $shipment->id);
+        $this->store_comment($request->comment, $shipment->staff_id, $shipment->driver_id, $order->id);
 
         return redirect()->route('staff')->with('success', 'Your notice has been sent!');
     }

@@ -20,7 +20,7 @@ class HomeController extends Controller
         $all_orders_count = Order::where('user_id', (int)Auth()->user()->id)->get();
 
         $pending_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'pending')->pluck('id')])->latest()->take(5)->get();
-        $processing_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->latest()->take(5)->get();
+        $processing_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'approved')->pluck('id')])->latest()->take(5)->get();
         $completed_orders = Order::where(['user_id' => (int)Auth()->user()->id, 'status_id' => Status::where('name', 'delivered')->pluck('id')])
             ->orWhere(['status_id' => Status::where('name', 'unpaid')->pluck('id')])
             ->orWhere(['status_id' => Status::where('name', 'paid')->pluck('id')])

@@ -20,8 +20,8 @@ class Comment extends Model
 		return $this->belongsTo(User::class, 'receiver_id');
 	}
 
-	public function shipment()
+	public function order()
 	{
-	    return $this->belongsTo(Shipment::class, 'shipment_id');
+	    return $this->belongsTo(Order::class, 'order_id');
 	}
 }

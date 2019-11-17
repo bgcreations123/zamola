@@ -111,12 +111,16 @@ class DutyController extends Controller
      */
     public function move_status($shipment_id)
     {
+        // Admin details
+        $admin = User::where('name', 'Admin')->firstOrFail();
+
+        // Shipment Details
         $shipment = Shipment::where(['id' => $shipment_id, 'driver_id' => Auth::user()->id])->firstOrFail();
 
+        // sender details
         $sender = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'origin'])->first();
 
-        // dd($shipment->order);
-
+        // receiver details
         $receiver = Terminus::where(['order_id' => $shipment->order->id, 'terminal' => 'destination'])->first();
 
         // Update the status of shipment and order depending on current status
@@ -151,6 +155,11 @@ class DutyController extends Controller
                     echo " - $email_failures <br />";
                 };
             }
+
+            // Send a notification
+            $notice = 'Your order has been Delivered with driver "'.$shipment->driver->fname.' '.$shipment->driver->lname.'". Thanks for ordering with Zamola Ent LTD.';
+
+            $this->store_comment($notice, $admin->id, $shipment->order->user_id, $shipment->order->id);
 
             $message = 'Thanks for your services at Zamola Enterprize Ltd.';
         }

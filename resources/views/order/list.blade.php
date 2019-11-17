@@ -42,6 +42,7 @@
               <th scope="col">Dimentions: (L x W x H)</th>
               <th scope="col">Order Date</th>
               <th scope="col">Status</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -57,8 +58,45 @@
                     {{ $order->status->name }}
                   </span>
                 </td>
+                <td>
+                  @if(Auth::user()->role->name == 'user' && $order->status_id == 2)
+                      <a class="btn btn-xs" href="#" data-toggle="modal" data-target="#review{{ $order->id }}">Review</a>
+                  @endif
+                </td>
   						</tr>
-  					@endforeach
+
+              <!-- Review Modal -->
+              <div id="review{{ $order->id }}" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                          <form action="#" method="">
+                              {{ csrf_field() }}
+                              <div class="modal-header">
+                                  Service Review - Tracer No. {{ $order->tracer }}
+                                  <button type="button" class="close" data-dismiss="modal">&times;
+                                  </button>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="form-group">
+                                      <label for="review">Review: </label>
+                                      <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
+                                      <div class="rating">
+                                          <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-size="xs">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                              </div>
+                          </form>
+                      </div>
+
+                  </div>
+              </div>
+              <!-- end Modal content-->
+
+            @endforeach
           </tbody>
         </table>
 

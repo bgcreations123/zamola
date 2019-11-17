@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Mail;
-use Illuminate\Http\Request;
+use App\Traits\Comments;
 use App\Mail\OrderReceived;
-use App\{Order, User, Status, Terminus};
+use Illuminate\Http\Request;
+use App\{Order, User, Status, Terminus, Comment};
 
 class OrderController extends Controller
 {
+    use Comments;
+    
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +43,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $admin = User::where('name', 'Admin')->firstOrFail();
+
         $status = Status::where('name', 'pending')->first();
 
         $latestOrder = Order::orderBy('created_at','DESC')->first();
@@ -100,6 +105,7 @@ class OrderController extends Controller
 
         $receiver_terminus->save();
 
+        // Send mail
         Mail::to($sender_terminus->email)->send(new OrderReceived($order, $sender_terminus, $receiver_terminus));
 
         // check for failures
@@ -113,6 +119,11 @@ class OrderController extends Controller
                 echo " - $email_failures <br />";
             };
         }
+
+        // send notification
+        $notice = 'Your order has been submitted and waiting to be dispatched. Thanks for ordering with Zamola Ent LTD.';
+
+        $this->store_comment($notice, $admin->id, $request->get('client'), $order->id);
 
         // return response()->json(['order' => $order, 'sender_terminus' => $sender_terminus, 'receiver_terminus' => $receiver_terminus]);
         return ['redirect' => route('trace', ['tracer' => $order->tracer]), 'with' => ['success' => 'You have successfully placed a new order.']];
@@ -173,7 +184,9 @@ class OrderController extends Controller
             $orders = Order::where(['user_id' => $user->id, 'status_id' => Status::where('name', $status)->pluck('id')])->orderBy('id', 'DESC')->paginate(7);
         }
 
-        return view('order.list', compact('orders'));
+        $notices = Comment::where('receiver_id', $user->id)->get();
+
+        return view('order.list', compact('orders', 'notices'));
     }
 
     // Validate step 1
