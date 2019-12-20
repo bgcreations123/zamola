@@ -32,3 +32,9 @@ Array.prototype.forEach.call( inputs, function( input )
 	});
 });
 
+$(document).ready(function(){	
+	$("#contactForm").submit(function(event){
+		submitForm();
+		return false;
+	});
+});

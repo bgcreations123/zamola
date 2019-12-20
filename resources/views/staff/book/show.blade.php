@@ -232,7 +232,7 @@
 
             </div>
           </div>
-          <!-- end Modal content-->
+          <!-- end Modal-->
 
         @elseif($shipment->status->name == 'approved')
           <div class="col-md-12 mb-4">

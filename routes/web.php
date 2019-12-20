@@ -33,13 +33,14 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('notice/{id}', 'CommentController@read')->name('notice.read');
 	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
 	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
-	// Place tracer roputes here incase it should be consumed when the user is logged in.
+	// Place tracer routes here incase it should be consumed when the user is logged in.
 
 	// Private User pages
 	Route::group(['middleware' => 'access_user'], function(){
 		Route::get('/home', 'HomeController@index')->name('home');
 		Route::get('order', 'OrderController@index')->name('order');
 		Route::get('order/listing/{status?}', 'OrderController@list')->name('order.list');
+		Route::post('{order_id}/review', 'ReviewController@store')->name('review.store');
 	});
 
 	// Private Staff pages

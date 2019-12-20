@@ -184,9 +184,7 @@ class OrderController extends Controller
             $orders = Order::where(['user_id' => $user->id, 'status_id' => Status::where('name', $status)->pluck('id')])->orderBy('id', 'DESC')->paginate(7);
         }
 
-        $notices = Comment::where('receiver_id', $user->id)->get();
-
-        return view('order.list', compact('orders', 'notices'));
+        return view('order.list', compact('orders'));
     }
 
     // Validate step 1

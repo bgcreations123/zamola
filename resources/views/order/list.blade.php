@@ -70,26 +70,27 @@
                   <div class="modal-dialog">
                       <!-- Modal content-->
                       <div class="modal-content">
-                          <form action="#" method="">
-                              {{ csrf_field() }}
-                              <div class="modal-header">
-                                  Service Review - Tracer No. {{ $order->tracer }}
-                                  <button type="button" class="close" data-dismiss="modal">&times;
-                                  </button>
-                              </div>
-                              <div class="modal-body">
-                                  <div class="form-group">
-                                      <label for="review">Review: </label>
-                                      <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
-                                      <div class="rating">
-                                          <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-size="xs">
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                              </div>
+                        <div class="alert alert-danger" style="display:none"></div>
+                        <div class="modal-header">
+                            Service Review - Tracer No. {{ $order->tracer }}
+                            <button type="button" class="close" data-dismiss="modal">&times;
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="" method="POST" id="review">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="review">Review: </label>
+                                <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
+                                <div class="rating">
+                                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-size="xs">
+                                </div>
+                            </div>
                           </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="submit" class="btn btn-primary btn-sm" form="review" id="myFormSubmit">Submit</button>
+                        </div>
                       </div>
 
                   </div>
@@ -105,5 +106,19 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $('#myFormSubmit').click(function(e){
+      e.preventDefault();
+      alert($('#review').val());
+      /*
+      $.post('http://path/to/post', 
+         $('#myForm').serialize(), 
+         function(data, status, xhr){
+           // do something here with response;
+         });
+      */
+    });
+  </script>
 
 @endsection
