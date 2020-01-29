@@ -97,9 +97,10 @@
                         @endif
                         <ul class="list-group list-group-flush">
                             @foreach($notices as $notice)
+                                {{-- {{dd($notice->order)}} --}}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{-- {{ substr($notice->comment, 0, 19) }}... --}}
-                                    <a href="{{ route('trace', ['tracer' => $notice->shipment->order->tracer]) }}">{{ $notice->shipment->order->tracer }}</a>
+                                    <a href="{{ route('trace', ['tracer' => $notice->order->tracer]) }}">{{ $notice->order->tracer }}</a>
                                     <a href="#" data-toggle="modal" data-target="#notice{{ $notice->id }}">Read</a>
                                 </li>
 
@@ -113,7 +114,7 @@
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <p><u><strong>Tracer No.</strong> - {{ $notice->shipment->order->tracer }}</u></p>
+                                                <p><u><strong>Tracer No.</strong> - {{ $notice->order->tracer }}</u></p>
                                                 {!! $notice->comment !!}
                                             </div>
                                             <div class="modal-footer">

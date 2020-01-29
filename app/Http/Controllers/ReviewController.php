@@ -12,7 +12,7 @@ class ReviewController extends Controller
     {
         $user = Auth::user();
 
-        dd($request);
+        // dd($request);
 
         $this->validate($request, [
             'review' => 'required',
@@ -30,6 +30,6 @@ class ReviewController extends Controller
 
         $message = 'Thank You for successfully sending us a review.';
 
-        return redirect()->route('home')->with('success', $message);;
+        return redirect()->route('home')->with('success', $message);
     }
 }

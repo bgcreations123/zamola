@@ -93,7 +93,7 @@
 													<a class="footer-list__link" href="{{ route('trace.index') }}">Track Item(s)</a>
 												</li>
 												<li class="footer-list__item">
-													<a class="footer-list__link" href="#footer">Customer Care</a>
+													<a class="footer-list__link" href="{{ route('comments') }}">Comments</a>
 												</li>
 											</ul>
 										</section>

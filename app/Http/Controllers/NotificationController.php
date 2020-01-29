@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Notification;
 use Illuminate\Http\Request;
-use App\{Shipment, Status, Notification};
 
-class DriverController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,21 +15,23 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $driver = Auth::user();
+        $user = Auth::user();
 
-        $duties = Shipment::where('driver_id', $driver->id)->get();
+        $notices = Notification::where('receiver_id', $user->id)->paginate(10);
 
-        $progresses = Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'transit')->pluck('id')])->paginate(5);
+        return view('notices.index', compact('notices'));
+    }
 
-        $deliveries = 
-        Shipment::where(['driver_id' => $driver->id, 'status_id' => Status::where('name', 'unpaid')->pluck('id')])
-        ->orWhere(['status_id' => Status::where('name', 'paid')->pluck('id')])
-        ->orWhere(['status_id' => Status::where('name', 'delivered')->pluck('id')])
-        ->get();
+    public function read($id)
+    {
+        $notice = Notification::find($id);
 
-        $notices = Notification::where(['receiver_id' => $driver->id, 'status' => '0'])->paginate(3);
+        if($notice->status == "0"):
+            Notification::where('id', $id)->update(['status' => "1"]);
+        endif;
 
-        return view('driver.index', compact('duties', 'progresses', 'deliveries', 'driver', 'notices'));
+        return redirect()->route('notices');
+        // return $this->index();
     }
 
     /**
@@ -56,21 +58,22 @@ class DriverController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
         //
+        return view('notices.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -79,10 +82,10 @@ class DriverController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -90,10 +93,10 @@ class DriverController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
         //
     }

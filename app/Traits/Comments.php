@@ -2,20 +2,17 @@
 
 namespace App\Traits;
 
-use Auth;
 use App\Comment;
 
 trait Comments
 {
-	public function store_comment($notice, $sender, $receiver, $order_id)
+	public function store_comment($comment, $sender)
     {
         // insert into the db
         $comment = new Comment;
 
-        $comment->sender_id = $sender;
-        $comment->receiver_id = $receiver;
-        $comment->order_id = $order_id;
-        $comment->comment = $notice;
+        $comment->sender = $sender;
+        $comment->comment = $comment;
         // $comment->comment = $request->get('comment');
 
         $comment->save();

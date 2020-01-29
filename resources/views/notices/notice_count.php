@@ -2,7 +2,7 @@
 
 $user = auth()->user();
 
-$notices = DB::table('comments')
+$notices = DB::table('notifications')
 ->where([
 	'receiver_id' => $user->id,
 	'status' => '0',

@@ -77,8 +77,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                          <form action="" method="POST" id="review">
-                            {{ csrf_field() }}
+                          <form action="{{ route('review.store', ['order_id' => $order->id]) }}" method="POST">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label for="review">Review: </label>
                                 <textarea class="form-control mb-4" rows="5" id="review" name="review"></textarea>
@@ -107,7 +107,7 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+ {{--  <script type="text/javascript">
     $('#myFormSubmit').click(function(e){
       e.preventDefault();
       alert($('#review').val());
@@ -119,6 +119,6 @@
          });
       */
     });
-  </script>
+  </script> --}}
 
 @endsection

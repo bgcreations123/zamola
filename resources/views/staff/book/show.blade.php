@@ -272,8 +272,8 @@
                   <form action="{{ route('bookings.notify', ['shipment_id' => $shipment->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                      <label for="comment">Message: </label>
-                      <textarea class="form-control mb-4" rows="5" id="comment" name="comment"></textarea>
+                      <label for="notice">Message: </label>
+                      <textarea class="form-control mb-4" rows="5" id="notice" name="notice"></textarea>
                       <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
                     </div>
                   </form>
@@ -324,8 +324,8 @@
                   <form action="{{ route('bookings.followup', ['shipment_id' => $shipment->id]) }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                      <label for="comment">Message: </label>
-                      <textarea class="form-control mb-4" rows="5" id="comment" name="comment"></textarea>
+                      <label for="notice">Message: </label>
+                      <textarea class="form-control mb-4" rows="5" id="notice" name="notice"></textarea>
                       <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
                     </div>
                   </form>
@@ -414,7 +414,6 @@
           </div> {{-- col --}}
         @endif
 
-        
     </div>
 
 @endsection

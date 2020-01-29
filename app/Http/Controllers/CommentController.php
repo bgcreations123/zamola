@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Comment;
 use Illuminate\Http\Request;
 
@@ -15,23 +14,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $comments = Comment::where('public', 'Yes')->paginate(10);
 
-        $notices = Comment::where('receiver_id', $user->id)->paginate(10);
-
-        return view('notices.index', compact('notices'));
-    }
-
-    public function read($id)
-    {
-        $notice = Comment::find($id);
-
-        if($notice->status == "0"):
-            Comment::where('id', $id)->update(['status' => "1"]);
-        endif;
-
-        return redirect()->route('notices');
-        // return $this->index();
+        return view('comments.index', compact('comments'));
     }
 
     /**
@@ -50,9 +35,24 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $shipment_id)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'fname' => 'required',
+            'lname' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $comment = new Comment();
+
+        $comment->sender = $request->get('fname'). ' ' .$request->get('lname');
+        $comment->comment = $request->get('comment');
+
+        $comment->save();
+
+        $message = 'Thank You for the comment. It shall be reviewed shortly.';
+
+        return redirect()->route('home')->with('success', $message);
     }
 
     /**
@@ -63,7 +63,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        // 
     }
 
     /**

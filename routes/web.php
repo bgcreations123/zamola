@@ -26,11 +26,15 @@ Route::get('trace/', 'TraceController@index')->name('trace.index');
 Route::post('trace/', 'TraceController@tracer')->name('trace.check');
 Route::get('trace/{tracer}', 'TraceController@trace')->name('trace');
 
+// Comments
+Route::get('comments/', 'CommentController@index')->name('comments');
+Route::post('comments/', 'CommentController@store')->name('comments.store');
+
 // Private pages
 Route::group(['middleware' => 'auth'], function(){
 	// All roles consumed pages
-	Route::get('notices', 'CommentController@index')->name('notices');
-	Route::get('notice/{id}', 'CommentController@read')->name('notice.read');
+	Route::get('notices', 'NotificationController@index')->name('notices');
+	Route::get('notice/{id}', 'NotificationController@read')->name('notice.read');
 	Route::get('profile/{id}', 'HomeController@view_profile')->name('user.view_profile');
 	Route::post('profile/{id}', 'HomeController@store_profile')->name('user.store_profile');
 	// Place tracer routes here incase it should be consumed when the user is logged in.

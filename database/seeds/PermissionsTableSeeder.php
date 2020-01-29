@@ -40,5 +40,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('shipment_categories');
 
         Permission::generateFor('statuses');
+
+        Permission::generateFor('comments');
     }
 }

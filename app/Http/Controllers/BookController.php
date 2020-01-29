@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Auth;
 use Mail;
 // use DB;
-use App\Traits\Comments;
+use App\Traits\Notifications;
 use App\Mail\OrderApproved;
 use Illuminate\Http\Request;
 use App\{Order, Status, Terminus, Package, User, Role, Shipment};
 
 class BookController extends Controller
 {
-    use Comments;
+    use Notifications;
 
     /**
      * Display a listing of the resource.
@@ -97,7 +97,7 @@ class BookController extends Controller
         // Send a notification
         $notice = 'Your order has been booked with driver "'.$driver->fname.' '.$driver->lname.'". Thanks for ordering with Zamola Ent LTD.';
 
-        $this->store_comment($notice, $admin->id, $shipment->order->user_id, $shipment->order->id);
+        $this->store_notice($notice, $admin->id, $shipment->order->user_id, $shipment->order->id);
 
         return redirect()->route('staff')->with(['success' => 'You have successfully initiated parcel transit.']);
     }
@@ -168,12 +168,12 @@ class BookController extends Controller
 
         $shipment = Shipment::where(['order_id' => $order_id, 'staff_id' => $user->id])->firstOrFail();
 
-        // validate comment
+        // validate notice
         $this->validate($request, [
-            'comment' => 'required',
+            'notice' => 'required',
         ]);
 
-        $this->store_comment($request->comment, $shipment->staff_id, $shipment->driver_id, $order->id);
+        $this->store_notice($request->notice, $shipment->staff_id, $shipment->driver_id, $shipment->id);
 
         return redirect()->route('staff')->with('success', 'Your notice has been sent!');
     }
@@ -189,12 +189,12 @@ class BookController extends Controller
 
         $shipment = Shipment::where(['order_id' => $order_id, 'staff_id' => $user->id])->firstOrFail();
 
-        // validate comment
+        // validate notice
         $this->validate($request, [
-            'comment' => 'required',
+            'notice' => 'required',
         ]);
 
-        $this->store_comment($request, $shipment->staff_id, $shipment->order->user_id, $shipment->id);
+        $this->store_notice($request, $shipment->staff_id, $shipment->order->user_id, $shipment->id);
 
         return redirect()->route('staff')->with('success', 'Your follow-up notice to '. $shipment->order->user->name. ' has been sent!');
     }
