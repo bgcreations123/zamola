@@ -19,6 +19,7 @@ class DataRowsTableSeeder extends Seeder
         $shipmentCategoryDataType = DataType::where('slug', 'shipment_categories')->firstOrFail();
         $statusDataType = DataType::where('slug', 'statuses')->firstOrFail();
         $commentDataType = DataType::where('slug', 'comments')->firstOrFail();
+        $clientDataType = DataType::where('slug', 'clients')->firstOrFail();
 
         $dataRow = $this->dataRow($userDataType, 'id');
         if (!$dataRow->exists) {
@@ -705,6 +706,125 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 0,
                 'order'        => 6,
+            ])->save();
+        }
+
+        // Client
+
+        $dataRow = $this->dataRow($clientDataType, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => __('voyager::seeders.data_rows.id'),
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'order'        => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($clientDataType, 'name');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => __('name'),
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => 2,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($clientDataType, 'link');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => __('link'),
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => 3,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($clientDataType, 'logo');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => __('logo'),
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'order'        => 4,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($clientDataType, 'public');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'radio_btn',
+                'display_name' => __('public'),
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 0,
+                'details'      => [
+                    'default' => '1',
+                    'null'    => '',
+                    'options' => [
+                        '1' => 'no',
+                        '2' => 'yes'
+                    ],
+                    'relationship' => [
+                        'key'   => 'id',
+                        'label' => 'name',
+                    ],
+                ],
+                'order'        => 5,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($clientDataType, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => __('voyager::seeders.data_rows.created_at'),
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 0,
+                'delete'       => 1,
+                'order'        => 6,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($clientDataType, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => __('voyager::seeders.data_rows.updated_at'),
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'order'        => 7,
             ])->save();
         }
     }

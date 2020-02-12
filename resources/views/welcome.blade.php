@@ -234,7 +234,7 @@
                 data-auto-play="4000"
                 data-stop-on-hover="true">
 
-                <a class="carusel-clients__item" href="home.html">
+                {{-- <a class="carusel-clients__item" href="home.html">
                   <img class="carusel-clients__img" src="{{ asset('storage/home-theme/clients/1.png') }}" alt="logo">
                   <span class="helper-2"></span>
                 </a>
@@ -250,6 +250,16 @@
                   <img class="carusel-clients__img" src="{{ asset('storage/home-theme/clients/4.png') }}" alt="logo">
                   <span class="helper-2"></span>
                 </a>
+                <a class="carusel-clients__item" href="home.html">
+                  <img class="carusel-clients__img" src="{{ asset('storage/home-theme/clients/1.png') }}" alt="logo">
+                  <span class="helper-2"></span>
+                </a> --}}
+                @foreach($clients as $client)
+                  <a class="carusel-clients__item" href="{{$client->link}}">
+                    <img class="carusel-clients__img" src="{{ asset('storage/home-theme/clients') }}/{{$client->logo}}" alt="{{$client->logo}}">
+                    <span class="helper-2"></span>
+                  </a>
+                @endforeach
 
               </div><!-- end  -->
             </div><!-- end col -->

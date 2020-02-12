@@ -42,5 +42,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('statuses');
 
         Permission::generateFor('comments');
+
+        Permission::generateFor('clients');
     }
 }

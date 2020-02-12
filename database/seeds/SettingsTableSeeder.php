@@ -52,7 +52,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Phone',
-                'value'        => '010 2345 6789',
+                'value'        => '+1-778-455-2030',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,

@@ -43,6 +43,7 @@
     						    <div class="post-social__media"><i class="icon far fa-comments color-primary"></i></div>
     					    	<div class="post-social__inner">
     					    		<a class="post-social__text" href="blog-main.html">{{$comment->comment}}</a>
+                      <p>By {{$comment->sender}}</p>
     					    		<div class="post-social__meta">
                         <time datetime="2012-10-27 15:20">{{$comment->created_at}}</time>
                       </div>

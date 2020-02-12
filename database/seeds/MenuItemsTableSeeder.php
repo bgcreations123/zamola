@@ -179,6 +179,22 @@ class MenuItemsTableSeeder extends Seeder
 
         $adminItem = MenuItem::firstOrNew([
             'menu_id' => $admin->id,
+            'title'   => __('Clients'),
+            'url'     => '',
+            'route'   => 'voyager.clients.index',
+        ]);
+        if (!$adminItem->exists) {
+            $adminItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-smile',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 5,
+            ])->save();
+        }
+
+        $adminItem = MenuItem::firstOrNew([
+            'menu_id' => $admin->id,
             'title'   => __('Comments Ctrl'),
             'url'     => '',
             'route'   => 'voyager.comments.index',
@@ -189,7 +205,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-chat',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 5,
+                'order'      => 6,
             ])->save();
         }
 
@@ -205,7 +221,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-images',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 6,
+                'order'      => 7,
             ])->save();
         }
 
