@@ -106,15 +106,23 @@
 											<div class="footer-contact">
 												<div class="footer-contact__inner">
 													<div class="footer-contact__title">{{ setting('site.slogan') }}</div>
-													<div class="footer-contact__info">{{ setting('site.address') }}</div>
-													<div class="footer-contact__info">Phone: {{ setting('site.phone') }}</div>
-													<div class="footer-contact__info">Email: <a href="mailto:{{ setting('site.email') }}">{{ setting('site.email') }}</a></div>
-													<select class="footer-contact__select selectpicker">
-														<option>Select a branch</option>
-														<option>{{ setting('site.branch') }}</option>
-														<option>2</option>
+													{{-- <div class="footer-contact__info">{{ setting('site.address') }}</div> --}}
+													<select class="footer-contact__select selectpicker" id="country" onchange="GetSelectedValue()">
+														<option value="No Brunch Selected">-- Select a Branch --</option>
+														<option value="54 NewHill Station Ave CA" selected>Main Office</option>
+														<option value="006 RedCape Ave CA">Ware House 1</option>
+														<option value="37 Safe wells Mkt CA">Ware House 2</option>
 													</select>
-													<div class="footer-contact__note">You can also view our other branches address information by selecting branch above.</div>
+													<div class="footer-contact__info">
+														<br /><p id="result">54 NewHill Station Ave CA</p>
+													</div>
+													<div class="footer-contact__info">Phone: {{ setting('site.phone') }}</div>
+													<div class="footer-contact__info">
+														Email: <a href="mailto:{{ setting('site.email') }}">{{ setting('site.email') }}</a>
+													</div>
+													<div class="footer-contact__note">
+														You can also view our other branches address information by selecting branch above.
+													</div>
 												</div>
 											</div><!-- end footer-contact -->
 										</section>
@@ -142,3 +150,16 @@
 		</div><!-- end container -->
 	</div><!-- end section__inner -->
 </div><!-- end section-area -->
+
+
+
+<script>
+
+	function GetSelectedValue(){
+		var e = document.getElementById("country");
+		var result = e.options[e.selectedIndex].value;
+		
+		document.getElementById("result").innerHTML = result;
+	}
+	
+</script>
