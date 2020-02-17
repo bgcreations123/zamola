@@ -759,7 +759,7 @@ class DataRowsTableSeeder extends Seeder
         $dataRow = $this->dataRow($clientDataType, 'logo');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'text',
+                'type'         => 'image',
                 'display_name' => __('logo'),
                 'required'     => 1,
                 'browse'       => 1,

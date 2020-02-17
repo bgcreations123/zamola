@@ -17,7 +17,7 @@ class ClientsTableSeeder extends Seeder
     		Client::create([
             	'name' => 'Default_'.$i,
             	'link' => 'http://Default_'.$i.'.com',
-            	'logo' => $i.'.png',
+            	'logo' => 'home-theme/clients/'.$i.'.png',
             	'public' => 'yes',
             ]);
     	};
