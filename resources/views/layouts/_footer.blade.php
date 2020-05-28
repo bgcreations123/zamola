@@ -109,12 +109,12 @@
 													{{-- <div class="footer-contact__info">{{ setting('site.address') }}</div> --}}
 													<select class="footer-contact__select selectpicker" id="country" onchange="GetSelectedValue()">
 														<option value="No Brunch Selected">-- Select a Branch --</option>
-														<option value="54 NewHill Station Ave CA" selected>Main Office</option>
-														<option value="006 RedCape Ave CA">Ware House 1</option>
-														<option value="37 Safe wells Mkt CA">Ware House 2</option>
+														<option value="6172 Lane Road, V9L 4E1, Duncan BC" selected>Main Office</option>
+														<option value="135 Prideaux St Nanaimo, BC V9R 2M8">Nanaimo Terminal</option>
+														{{-- <option value="37 Safe wells Mkt CA">Ware House 2</option> --}}
 													</select>
 													<div class="footer-contact__info">
-														<br /><p id="result">54 NewHill Station Ave CA</p>
+														<br /><p id="result">6172 Lane Road, V9L 4E1, Duncan BC</p>
 													</div>
 													<div class="footer-contact__info">Phone: {{ setting('site.phone') }}</div>
 													<div class="footer-contact__info">
@@ -133,7 +133,7 @@
 
 
 						<div class="copyright clearfix">
-							<div class="copyright__inner">© 2019 <a class="copyright__link" href="templines.com">{{ setting('site.title') }}</a> All rights reserved.</div>
+							<div class="copyright__inner">© 2020 <a class="copyright__link" href="templines.com">{{ setting('site.title') }}</a> All rights reserved.</div>
 							<ul class="copyright-list list-inline">
 								<li class="copyright-list__item">
 									<a class="copyright-list__link" href="#">Terms of Use</a>
